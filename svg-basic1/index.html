@@ -120,7 +120,7 @@
       </div>
       <div class="markdown-body">
         <p>SVG 是可缩放矢量图形（Scalable Vector Graphics, SVG），一种用来描述二维矢量图形的 XML 标记语言。SVG 图像在放大或改变尺寸的情况下其图形质量不会有所损失。SVG是万维网联盟的标准，与诸如 DOM 和 XSL 之类的 W3C 标准是一个整体。</p>
-<a id="more"></a>
+<span id="more"></span>
 <h2 id="SVG-是什么？"><a href="#SVG-是什么？" class="headerlink" title="SVG 是什么？"></a>SVG 是什么？</h2><ul>
 <li>SVG 指可伸缩矢量图形（Scalable Vector Graphics）；</li>
 <li>SVG 用来定义用于网络的基于矢量的图形；</li>
@@ -173,6 +173,7 @@
 </tbody></table>
 <h3 id="viewBox"><a href="#viewBox" class="headerlink" title="viewBox"></a>viewBox</h3><p>视区盒子，SVG就像是我们的显示器屏幕，viewBox 就是截屏工具选中的那个框框， 最终的呈现就是把框框中的截屏内容再次在显示器中全屏显示！</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">viewBox=<span class="string">&quot;x,y,width,height&quot;</span></span><br><span class="line"><span class="comment">// x: 左上角横坐标, y: 左上角纵坐标, width: 宽度, height: 高度</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="preserveAspectRatio"><a href="#preserveAspectRatio" class="headerlink" title="preserveAspectRatio"></a>preserveAspectRatio</h3><p>使用 preserveAspectRatio 属性来让 viewBox 保持宽高比。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">preserveAspectRatio&#x3D;[defer]&lt;align&gt;&lt;meetOrSlice&gt;</span><br></pre></td></tr></table></figure>
 <p>defer 参数是可选值，它仅仅在 image 元素上应用 preserveAspectRatio 属性时才使用。在使用其他元素时会被忽略。<br>align 参数控制 viewBox 是否强制进行均匀的缩放。</p>

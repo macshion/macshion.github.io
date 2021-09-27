@@ -103,21 +103,21 @@
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime" title="Update time"></i>
-          2020-12-29
+          2021-08-10
         </span>
         
               <span class="post-tags">
                 <i class="iconfont icon-tags" title="Tags"></i>
                 
                 <span class="span--tag">
-                  <a href="/tags/Axios/" title="Axios">
-                    <b>#</b> Axios
+                  <a href="/tags/React/" title="React">
+                    <b>#</b> React
                   </a>
                 </span>
                 
                 <span class="span--tag">
-                  <a href="/tags/React/" title="React">
-                    <b>#</b> React
+                  <a href="/tags/Axios/" title="Axios">
+                    <b>#</b> Axios
                   </a>
                 </span>
                 
@@ -129,7 +129,7 @@
 <p>Axios is promise-based, which gives you the ability to take advantage of JavaScript’s <code>async</code> and <code>await</code> for more readable asynchronous code.</p>
 <p>You can also intercept and cancel requests, and there’s built-in client-side protection against cross-site request forgery.</p>
 <p>In this article, you will see examples of how to use Axios to access the popular <a target="_blank" rel="noopener" href="https://jsonplaceholder.typicode.com/">JSON Placeholder</a> API within a React application.</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><p>To follow along with this article, you’ll need the following:</p>
 <ul>
@@ -142,8 +142,10 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> digital-ocean-tutorial</span><br></pre></td></tr></table></figure>
 
 
+
 <p>Then run this command to install Axios:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install axios</span><br></pre></td></tr></table></figure>
+
 
 
 <p>Next, you will need to import Axios into the file you want to use it in.</p>
@@ -152,9 +154,11 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano src/PersonList.js</span><br></pre></td></tr></table></figure>
 
 
+
 <p>Add the following code to the component:</p>
 <p>digital-ocean-tutorial/src/PersonList.js</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">PersonList</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  state = &#123;</span><br><span class="line">    persons: []</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">componentDidMount</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    axios.get(<span class="string">`https://jsonplaceholder.typicode.com/users`</span>)</span><br><span class="line">      .then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> persons = res.data;</span><br><span class="line">        <span class="built_in">this</span>.setState(&#123; persons &#125;);</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;ul&gt;</span><br><span class="line">        &#123; <span class="built_in">this</span>.state.persons.map(<span class="function"><span class="params">person</span> =&gt;</span> <span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;person.name&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>)&#125;</span><br><span class="line">      &lt;/ul&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
 
 <p>First, you import React and Axios so that both can be used in the component. Then you hook into the <code>componentDidMount</code> lifecycle hook and perform a <code>GET</code> request.</p>
@@ -166,6 +170,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">PersonList</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  state = &#123;</span><br><span class="line">    name: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleChange = <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.setState(&#123; <span class="attr">name</span>: event.target.value &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleSubmit = <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">    event.preventDefault();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> user = &#123;</span><br><span class="line">      name: <span class="built_in">this</span>.state.name</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    axios.post(<span class="string">`https://jsonplaceholder.typicode.com/users`</span>, &#123; user &#125;)</span><br><span class="line">      .then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(res);</span><br><span class="line">        <span class="built_in">console</span>.log(res.data);</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;form onSubmit=&#123;<span class="built_in">this</span>.handleSubmit&#125;&gt;</span><br><span class="line">          &lt;label&gt;</span><br><span class="line">            Person Name:</span><br><span class="line">            &lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;name&quot;</span> onChange=&#123;<span class="built_in">this</span>.handleChange&#125; /&gt;</span><br><span class="line">          &lt;/label&gt;</span><br><span class="line">          &lt;button type=<span class="string">&quot;submit&quot;</span>&gt;Add&lt;/button&gt;</span><br><span class="line">        &lt;/form&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
+
 <p>Inside the <code>handleSubmit</code> function, you prevent the default action of the form. Then update the <code>state</code> to the <code>user</code> input.</p>
 <p>Using <code>POST</code> gives you the same response object with information that you can use inside of a <code>then</code> call.</p>
 <p>To complete the <code>POST</code> request, you first capture the <code>user</code> input. Then you add the input along with the <code>POST</code> request, which will give you a response. You can then <code>console.log</code> the response, which should show the <code>user</code> input in the form.</p>
@@ -175,10 +180,12 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">PersonList</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  state = &#123;</span><br><span class="line">    id: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleChange = <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.setState(&#123; <span class="attr">id</span>: event.target.value &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleSubmit = <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">    event.preventDefault();</span><br><span class="line"></span><br><span class="line">    axios.delete(<span class="string">`https://jsonplaceholder.typicode.com/users/<span class="subst">$&#123;<span class="built_in">this</span>.state.id&#125;</span>`</span>)</span><br><span class="line">      .then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(res);</span><br><span class="line">        <span class="built_in">console</span>.log(res.data);</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;form onSubmit=&#123;<span class="built_in">this</span>.handleSubmit&#125;&gt;</span><br><span class="line">          &lt;label&gt;</span><br><span class="line">            Person ID:</span><br><span class="line">            &lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;id&quot;</span> onChange=&#123;<span class="built_in">this</span>.handleChange&#125; /&gt;</span><br><span class="line">          &lt;/label&gt;</span><br><span class="line">          &lt;button type=<span class="string">&quot;submit&quot;</span>&gt;Delete&lt;/button&gt;</span><br><span class="line">        &lt;/form&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
+
 <p>Again, the <code>res</code> object provides you with information about the request. You can then <code>console.log</code> that information again after the form is submitted.</p>
 <h2 id="Step-5-—-Using-a-Base-Instance-in-Axios"><a href="#Step-5-—-Using-a-Base-Instance-in-Axios" class="headerlink" title="Step 5 — Using a Base Instance in Axios"></a>Step 5 — Using a Base Instance in Axios</h2><p>In this example, you will see how you can set up a <em>base instance</em> in which you can define a URL and any other configuration elements.</p>
 <p>Create a separate file named <code>api.js</code>:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano src/api.js</span><br></pre></td></tr></table></figure>
+
 
 
 <p>Export a new <code>axios</code> instance with these defaults:</p>
@@ -186,15 +193,18 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> axios.create(&#123;</span><br><span class="line">  baseURL: <span class="string">`http://jsonplaceholder.typicode.com/`</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 
+
 <p>Once the default instance is set up, it can then be used inside of the <code>PersonList</code> component. You import the new instance like this:</p>
 <p>digital-ocean-tutorial/src/PersonList.js</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> API <span class="keyword">from</span> <span class="string">&#x27;../api&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">PersonList</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  handleSubmit = <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">    event.preventDefault();</span><br><span class="line"></span><br><span class="line">    API.delete(<span class="string">`users/<span class="subst">$&#123;<span class="built_in">this</span>.state.id&#125;</span>`</span>)</span><br><span class="line">      .then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(res);</span><br><span class="line">        <span class="built_in">console</span>.log(res.data);</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
 
 <p>Because <code>http://jsonplaceholder.typicode.com/</code> is now the base URL, you no longer need to type out the whole URL each time you want to hit a different endpoint on the API.</p>
 <h2 id="Step-6-—-Using-async-and-await"><a href="#Step-6-—-Using-async-and-await" class="headerlink" title="Step 6 — Using async and await"></a>Step 6 — Using <code>async</code> and <code>await</code></h2><p>In this example, you will see how you can use <code>async</code> and <code>await</code> to work with promises.</p>
 <p>The <code>await</code> keyword resolves the <code>promise</code> and returns the <code>value</code>. The <code>value</code> can then be assigned to a variable.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">handleSubmit = <span class="keyword">async</span> event =&gt; &#123;</span><br><span class="line">  event.preventDefault();</span><br><span class="line"></span><br><span class="line">  <span class="comment">//</span></span><br><span class="line">  <span class="keyword">const</span> response = <span class="keyword">await</span> API.delete(<span class="string">`users/<span class="subst">$&#123;<span class="built_in">this</span>.state.id&#125;</span>`</span>);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(response);</span><br><span class="line">  <span class="built_in">console</span>.log(response.data);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 
 
 <p>In this code sample, the <code>.then()</code> is replaced. The <code>promise</code> is resolved, and the value is stored inside the <code>response</code> variable.</p>
@@ -206,7 +216,7 @@
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/NLP-difficult/" target="_self">
+              <a href="/Frontend-study-roadmap/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>Prev</span>
               </a>
@@ -215,21 +225,21 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime" title="Update time"></i>
-              2020-12-29
+              2021-08-10
             </span>
             
                   <span class="post-tags">
                     <i class="iconfont icon-tags" title="Tags"></i>
                     
                     <span class="span--tag">
-                      <a href="/tags/Axios/" title="Axios">
-                        <b>#</b> Axios
+                      <a href="/tags/React/" title="React">
+                        <b>#</b> React
                       </a>
                     </span>
                     
                     <span class="span--tag">
-                      <a href="/tags/React/" title="React">
-                        <b>#</b> React
+                      <a href="/tags/Axios/" title="Axios">
+                        <b>#</b> Axios
                       </a>
                     </span>
                     

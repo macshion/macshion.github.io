@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
   
-  <title>Macshion</title>
+  <title>Deploy Your Next JS Application in Subfolder   | Macshion</title>
 
   
     <link rel="apple-touch-icon" href="/images/favicon.png">
@@ -84,279 +84,101 @@
 
 
       <div class="flex-container">
-        <div class="container index">
-  <div class="post-list">
-    <!-- 遍历渲染文章 -->
-    
-      <div class="post-item" title="Deploy Your Next JS Application in Subfolder">
-        <div class="time-m-d">2021-09-27</div>
-        <div class="title">
-          <a href="/NextJS-Application-Deployed-in-Subfolder/">
-            
-              
-                <span>Deploy Your Next JS Application in Subfolder</span>
-              
-            
-          </a>
-        </div>
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">Deploy Your Next JS Application in Subfolder</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime" title="Update time"></i>
+          2021-09-27
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="Tags"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/Nextjs/" title="Nextjs">
+                    <b>#</b> Nextjs
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
-    
-      <div class="post-item" title="Youtube-ltc下载油管和B站视频">
-        <div class="time-m-d">2021-08-10</div>
-        <div class="title">
-          <a href="/Youtube-ltc%E4%B8%8B%E8%BD%BD%E6%B2%B9%E7%AE%A1%E5%92%8CB%E7%AB%99%E8%A7%86%E9%A2%91/">
-            
-              
-                <span>Youtube-ltc下载油管和B站视频</span>
-              
-            
-          </a>
-        </div>
+      <div class="markdown-body">
+        <p>You sometimes want to deploy your Next JS under <code>/blog</code>, <code>/docs</code>, or <code>/dashboard</code> folder. But by default, you can only deploy your Next JS on your project root folder.</p>
+<p>Since Next JS 9.5, you can change this configuration by setting <code>basePath</code> in your <code>next.config.js</code>. By default, <code>basePath</code> is set to <code>/</code> but you can modify to <code>/blog</code> or <code>/docs</code>:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;  <span class="attr">basePath</span>: <span class="string">&#x27;/docs&#x27;</span>,&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>That also means you can also run several Next JS applications under the same domain. You don’t need to create a subdomain anymore.</p>
+<p>After updating <code>basePath</code>, you won’t be able to visit <code>http://localhost:3000</code> on your local development environment. To continue to browse on your local machine, you need to add <code>basePath</code> value after <code>http://localhost:3000</code>.</p>
+<blockquote>
+<p>For your information, you don’t need to update your links in your Next JS code. Indeed, it’ll automatically prepend <code>basePath</code> value to all your links.</p>
+</blockquote>
+<p>Source: <a target="_blank" rel="noopener" href="https://creativedesignsguru.com/deploy-your-next-js-application-in-subfolder/">https://creativedesignsguru.com/deploy-your-next-js-application-in-subfolder/</a></p>
+
       </div>
-    
-      <div class="post-item" title="Typescript手册指南阅读笔记 - 类型与接口">
-        <div class="time-m-d">2021-08-10</div>
-        <div class="title">
-          <a href="/Typescript-type-and-interface/">
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
             
-              
-                <span>Typescript手册指南阅读笔记 - 类型与接口</span>
-              
+              <a href="/Youtube-ltc%E4%B8%8B%E8%BD%BD%E6%B2%B9%E7%AE%A1%E5%92%8CB%E7%AB%99%E8%A7%86%E9%A2%91/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
             
-          </a>
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime" title="Update time"></i>
+              2021-09-27
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="Tags"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/Nextjs/" title="Nextjs">
+                        <b>#</b> Nextjs
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
-      </div>
+      
+    </div>
     
-      <div class="post-item" title="Tutorial: Learn how Gatsby works">
-        <div class="time-m-d">2021-08-10</div>
-        <div class="title">
-          <a href="/LearnhowGatsbyworks/">
-            
-              
-                <span>Tutorial: Learn how Gatsby works</span>
-              
-            
-          </a>
-        </div>
-      </div>
+
     
-      <div class="post-item" title="How To Use the JavaScript Fetch API to Get Data">
-        <div class="time-m-d">2021-08-10</div>
-        <div class="title">
-          <a href="/JavaScriptFetchAPI/">
-            
-              
-                <span>How To Use the JavaScript Fetch API to Get Data</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="How to Make React SEO-Friendly: an Extensive SEO Guide">
-        <div class="time-m-d">2021-08-10</div>
-        <div class="title">
-          <a href="/HowtoMakeReactSEO-Friendly/">
-            
-              
-                <span>How to Make React SEO-Friendly: an Extensive SEO Guide</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="How To Use Axios with React">
-        <div class="time-m-d">2021-08-10</div>
-        <div class="title">
-          <a href="/HowToUseAxioswithReact/">
-            
-              
-                <span>How To Use Axios with React</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Frontend Study Roadmap">
-        <div class="time-m-d">2021-07-06</div>
-        <div class="title">
-          <a href="/Frontend-study-roadmap/">
-            
-              
-                <span>Frontend Study Roadmap</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="使用Graphzic与dot语言绘图">
-        <div class="time-m-d">2021-06-22</div>
-        <div class="title">
-          <a href="/Graphzic/">
-            
-              
-                <span>使用Graphzic与dot语言绘图</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Using Throttling and Debouncing with React hooks">
-        <div class="time-m-d">2021-04-06</div>
-        <div class="title">
-          <a href="/Using-Throttling-and-Debouncing-with-React-hooks/">
-            
-              
-                <span>Using Throttling and Debouncing with React hooks</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="How does UmiJS stack up against Next.js?">
-        <div class="time-m-d">2021-03-25</div>
-        <div class="title">
-          <a href="/nextjs-umijs/">
-            
-              
-                <span>How does UmiJS stack up against Next.js?</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="微前端探索">
-        <div class="time-m-d">2021-02-25</div>
-        <div class="title">
-          <a href="/micro-frontend/">
-            
-              
-                <span>微前端探索</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="清华大学刘知远：自然语言理解难在哪儿？">
-        <div class="time-m-d">2020-12-18</div>
-        <div class="title">
-          <a href="/NLP-difficult/">
-            
-              
-                <span>清华大学刘知远：自然语言理解难在哪儿？</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="NLP自然语言处理学习路线">
-        <div class="time-m-d">2020-12-17</div>
-        <div class="title">
-          <a href="/nlp-routes/">
-            
-              
-                <span>NLP自然语言处理学习路线</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Markdown写作自动上传图片至Github - Typora编辑器 + PicGo河床">
-        <div class="time-m-d">2020-12-16</div>
-        <div class="title">
-          <a href="/Typora-PicGo-Github/">
-            
-              
-                <span>Markdown写作自动上传图片至Github - Typora编辑器 + PicGo河床</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="How To Use Styled-Components In React">
-        <div class="time-m-d">2020-12-16</div>
-        <div class="title">
-          <a href="/How-To-Use-Styled-Components-In-React/">
-            
-              
-                <span>How To Use Styled-Components In React</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="我最爱的11款谷歌插件">
-        <div class="time-m-d">2020-11-19</div>
-        <div class="title">
-          <a href="/chrome-extensions/">
-            
-              
-                <span>我最爱的11款谷歌插件</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Redux tutorial">
-        <div class="time-m-d">2020-11-18</div>
-        <div class="title">
-          <a href="/Redux-tutorial/">
-            
-              
-                <span>Redux tutorial</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="SVG 基础知识（一） - SVG 视口">
-        <div class="time-m-d">2019-08-12</div>
-        <div class="title">
-          <a href="/svg-basic1/">
-            
-              
-                <span>SVG 基础知识（一） - SVG 视口</span>
-              
-            
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="VUE学习笔记">
-        <div class="time-m-d">2019-08-11</div>
-        <div class="title">
-          <a href="/June&July-2019/">
-            
-              
-                <span>VUE学习笔记</span>
-              
-            
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+
       </div>
     
   </div>
-  <nav class="post-navigation">
-    
-    <span class="page-num">1 / 2</span>
-    
-      <a href="/page/2/"><i class="iconfont icon-angleright"></i></a>
-    
-  </nav>
-</div>
+
 
         <div class="footer">
   <div class="social">

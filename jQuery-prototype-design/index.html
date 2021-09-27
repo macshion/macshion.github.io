@@ -128,7 +128,7 @@
         <h3 id="Javascript立即执行函数"><a href="#Javascript立即执行函数" class="headerlink" title="Javascript立即执行函数"></a>Javascript立即执行函数</h3><blockquote>
 <p>立即执行函数常用于第三方库，好处在于隔离作用域。作用域隔离非常重要，是一个JS框架必须支持的功能。任何一个第三方库都会存在大量的变量和函数，为了避免变量污染（命名冲突），开发者们想到的解决办法就是使用立即执行函数。</p>
 </blockquote>
-<a id="more"></a>
+<span id="more"></span>
 
 <p>立即执行函数两种常见形式：<br><code>(function()&#123;&#125;)()</code><br><code>(functin()&#123;&#125;())</code></p>
 <blockquote>
@@ -139,6 +139,7 @@
 <h3 id="jQuery共享原型对象"><a href="#jQuery共享原型对象" class="headerlink" title="jQuery共享原型对象"></a>jQuery共享原型对象</h3><p>我们在项目中引入jQuery框架后，可以通过<code>$.</code>或者<code>jQuery.</code>使用它提供的方法。这在jQuery中是怎么实现的呢？<br>jQuery共享原型设计：</p>
 <p><img src="/img/2019/04/jquery_prototype_design.png"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">(function(root)&#123; </span><br><span class="line"></span><br><span class="line">    var jQuery &#x3D; function()&#123;   </span><br><span class="line">        &#x2F;&#x2F; 如果直接返回jQuery构造函数的实例对象，就会进入死循环</span><br><span class="line">        &#x2F;&#x2F; 返回jQuery原型上扩展的init方法的实例对象</span><br><span class="line">        return new jQuery.prototype.init();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    jQuery.prototype &#x3D; &#123;</span><br><span class="line">        init: function()&#123; </span><br><span class="line">            &#x2F;&#x2F;init方法作为构造函数</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; jQuery原型上的init构造函数与jQuery构造函数共享原型对象</span><br><span class="line">    jQuery.prototype.init.prototype &#x3D; jQuery.prototype</span><br><span class="line">    </span><br><span class="line">    root.$ &#x3D; root.jQuery &#x3D; jQuery</span><br><span class="line">    </span><br><span class="line">&#125;)(this);</span><br></pre></td></tr></table></figure>
+
 
       </div>
       

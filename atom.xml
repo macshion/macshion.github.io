@@ -6,7 +6,7 @@
   <link href="https://macshion.github.io/atom.xml" rel="self"/>
   
   <link href="https://macshion.github.io/"/>
-  <updated>2021-07-15T06:19:19.786Z</updated>
+  <updated>2021-09-27T04:09:51.639Z</updated>
   <id>https://macshion.github.io/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Deploy Your Next JS Application in Subfolder</title>
+    <link href="https://macshion.github.io/NextJS-Application-Deployed-in-Subfolder/"/>
+    <id>https://macshion.github.io/NextJS-Application-Deployed-in-Subfolder/</id>
+    <published>2021-09-27T04:03:07.000Z</published>
+    <updated>2021-09-27T04:09:51.639Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;You sometimes want to deploy your Next JS under &lt;code&gt;/blog&lt;/code&gt;, &lt;code&gt;/docs&lt;/code&gt;, or &lt;code&gt;/dashboard&lt;/code&gt; folder. But by</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Nextjs" scheme="https://macshion.github.io/tags/Nextjs/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Youtube-ltc下载油管和B站视频</title>
     <link href="https://macshion.github.io/Youtube-ltc%E4%B8%8B%E8%BD%BD%E6%B2%B9%E7%AE%A1%E5%92%8CB%E7%AB%99%E8%A7%86%E9%A2%91/"/>
     <id>https://macshion.github.io/Youtube-ltc%E4%B8%8B%E8%BD%BD%E6%B2%B9%E7%AE%A1%E5%92%8CB%E7%AB%99%E8%A7%86%E9%A2%91/</id>
-    <published>2021-07-15T06:19:19.786Z</published>
-    <updated>2021-07-15T06:19:19.786Z</updated>
+    <published>2021-08-10T07:04:11.130Z</published>
+    <updated>2021-08-10T07:04:11.136Z</updated>
     
     
       
@@ -41,133 +64,11 @@
   </entry>
   
   <entry>
-    <title>Frontend Study Roadmap</title>
-    <link href="https://macshion.github.io/Frontend-study-roadmap/"/>
-    <id>https://macshion.github.io/Frontend-study-roadmap/</id>
-    <published>2021-07-06T07:16:47.000Z</published>
-    <updated>2021-07-07T07:16:46.228Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;1-From-https-roadmap-sh&quot;&gt;&lt;a href=&quot;#1-From-https-roadmap-sh&quot; class=&quot;headerlink&quot; title=&quot;#1 From https://roadmap.sh/&quot;&gt;&lt;/a&gt;#1 From &lt;a</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Roadmap" scheme="https://macshion.github.io/tags/Roadmap/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用Graphzic与dot语言绘图</title>
-    <link href="https://macshion.github.io/Graphzic/"/>
-    <id>https://macshion.github.io/Graphzic/</id>
-    <published>2021-06-22T04:23:53.000Z</published>
-    <updated>2021-07-07T02:07:15.845Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;一、Graphviz简介&quot;&gt;&lt;a href=&quot;#一、Graphviz简介&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="Graphviz" scheme="https://macshion.github.io/tags/Graphviz/"/>
-    
-    <category term="Dot" scheme="https://macshion.github.io/tags/Dot/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Using Throttling and Debouncing with React hooks</title>
-    <link href="https://macshion.github.io/Using-Throttling-and-Debouncing-with-React-hooks/"/>
-    <id>https://macshion.github.io/Using-Throttling-and-Debouncing-with-React-hooks/</id>
-    <published>2021-04-06T03:34:00.000Z</published>
-    <updated>2021-04-06T03:47:06.697Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    
-    <category term="React" scheme="https://macshion.github.io/tags/React/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>How does UmiJS stack up against Next.js?</title>
-    <link href="https://macshion.github.io/nextjs-umijs/"/>
-    <id>https://macshion.github.io/nextjs-umijs/</id>
-    <published>2021-03-25T03:50:39.000Z</published>
-    <updated>2021-04-06T04:20:59.582Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/macshion/PicBed/main/2021/20210325114733.png&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="React" scheme="https://macshion.github.io/tags/React/"/>
-    
-    <category term="Umi" scheme="https://macshion.github.io/tags/Umi/"/>
-    
-    <category term="Nextjs" scheme="https://macshion.github.io/tags/Nextjs/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>微前端探索</title>
-    <link href="https://macshion.github.io/micro-frontend/"/>
-    <id>https://macshion.github.io/micro-frontend/</id>
-    <published>2021-02-25T02:44:54.000Z</published>
-    <updated>2021-02-25T06:42:53.381Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;转自张泰峰的博客《微前端大赏》&lt;/p&gt;
-&lt;p&gt;一、&lt;a</summary>
-        
-      
-    
-    
-    
-    
-    <category term="微前端" scheme="https://macshion.github.io/tags/%E5%BE%AE%E5%89%8D%E7%AB%AF/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Typescript手册指南阅读笔记 - 类型与接口</title>
     <link href="https://macshion.github.io/Typescript-type-and-interface/"/>
     <id>https://macshion.github.io/Typescript-type-and-interface/</id>
-    <published>2020-12-29T11:05:11.753Z</published>
-    <updated>2021-01-08T07:50:50.613Z</updated>
+    <published>2021-08-10T07:04:11.097Z</published>
+    <updated>2021-08-10T07:04:11.103Z</updated>
     
     
     <summary type="html">&lt;p&gt;TypeScript支持与JavaScript几乎相同的数据类型。&lt;/p&gt;</summary>
@@ -183,8 +84,8 @@
     <title>Tutorial: Learn how Gatsby works</title>
     <link href="https://macshion.github.io/LearnhowGatsbyworks/"/>
     <id>https://macshion.github.io/LearnhowGatsbyworks/</id>
-    <published>2020-12-29T11:05:11.749Z</published>
-    <updated>2021-01-08T08:40:22.384Z</updated>
+    <published>2021-08-10T07:04:10.987Z</published>
+    <updated>2021-08-10T07:04:11.035Z</updated>
     
     
       
@@ -210,8 +111,8 @@
     <title>How To Use the JavaScript Fetch API to Get Data</title>
     <link href="https://macshion.github.io/JavaScriptFetchAPI/"/>
     <id>https://macshion.github.io/JavaScriptFetchAPI/</id>
-    <published>2020-12-29T11:05:11.747Z</published>
-    <updated>2021-04-06T04:20:10.730Z</updated>
+    <published>2021-08-10T07:04:10.965Z</published>
+    <updated>2021-08-10T07:04:10.970Z</updated>
     
     
     <summary type="html">&lt;h3 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h3&gt;&lt;p&gt;There was a time when &lt;code&gt;XMLHttpRequest&lt;/code&gt; was used to make API requests. It didn’t include promises, and it didn’t make for clean JavaScript code. Using jQuery, you used the cleaner syntax with &lt;code&gt;jQuery.ajax()&lt;/code&gt;.&lt;/p&gt;
@@ -231,8 +132,8 @@
     <title>How to Make React SEO-Friendly: an Extensive SEO Guide</title>
     <link href="https://macshion.github.io/HowtoMakeReactSEO-Friendly/"/>
     <id>https://macshion.github.io/HowtoMakeReactSEO-Friendly/</id>
-    <published>2020-12-29T11:05:11.747Z</published>
-    <updated>2021-01-08T08:35:30.651Z</updated>
+    <published>2021-08-10T07:04:10.953Z</published>
+    <updated>2021-08-10T07:04:10.959Z</updated>
     
     
       
@@ -248,9 +149,9 @@
     
     <category term="React" scheme="https://macshion.github.io/tags/React/"/>
     
-    <category term="Nextjs" scheme="https://macshion.github.io/tags/Nextjs/"/>
-    
     <category term="SEO" scheme="https://macshion.github.io/tags/SEO/"/>
+    
+    <category term="Nextjs" scheme="https://macshion.github.io/tags/Nextjs/"/>
     
     <category term="Gatsby" scheme="https://macshion.github.io/tags/Gatsby/"/>
     
@@ -260,8 +161,8 @@
     <title>How To Use Axios with React</title>
     <link href="https://macshion.github.io/HowToUseAxioswithReact/"/>
     <id>https://macshion.github.io/HowToUseAxioswithReact/</id>
-    <published>2020-12-29T11:05:11.746Z</published>
-    <updated>2021-04-06T04:17:55.024Z</updated>
+    <published>2021-08-10T07:04:10.941Z</published>
+    <updated>2021-08-10T07:04:10.945Z</updated>
     
     
     <summary type="html">&lt;h3 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h3&gt;&lt;p&gt;Many projects on the web need to interface with a REST API at some stage in their development. &lt;a href=&quot;https://github.com/axios/axios&quot;&gt;Axios&lt;/a&gt; is a lightweight HTTP client based on the &lt;code&gt;$http&lt;/code&gt; service within Angular.js v1.x and is similar to the native JavaScript &lt;a href=&quot;https://www.digitalocean.com/community/tutorials/js-fetch-api&quot;&gt;Fetch API&lt;/a&gt;.&lt;/p&gt;
@@ -272,9 +173,131 @@
     
     
     
+    <category term="React" scheme="https://macshion.github.io/tags/React/"/>
+    
     <category term="Axios" scheme="https://macshion.github.io/tags/Axios/"/>
     
+  </entry>
+  
+  <entry>
+    <title>Frontend Study Roadmap</title>
+    <link href="https://macshion.github.io/Frontend-study-roadmap/"/>
+    <id>https://macshion.github.io/Frontend-study-roadmap/</id>
+    <published>2021-07-06T07:16:47.000Z</published>
+    <updated>2021-08-10T07:04:10.907Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;1-From-https-roadmap-sh&quot;&gt;&lt;a href=&quot;#1-From-https-roadmap-sh&quot; class=&quot;headerlink&quot; title=&quot;#1 From https://roadmap.sh/&quot;&gt;&lt;/a&gt;#1 From &lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Roadmap" scheme="https://macshion.github.io/tags/Roadmap/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用Graphzic与dot语言绘图</title>
+    <link href="https://macshion.github.io/Graphzic/"/>
+    <id>https://macshion.github.io/Graphzic/</id>
+    <published>2021-06-22T04:23:53.000Z</published>
+    <updated>2021-08-10T07:04:10.920Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一、Graphviz简介&quot;&gt;&lt;a href=&quot;#一、Graphviz简介&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Graphviz" scheme="https://macshion.github.io/tags/Graphviz/"/>
+    
+    <category term="Dot" scheme="https://macshion.github.io/tags/Dot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Using Throttling and Debouncing with React hooks</title>
+    <link href="https://macshion.github.io/Using-Throttling-and-Debouncing-with-React-hooks/"/>
+    <id>https://macshion.github.io/Using-Throttling-and-Debouncing-with-React-hooks/</id>
+    <published>2021-04-06T03:34:00.000Z</published>
+    <updated>2021-08-10T07:04:11.121Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
     <category term="React" scheme="https://macshion.github.io/tags/React/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>How does UmiJS stack up against Next.js?</title>
+    <link href="https://macshion.github.io/nextjs-umijs/"/>
+    <id>https://macshion.github.io/nextjs-umijs/</id>
+    <published>2021-03-25T03:50:39.000Z</published>
+    <updated>2021-08-10T07:04:11.273Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/macshion/PicBed/main/2021/20210325114733.png&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="React" scheme="https://macshion.github.io/tags/React/"/>
+    
+    <category term="Nextjs" scheme="https://macshion.github.io/tags/Nextjs/"/>
+    
+    <category term="Umi" scheme="https://macshion.github.io/tags/Umi/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>微前端探索</title>
+    <link href="https://macshion.github.io/micro-frontend/"/>
+    <id>https://macshion.github.io/micro-frontend/</id>
+    <published>2021-02-25T02:44:54.000Z</published>
+    <updated>2021-08-10T07:04:11.258Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;转自张泰峰的博客《微前端大赏》&lt;/p&gt;
+&lt;p&gt;一、&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="微前端" scheme="https://macshion.github.io/tags/%E5%BE%AE%E5%89%8D%E7%AB%AF/"/>
     
   </entry>
   
@@ -283,7 +306,7 @@
     <link href="https://macshion.github.io/NLP-difficult/"/>
     <id>https://macshion.github.io/NLP-difficult/</id>
     <published>2020-12-18T04:03:36.000Z</published>
-    <updated>2020-12-29T11:05:11.751Z</updated>
+    <updated>2021-08-10T07:04:11.057Z</updated>
     
     
     <summary type="html">&lt;p&gt;在微博和知乎上关注&lt;strong&gt;自然语言处理（NLP）&lt;/strong&gt;技术的朋友，应该都对**#NLP太难了#&lt;strong&gt;、&lt;/strong&gt;#自然语言理解太难了#**两个话题标签不陌生，其下汇集了各种不仅难煞计算机、甚至让人也发懵的费解句子或歧义引起的笑话。然而，这些例子只是让人直觉计算机理解人类语言太难了，NLP到底难在哪里，还缺少通俗易懂的介绍。&lt;/p&gt;</summary>
@@ -300,7 +323,7 @@
     <link href="https://macshion.github.io/nlp-routes/"/>
     <id>https://macshion.github.io/nlp-routes/</id>
     <published>2020-12-17T12:21:35.000Z</published>
-    <updated>2021-04-06T04:21:08.966Z</updated>
+    <updated>2021-08-10T07:04:11.286Z</updated>
     
     
     <summary type="html">&lt;p&gt;&lt;code&gt;nlp-roadmap&lt;/code&gt; is &lt;code&gt;Natural Language Processing&lt;/code&gt; &lt;strong&gt;ROADMAP(Mind Map)&lt;/strong&gt; and &lt;strong&gt;KEYWORD&lt;/strong&gt; for students those who have interest in learning Natural Language Processing. The roadmap covers the materials from basic probability/statistics to SOTA NLP models.&lt;/p&gt;</summary>
@@ -317,7 +340,7 @@
     <link href="https://macshion.github.io/Typora-PicGo-Github/"/>
     <id>https://macshion.github.io/Typora-PicGo-Github/</id>
     <published>2020-12-16T10:09:27.000Z</published>
-    <updated>2020-12-29T11:05:11.754Z</updated>
+    <updated>2021-08-10T07:04:11.116Z</updated>
     
     
     <summary type="html">&lt;p&gt;使用Typora+PicGo可以在Markdown写作过程中非常方便快速地插入图片。&lt;/p&gt;</summary>
@@ -334,7 +357,7 @@
     <link href="https://macshion.github.io/How-To-Use-Styled-Components-In-React/"/>
     <id>https://macshion.github.io/How-To-Use-Styled-Components-In-React/</id>
     <published>2020-12-16T04:58:09.000Z</published>
-    <updated>2021-07-07T02:50:19.217Z</updated>
+    <updated>2021-08-10T07:04:10.931Z</updated>
     
     
     <summary type="html">&lt;p&gt;While the component-driven approach has ushered in a new frontier in the way we build web applications, it isn’t without its imperfections — one being its usability and scalability with CSS. This has given birth to a new way to construct and manage our styles in a &lt;strong&gt;component-specific&lt;/strong&gt; manner, otherwise knows as CSS-in-JS.&lt;/p&gt;</summary>
@@ -351,7 +374,7 @@
     <link href="https://macshion.github.io/chrome-extensions/"/>
     <id>https://macshion.github.io/chrome-extensions/</id>
     <published>2020-11-19T09:57:50.000Z</published>
-    <updated>2020-12-29T11:05:11.756Z</updated>
+    <updated>2021-08-10T07:04:11.159Z</updated>
     
     
     <summary type="html">&lt;p&gt;作为前端程序员，日常太多时间花在浏览器上了，把它用到极致吧！&lt;/p&gt;
@@ -369,7 +392,7 @@
     <link href="https://macshion.github.io/Redux-tutorial/"/>
     <id>https://macshion.github.io/Redux-tutorial/</id>
     <published>2020-11-18T10:12:36.000Z</published>
-    <updated>2021-04-06T04:21:21.824Z</updated>
+    <updated>2021-08-10T07:04:11.069Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;Tutorial-0-introduction&quot;&gt;&lt;a href=&quot;#Tutorial-0-introduction&quot; class=&quot;headerlink&quot; title=&quot;Tutorial 0 - introduction&quot;&gt;&lt;/a&gt;Tutorial 0 - introduction&lt;/h2&gt;&lt;p&gt;Why this tutorial?&lt;br&gt;While trying to learn Redux, I realized that I had accumulated incorrect knowledge about flux through&lt;br&gt;articles I read and personal experience. I don’t mean that articles about flux are not well written&lt;br&gt;but I just didn’t grasp concepts correctly. In the end, I was just applying documentation of different&lt;br&gt;flux frameworks (Reflux, Flummox, FB Flux) and trying to make them match with the theoretical concept I read&lt;br&gt;about (actions / actions creators, store, dispatcher, etc).&lt;/p&gt;</summary>
@@ -388,7 +411,7 @@
     <link href="https://macshion.github.io/svg-basic1/"/>
     <id>https://macshion.github.io/svg-basic1/</id>
     <published>2019-08-11T16:09:12.000Z</published>
-    <updated>2020-12-29T11:05:11.765Z</updated>
+    <updated>2021-08-10T07:04:11.329Z</updated>
     
     
     <summary type="html">&lt;p&gt;SVG 是可缩放矢量图形（Scalable Vector Graphics, SVG），一种用来描述二维矢量图形的 XML 标记语言。SVG 图像在放大或改变尺寸的情况下其图形质量不会有所损失。SVG是万维网联盟的标准，与诸如 DOM 和 XSL 之类的 W3C 标准是一个整体。&lt;/p&gt;</summary>
@@ -405,7 +428,7 @@
     <link href="https://macshion.github.io/June&amp;July-2019/"/>
     <id>https://macshion.github.io/June&amp;July-2019/</id>
     <published>2019-08-11T00:17:06.000Z</published>
-    <updated>2020-12-29T11:05:11.748Z</updated>
+    <updated>2021-08-10T07:04:10.982Z</updated>
     
     
     <summary type="html">&lt;p&gt;5月28日换了新工作，直到现在才差不多适应过来。有两个多月没更新博客了，我几乎忘了怎样用Hexo发布新文章了😓。六七月大概是在学VUE的课程，在语雀做的学习笔记。为什么选择在语雀做笔记呢？因为屏幕截图可以直接粘贴，结构导航体验很好。以下是我做的VUE笔记：&lt;/p&gt;</summary>
@@ -414,26 +437,6 @@
     
     
     <category term="VUE" scheme="https://macshion.github.io/tags/VUE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>基于jQuery开发一个图片懒加载插件</title>
-    <link href="https://macshion.github.io/jQuery-imgLazyLoad/"/>
-    <id>https://macshion.github.io/jQuery-imgLazyLoad/</id>
-    <published>2019-05-25T12:40:44.000Z</published>
-    <updated>2021-04-06T04:18:59.180Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;图片懒加载（LazyLoad）一直是前端的优化方案之一。&lt;/p&gt;
-&lt;p&gt;其核心思想是：先将img标签中的src链接设为同一张图片，真正的图片地址存储在img标签的自定义属性中。当js监听到该图片元素进入可视窗口时，将自定义属性中的地址存储到src属性中。&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="Javascript" scheme="https://macshion.github.io/tags/Javascript/"/>
-    
-    <category term="jQuery" scheme="https://macshion.github.io/tags/jQuery/"/>
     
   </entry>
   
