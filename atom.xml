@@ -6,7 +6,7 @@
   <link href="https://macshion.github.io/atom.xml" rel="self"/>
   
   <link href="https://macshion.github.io/"/>
-  <updated>2022-04-30T20:02:03.259Z</updated>
+  <updated>2022-04-30T20:37:25.423Z</updated>
   <id>https://macshion.github.io/</id>
   
   <author>
@@ -17,11 +17,61 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>markdown latex math</title>
+    <title>Webpack前端构建⼯具原理剖析</title>
+    <link href="https://macshion.github.io/how-webpack-build-packages/"/>
+    <id>https://macshion.github.io/how-webpack-build-packages/</id>
+    <published>2022-04-30T20:36:27.000Z</published>
+    <updated>2022-04-30T20:37:25.423Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;⼀、什么是webpack&quot;&gt;&lt;a href=&quot;#⼀、什么是webpack&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="中文" scheme="https://macshion.github.io/categories/%E4%B8%AD%E6%96%87/"/>
+    
+    
+    <category term="Webpack" scheme="https://macshion.github.io/tags/Webpack/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>钉钉面试官分享：前端面试问什么？</title>
+    <link href="https://macshion.github.io/Dingding-interview/"/>
+    <id>https://macshion.github.io/Dingding-interview/</id>
+    <published>2022-04-30T20:31:46.000Z</published>
+    <updated>2022-04-30T20:34:18.854Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;原文： &lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="中文" scheme="https://macshion.github.io/categories/%E4%B8%AD%E6%96%87/"/>
+    
+    
+    <category term="前端面试" scheme="https://macshion.github.io/tags/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LaTeX - 在Markdown中插入数学公式</title>
     <link href="https://macshion.github.io/markdown-latex-math/"/>
     <id>https://macshion.github.io/markdown-latex-math/</id>
     <published>2022-04-30T19:50:46.000Z</published>
-    <updated>2022-04-30T20:02:03.259Z</updated>
+    <updated>2022-04-30T20:25:57.939Z</updated>
     
     
       
@@ -35,27 +85,10 @@
     
     
     
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="https://macshion.github.io/Creating%20a%20React%20app%20with%20TypeScript%20and%20ESLint%20with%20Webpack%205/"/>
-    <id>https://macshion.github.io/Creating%20a%20React%20app%20with%20TypeScript%20and%20ESLint%20with%20Webpack%205/</id>
-    <published>2021-11-04T07:02:51.772Z</published>
-    <updated>2021-11-04T07:02:52.056Z</updated>
+    <category term="中文" scheme="https://macshion.github.io/categories/%E4%B8%AD%E6%96%87/"/>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;This post will cover how to use &lt;a href=&quot;https://webpack.js.org/&quot;&gt;webpack 5&lt;/a&gt; to bundle a React and TypeScript app. Our setup will</summary>
-        
-      
-    
-    
-    
+    <category term="Math" scheme="https://macshion.github.io/tags/Math/"/>
     
   </entry>
   
@@ -87,7 +120,7 @@
     <link href="https://macshion.github.io/NextJS-Application-Deployed-in-Subfolder/"/>
     <id>https://macshion.github.io/NextJS-Application-Deployed-in-Subfolder/</id>
     <published>2021-09-27T04:03:07.000Z</published>
-    <updated>2021-09-27T04:09:51.639Z</updated>
+    <updated>2022-04-30T20:27:10.010Z</updated>
     
     
       
@@ -100,6 +133,8 @@
     
     
     
+    <category term="English" scheme="https://macshion.github.io/categories/English/"/>
+    
     
     <category term="Nextjs" scheme="https://macshion.github.io/tags/Nextjs/"/>
     
@@ -110,7 +145,7 @@
     <link href="https://macshion.github.io/Youtube-ltc%E4%B8%8B%E8%BD%BD%E6%B2%B9%E7%AE%A1%E5%92%8CB%E7%AB%99%E8%A7%86%E9%A2%91/"/>
     <id>https://macshion.github.io/Youtube-ltc%E4%B8%8B%E8%BD%BD%E6%B2%B9%E7%AE%A1%E5%92%8CB%E7%AB%99%E8%A7%86%E9%A2%91/</id>
     <published>2021-08-10T07:04:11.130Z</published>
-    <updated>2021-08-10T07:04:11.136Z</updated>
+    <updated>2022-04-30T20:28:56.593Z</updated>
     
     
       
@@ -124,6 +159,8 @@
     
     
     
+    <category term="中文" scheme="https://macshion.github.io/categories/%E4%B8%AD%E6%96%87/"/>
+    
     
     <category term="Tools" scheme="https://macshion.github.io/tags/Tools/"/>
     
@@ -134,12 +171,14 @@
     <link href="https://macshion.github.io/Typescript-type-and-interface/"/>
     <id>https://macshion.github.io/Typescript-type-and-interface/</id>
     <published>2021-08-10T07:04:11.097Z</published>
-    <updated>2021-08-10T07:04:11.103Z</updated>
+    <updated>2022-04-30T20:28:38.815Z</updated>
     
     
     <summary type="html">&lt;p&gt;TypeScript支持与JavaScript几乎相同的数据类型。&lt;/p&gt;</summary>
     
     
+    
+    <category term="中文" scheme="https://macshion.github.io/categories/%E4%B8%AD%E6%96%87/"/>
     
     
     <category term="Typescript" scheme="https://macshion.github.io/tags/Typescript/"/>
@@ -151,7 +190,7 @@
     <link href="https://macshion.github.io/LearnhowGatsbyworks/"/>
     <id>https://macshion.github.io/LearnhowGatsbyworks/</id>
     <published>2021-08-10T07:04:10.987Z</published>
-    <updated>2021-08-10T07:04:11.035Z</updated>
+    <updated>2022-04-30T20:27:10.013Z</updated>
     
     
       
@@ -163,6 +202,8 @@
       
     
     
+    
+    <category term="English" scheme="https://macshion.github.io/categories/English/"/>
     
     
     <category term="React" scheme="https://macshion.github.io/tags/React/"/>
@@ -178,7 +219,7 @@
     <link href="https://macshion.github.io/JavaScriptFetchAPI/"/>
     <id>https://macshion.github.io/JavaScriptFetchAPI/</id>
     <published>2021-08-10T07:04:10.965Z</published>
-    <updated>2021-08-10T07:04:10.970Z</updated>
+    <updated>2022-04-30T20:27:10.013Z</updated>
     
     
     <summary type="html">&lt;h3 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h3&gt;&lt;p&gt;There was a time when &lt;code&gt;XMLHttpRequest&lt;/code&gt; was used to make API requests. It didn’t include promises, and it didn’t make for clean JavaScript code. Using jQuery, you used the cleaner syntax with &lt;code&gt;jQuery.ajax()&lt;/code&gt;.&lt;/p&gt;
@@ -186,6 +227,8 @@
 &lt;p&gt;In this tutorial, you will create both GET and POST requests using the Fetch API.&lt;/p&gt;</summary>
     
     
+    
+    <category term="English" scheme="https://macshion.github.io/categories/English/"/>
     
     
     <category term="Javascript" scheme="https://macshion.github.io/tags/Javascript/"/>
@@ -199,7 +242,7 @@
     <link href="https://macshion.github.io/HowtoMakeReactSEO-Friendly/"/>
     <id>https://macshion.github.io/HowtoMakeReactSEO-Friendly/</id>
     <published>2021-08-10T07:04:10.953Z</published>
-    <updated>2021-08-10T07:04:10.959Z</updated>
+    <updated>2022-04-30T20:27:10.015Z</updated>
     
     
       
@@ -211,6 +254,8 @@
       
     
     
+    
+    <category term="English" scheme="https://macshion.github.io/categories/English/"/>
     
     
     <category term="React" scheme="https://macshion.github.io/tags/React/"/>
@@ -228,7 +273,7 @@
     <link href="https://macshion.github.io/HowToUseAxioswithReact/"/>
     <id>https://macshion.github.io/HowToUseAxioswithReact/</id>
     <published>2021-08-10T07:04:10.941Z</published>
-    <updated>2021-08-10T07:04:10.945Z</updated>
+    <updated>2022-04-30T20:27:10.013Z</updated>
     
     
     <summary type="html">&lt;h3 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h3&gt;&lt;p&gt;Many projects on the web need to interface with a REST API at some stage in their development. &lt;a href=&quot;https://github.com/axios/axios&quot;&gt;Axios&lt;/a&gt; is a lightweight HTTP client based on the &lt;code&gt;$http&lt;/code&gt; service within Angular.js v1.x and is similar to the native JavaScript &lt;a href=&quot;https://www.digitalocean.com/community/tutorials/js-fetch-api&quot;&gt;Fetch API&lt;/a&gt;.&lt;/p&gt;
@@ -237,6 +282,8 @@
 &lt;p&gt;In this article, you will see examples of how to use Axios to access the popular &lt;a href=&quot;https://jsonplaceholder.typicode.com/&quot;&gt;JSON Placeholder&lt;/a&gt; API within a React application.&lt;/p&gt;</summary>
     
     
+    
+    <category term="English" scheme="https://macshion.github.io/categories/English/"/>
     
     
     <category term="Axios" scheme="https://macshion.github.io/tags/Axios/"/>
@@ -250,7 +297,7 @@
     <link href="https://macshion.github.io/Frontend-study-roadmap/"/>
     <id>https://macshion.github.io/Frontend-study-roadmap/</id>
     <published>2021-07-06T07:16:47.000Z</published>
-    <updated>2021-08-10T07:04:10.907Z</updated>
+    <updated>2022-04-30T20:20:08.234Z</updated>
     
     
       
@@ -263,6 +310,8 @@
     
     
     
+    <category term="中文" scheme="https://macshion.github.io/categories/%E4%B8%AD%E6%96%87/"/>
+    
     
     <category term="Roadmap" scheme="https://macshion.github.io/tags/Roadmap/"/>
     
@@ -273,7 +322,7 @@
     <link href="https://macshion.github.io/Graphzic/"/>
     <id>https://macshion.github.io/Graphzic/</id>
     <published>2021-06-22T04:23:53.000Z</published>
-    <updated>2021-08-10T07:04:10.920Z</updated>
+    <updated>2022-04-30T20:20:25.238Z</updated>
     
     
       
@@ -285,6 +334,8 @@
       
     
     
+    
+    <category term="中文" scheme="https://macshion.github.io/categories/%E4%B8%AD%E6%96%87/"/>
     
     
     <category term="Graphviz" scheme="https://macshion.github.io/tags/Graphviz/"/>
@@ -298,7 +349,7 @@
     <link href="https://macshion.github.io/Using-Throttling-and-Debouncing-with-React-hooks/"/>
     <id>https://macshion.github.io/Using-Throttling-and-Debouncing-with-React-hooks/</id>
     <published>2021-04-06T03:34:00.000Z</published>
-    <updated>2021-08-10T07:04:11.121Z</updated>
+    <updated>2022-04-30T20:28:50.920Z</updated>
     
     
       
@@ -311,6 +362,8 @@
     
     
     
+    <category term="中文" scheme="https://macshion.github.io/categories/%E4%B8%AD%E6%96%87/"/>
+    
     
     <category term="React" scheme="https://macshion.github.io/tags/React/"/>
     
@@ -321,7 +374,7 @@
     <link href="https://macshion.github.io/nextjs-umijs/"/>
     <id>https://macshion.github.io/nextjs-umijs/</id>
     <published>2021-03-25T03:50:39.000Z</published>
-    <updated>2021-08-10T07:04:11.273Z</updated>
+    <updated>2022-04-30T20:27:35.101Z</updated>
     
     
       
@@ -333,6 +386,8 @@
       
     
     
+    
+    <category term="English" scheme="https://macshion.github.io/categories/English/"/>
     
     
     <category term="React" scheme="https://macshion.github.io/tags/React/"/>
@@ -348,7 +403,7 @@
     <link href="https://macshion.github.io/micro-frontend/"/>
     <id>https://macshion.github.io/micro-frontend/</id>
     <published>2021-02-25T02:44:54.000Z</published>
-    <updated>2021-08-10T07:04:11.258Z</updated>
+    <updated>2022-04-30T20:26:16.843Z</updated>
     
     
       
@@ -362,6 +417,8 @@
     
     
     
+    <category term="中文" scheme="https://macshion.github.io/categories/%E4%B8%AD%E6%96%87/"/>
+    
     
     <category term="微前端" scheme="https://macshion.github.io/tags/%E5%BE%AE%E5%89%8D%E7%AB%AF/"/>
     
@@ -372,12 +429,14 @@
     <link href="https://macshion.github.io/NLP-difficult/"/>
     <id>https://macshion.github.io/NLP-difficult/</id>
     <published>2020-12-18T04:03:36.000Z</published>
-    <updated>2021-08-10T07:04:11.057Z</updated>
+    <updated>2022-04-30T20:27:46.356Z</updated>
     
     
     <summary type="html">&lt;p&gt;在微博和知乎上关注&lt;strong&gt;自然语言处理（NLP）&lt;/strong&gt;技术的朋友，应该都对**#NLP太难了#&lt;strong&gt;、&lt;/strong&gt;#自然语言理解太难了#**两个话题标签不陌生，其下汇集了各种不仅难煞计算机、甚至让人也发懵的费解句子或歧义引起的笑话。然而，这些例子只是让人直觉计算机理解人类语言太难了，NLP到底难在哪里，还缺少通俗易懂的介绍。&lt;/p&gt;</summary>
     
     
+    
+    <category term="中文" scheme="https://macshion.github.io/categories/%E4%B8%AD%E6%96%87/"/>
     
     
     <category term="NLP" scheme="https://macshion.github.io/tags/NLP/"/>
@@ -389,12 +448,14 @@
     <link href="https://macshion.github.io/nlp-routes/"/>
     <id>https://macshion.github.io/nlp-routes/</id>
     <published>2020-12-17T12:21:35.000Z</published>
-    <updated>2021-08-10T07:04:11.286Z</updated>
+    <updated>2022-04-30T20:28:01.485Z</updated>
     
     
     <summary type="html">&lt;p&gt;&lt;code&gt;nlp-roadmap&lt;/code&gt; is &lt;code&gt;Natural Language Processing&lt;/code&gt; &lt;strong&gt;ROADMAP(Mind Map)&lt;/strong&gt; and &lt;strong&gt;KEYWORD&lt;/strong&gt; for students those who have interest in learning Natural Language Processing. The roadmap covers the materials from basic probability/statistics to SOTA NLP models.&lt;/p&gt;</summary>
     
     
+    
+    <category term="中文" scheme="https://macshion.github.io/categories/%E4%B8%AD%E6%96%87/"/>
     
     
     <category term="NLP" scheme="https://macshion.github.io/tags/NLP/"/>
@@ -406,12 +467,14 @@
     <link href="https://macshion.github.io/Typora-PicGo-Github/"/>
     <id>https://macshion.github.io/Typora-PicGo-Github/</id>
     <published>2020-12-16T10:09:27.000Z</published>
-    <updated>2021-08-10T07:04:11.116Z</updated>
+    <updated>2022-04-30T20:28:44.412Z</updated>
     
     
     <summary type="html">&lt;p&gt;使用Typora+PicGo可以在Markdown写作过程中非常方便快速地插入图片。&lt;/p&gt;</summary>
     
     
+    
+    <category term="中文" scheme="https://macshion.github.io/categories/%E4%B8%AD%E6%96%87/"/>
     
     
     <category term="Tools" scheme="https://macshion.github.io/tags/Tools/"/>
@@ -419,11 +482,11 @@
   </entry>
   
   <entry>
-    <title>How To Use Styled-Components In React</title>
+    <title>Used Python to Collect Data from any Website</title>
     <link href="https://macshion.github.io/How-I-used-Python-to-Collect-Data-from-any-Website/"/>
     <id>https://macshion.github.io/How-I-used-Python-to-Collect-Data-from-any-Website/</id>
     <published>2020-12-16T04:58:09.000Z</published>
-    <updated>2021-10-15T11:02:22.624Z</updated>
+    <updated>2022-04-30T20:27:10.017Z</updated>
     
     
       
@@ -436,25 +499,12 @@
     
     
     
+    <category term="English" scheme="https://macshion.github.io/categories/English/"/>
+    
     
     <category term="Python" scheme="https://macshion.github.io/tags/Python/"/>
     
-  </entry>
-  
-  <entry>
-    <title>How To Use Styled-Components In React</title>
-    <link href="https://macshion.github.io/How-To-Use-Styled-Components-In-React/"/>
-    <id>https://macshion.github.io/How-To-Use-Styled-Components-In-React/</id>
-    <published>2020-12-16T04:58:09.000Z</published>
-    <updated>2021-08-10T07:04:10.931Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;While the component-driven approach has ushered in a new frontier in the way we build web applications, it isn’t without its imperfections — one being its usability and scalability with CSS. This has given birth to a new way to construct and manage our styles in a &lt;strong&gt;component-specific&lt;/strong&gt; manner, otherwise knows as CSS-in-JS.&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="React" scheme="https://macshion.github.io/tags/React/"/>
+    <category term="BeautifulSoup" scheme="https://macshion.github.io/tags/BeautifulSoup/"/>
     
   </entry>
   

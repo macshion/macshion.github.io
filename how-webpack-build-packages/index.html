@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
   
-  <title>Macshion</title>
+  <title>Webpack前端构建⼯具原理剖析   | Macshion</title>
 
   
     <link rel="apple-touch-icon" href="/images/favicon.png">
@@ -99,17 +99,27 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title"></div>
+      <div class="post-title">Webpack前端构建⼯具原理剖析</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime" title="Update time"></i>
-          2021-08-10
+          2022-05-01
         </span>
         
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="Tags"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/Webpack/" title="Webpack">
+                    <b>#</b> Webpack
+                  </a>
+                </span>
+                
+              </span>
+          
       </div>
       <div class="markdown-body">
-        <p>Webpack前端构建⼯具原理剖析</p>
-<h2 id="⼀、什么是webpack"><a href="#⼀、什么是webpack" class="headerlink" title="⼀、什么是webpack"></a>⼀、什么是webpack</h2><p>webpack是⼀个打包⼯具，他的宗旨是⼀切静态资源皆可打包。</p>
+        <h2 id="⼀、什么是webpack"><a href="#⼀、什么是webpack" class="headerlink" title="⼀、什么是webpack"></a>⼀、什么是webpack</h2><p>webpack是⼀个打包⼯具，他的宗旨是⼀切静态资源皆可打包。</p>
 <p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/2021/image-20210720144103400.png" alt="image-20210720144103400"></p>
 <h2 id="⼆、原型分析"><a href="#⼆、原型分析" class="headerlink" title="⼆、原型分析"></a>⼆、原型分析</h2><p>⾸先我们通过⼀个制作⼀个打包⽂件的原型。</p>
 <p>假设有两个js模块，这⾥我们先假设这两个模块是复合commomjs标准的es5模块。</p>
@@ -199,13 +209,29 @@
         <div class="prev-or-next">
           <div class="post-foot-next">
             
+              <a href="/Dingding-interview/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>Prev</span>
+              </a>
+            
           </div>
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime" title="Update time"></i>
-              2021-08-10
+              2022-05-01
             </span>
             
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags" title="Tags"></i>
+                    
+                    <span class="span--tag">
+                      <a href="/tags/Webpack/" title="Webpack">
+                        <b>#</b> Webpack
+                      </a>
+                    </span>
+                    
+                  </span>
+              
           </div>
           <div class="post-foot-prev">
             
