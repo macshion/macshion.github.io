@@ -6,7 +6,7 @@
   <link href="https://macshion.github.io/atom.xml" rel="self"/>
   
   <link href="https://macshion.github.io/"/>
-  <updated>2021-09-27T04:09:51.639Z</updated>
+  <updated>2022-04-30T20:02:03.259Z</updated>
   <id>https://macshion.github.io/</id>
   
   <author>
@@ -15,6 +15,72 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>markdown latex math</title>
+    <link href="https://macshion.github.io/markdown-latex-math/"/>
+    <id>https://macshion.github.io/markdown-latex-math/</id>
+    <published>2022-04-30T19:50:46.000Z</published>
+    <updated>2022-04-30T20:02:03.259Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;在Markdown中插入数学公式的语法是 &lt;code&gt;$数学公式$&lt;/code&gt; 和 &lt;code&gt;$$数学公式$$&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;行内公式&quot;&gt;&lt;a href=&quot;#行内公式&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://macshion.github.io/Creating%20a%20React%20app%20with%20TypeScript%20and%20ESLint%20with%20Webpack%205/"/>
+    <id>https://macshion.github.io/Creating%20a%20React%20app%20with%20TypeScript%20and%20ESLint%20with%20Webpack%205/</id>
+    <published>2021-11-04T07:02:51.772Z</published>
+    <updated>2021-11-04T07:02:52.056Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;This post will cover how to use &lt;a href=&quot;https://webpack.js.org/&quot;&gt;webpack 5&lt;/a&gt; to bundle a React and TypeScript app. Our setup will</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Beautiful Color</title>
+    <link href="https://macshion.github.io/beautiful-color/"/>
+    <id>https://macshion.github.io/beautiful-color/</id>
+    <published>2021-09-28T06:37:00.000Z</published>
+    <updated>2021-09-28T06:42:46.202Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;span style=&quot;color:#28A505;font-size:26pt;font-weight:</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Design" scheme="https://macshion.github.io/tags/Design/"/>
+    
+  </entry>
   
   <entry>
     <title>Deploy Your Next JS Application in Subfolder</title>
@@ -173,9 +239,9 @@
     
     
     
-    <category term="React" scheme="https://macshion.github.io/tags/React/"/>
-    
     <category term="Axios" scheme="https://macshion.github.io/tags/Axios/"/>
+    
+    <category term="React" scheme="https://macshion.github.io/tags/React/"/>
     
   </entry>
   
@@ -354,6 +420,29 @@
   
   <entry>
     <title>How To Use Styled-Components In React</title>
+    <link href="https://macshion.github.io/How-I-used-Python-to-Collect-Data-from-any-Website/"/>
+    <id>https://macshion.github.io/How-I-used-Python-to-Collect-Data-from-any-Website/</id>
+    <published>2020-12-16T04:58:09.000Z</published>
+    <updated>2021-10-15T11:02:22.624Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;There are moments while working when you realize that you may need a large amount of data in a short amount of time. These could be</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Python" scheme="https://macshion.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>How To Use Styled-Components In React</title>
     <link href="https://macshion.github.io/How-To-Use-Styled-Components-In-React/"/>
     <id>https://macshion.github.io/How-To-Use-Styled-Components-In-React/</id>
     <published>2020-12-16T04:58:09.000Z</published>
@@ -366,77 +455,6 @@
     
     
     <category term="React" scheme="https://macshion.github.io/tags/React/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>我最爱的11款谷歌插件</title>
-    <link href="https://macshion.github.io/chrome-extensions/"/>
-    <id>https://macshion.github.io/chrome-extensions/</id>
-    <published>2020-11-19T09:57:50.000Z</published>
-    <updated>2021-08-10T07:04:11.159Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;作为前端程序员，日常太多时间花在浏览器上了，把它用到极致吧！&lt;/p&gt;
-&lt;p&gt;Chrome绝不仅仅是一个浏览器，它众多的插件真的非常强大！上个月看了一篇介绍谷歌插件的文章后，我意识到自己错过了太多，便特意花了两周时间，搜罗插件商店，找到了最适合自己的工具，真是太好用了！&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="Tools" scheme="https://macshion.github.io/tags/Tools/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Redux tutorial</title>
-    <link href="https://macshion.github.io/Redux-tutorial/"/>
-    <id>https://macshion.github.io/Redux-tutorial/</id>
-    <published>2020-11-18T10:12:36.000Z</published>
-    <updated>2021-08-10T07:04:11.069Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;Tutorial-0-introduction&quot;&gt;&lt;a href=&quot;#Tutorial-0-introduction&quot; class=&quot;headerlink&quot; title=&quot;Tutorial 0 - introduction&quot;&gt;&lt;/a&gt;Tutorial 0 - introduction&lt;/h2&gt;&lt;p&gt;Why this tutorial?&lt;br&gt;While trying to learn Redux, I realized that I had accumulated incorrect knowledge about flux through&lt;br&gt;articles I read and personal experience. I don’t mean that articles about flux are not well written&lt;br&gt;but I just didn’t grasp concepts correctly. In the end, I was just applying documentation of different&lt;br&gt;flux frameworks (Reflux, Flummox, FB Flux) and trying to make them match with the theoretical concept I read&lt;br&gt;about (actions / actions creators, store, dispatcher, etc).&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="React" scheme="https://macshion.github.io/tags/React/"/>
-    
-    <category term="Redux" scheme="https://macshion.github.io/tags/Redux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SVG 基础知识（一） - SVG 视口</title>
-    <link href="https://macshion.github.io/svg-basic1/"/>
-    <id>https://macshion.github.io/svg-basic1/</id>
-    <published>2019-08-11T16:09:12.000Z</published>
-    <updated>2021-08-10T07:04:11.329Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;SVG 是可缩放矢量图形（Scalable Vector Graphics, SVG），一种用来描述二维矢量图形的 XML 标记语言。SVG 图像在放大或改变尺寸的情况下其图形质量不会有所损失。SVG是万维网联盟的标准，与诸如 DOM 和 XSL 之类的 W3C 标准是一个整体。&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="SVG" scheme="https://macshion.github.io/tags/SVG/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>VUE学习笔记</title>
-    <link href="https://macshion.github.io/June&amp;July-2019/"/>
-    <id>https://macshion.github.io/June&amp;July-2019/</id>
-    <published>2019-08-11T00:17:06.000Z</published>
-    <updated>2021-08-10T07:04:10.982Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;5月28日换了新工作，直到现在才差不多适应过来。有两个多月没更新博客了，我几乎忘了怎样用Hexo发布新文章了😓。六七月大概是在学VUE的课程，在语雀做的学习笔记。为什么选择在语雀做笔记呢？因为屏幕截图可以直接粘贴，结构导航体验很好。以下是我做的VUE笔记：&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="VUE" scheme="https://macshion.github.io/tags/VUE/"/>
     
   </entry>
   

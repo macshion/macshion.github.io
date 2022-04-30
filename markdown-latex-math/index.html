@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
   
-  <title>Markdown写作自动上传图片至Github - Typora编辑器 + PicGo河床   | Macshion</title>
+  <title>markdown latex math   | Macshion</title>
 
   
     <link rel="apple-touch-icon" href="/images/favicon.png">
@@ -99,54 +99,61 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">Markdown写作自动上传图片至Github - Typora编辑器 + PicGo河床</div>
+      <div class="post-title">markdown latex math</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime" title="Update time"></i>
-          2020-12-16
+          2022-05-01
         </span>
         
-              <span class="post-tags">
-                <i class="iconfont icon-tags" title="Tags"></i>
-                
-                <span class="span--tag">
-                  <a href="/tags/Tools/" title="Tools">
-                    <b>#</b> Tools
-                  </a>
-                </span>
-                
-              </span>
-          
       </div>
       <div class="markdown-body">
-        <p>使用Typora+PicGo可以在Markdown写作过程中非常方便快速地插入图片。</p>
-<span id="more"></span>
+        <p>在Markdown中插入数学公式的语法是 <code>$数学公式$</code> 和 <code>$$数学公式$$</code>.</p>
+<h2 id="行内公式"><a href="#行内公式" class="headerlink" title="行内公式"></a>行内公式</h2><p><code>$2x+3y=34$</code></p>
+<p>因此,在排版数学公式时,即使没有特殊符号的算式如1+1=2,或者简单的一个字母变量x,也要进入数学模式,使用<code>$1+1=2$</code>,<code>$x$</code>, 而不是使用排版普通文字的方式. $2x+3y=34$，$1+1=2$， $x$</p>
+<h2 id="独立公式"><a href="#独立公式" class="headerlink" title="独立公式"></a>独立公式</h2><p>独立公式单独占一行,不和其他文字混编<br>示例: <code>$$c=2πr$$  </code></p>
+<h2 id="多行公式"><a href="#多行公式" class="headerlink" title="多行公式"></a>多行公式</h2><p>在独立公式中使用\\来换行  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$$   </span><br><span class="line">2x+3y&#x3D;34\\   </span><br><span class="line">x+4y&#x3D;25  </span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
 
-<h2 id="一、下载并设置PicGo"><a href="#一、下载并设置PicGo" class="headerlink" title="一、下载并设置PicGo"></a>一、下载并设置PicGo</h2><p>下载地址：<a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/PicGo/releases">https://github.com/Molunerfinn/PicGo/releases</a></p>
-<p>设置PicGo，支持多个图床，我这里用Github：</p>
-<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20201216172510671.png" alt="image-20201216172510671"></p>
-<p>仓库名：Github用户名/Repo名</p>
-<p>分支：一般为master或者main</p>
-<p>指定存储路径：可不填，如果指定路径后上传失败，需要亲手创建文件夹</p>
-<p>设定自定义域名：参考设置 <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/macshion/PicBed/main">https://raw.githubusercontent.com/macshion/PicBed/main</a></p>
-<p>Token:  获取Github Token方法如下：</p>
-<p>1、点击Github头像，选择 “setting”, 点击左侧菜单进入 “Developer settings”，然后进入 “Personal access tokens”，在页面右上角点击 “Generate new token” 。</p>
-<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/images/screenshot.jpg">2、新建Token，勾选权限，生成Token后需复制保存好，未保存好以后要用只能重新生成。</p>
-<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20201216175246455.png" alt="image-20201216175246455"></p>
-<h2 id="二、下载并设置Typora"><a href="#二、下载并设置Typora" class="headerlink" title="二、下载并设置Typora"></a>二、下载并设置Typora</h2><p>从官网下载Typora：<a target="_blank" rel="noopener" href="https://typora.io/">https://typora.io</a></p>
-<p>打开Typora，进入“文件 - 偏好设置” 设置通过PicGo自动上传图片。</p>
-<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/images/image-20201216180402765.png" alt="image-20201216180402765"></p>
-<h2 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904078468710413">使用GitHub+PicGo自建免费图床</a></p>
-<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904095132680206">Typora+PicGo配置最强Markdown编辑工具</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/shwee/p/11421336.html">PicGo+GitHub：你的最佳免费图床选择！</a></p>
-<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6900967054967308302">图床的高效使用：Typora + OSS + PicGo</a></p>
+<p>$$<br>2x+3y=34\<br>x+4y=25<br>$$</p>
+<h2 id="常用符号"><a href="#常用符号" class="headerlink" title="常用符号"></a>常用符号</h2><p><img src="https://s2.loli.net/2022/05/01/D4PEZjCrWfO56oN.png" alt="image-20220501033315739"></p>
+<h3 id="上下标"><a href="#上下标" class="headerlink" title="上下标"></a>上下标</h3><p><code>$S=a_&#123;1&#125;^2+a_&#123;2&#125;^2+a_&#123;3&#125;^2$</code><br>$$<br>S=a_{1}^2+a_{2}^2+a_{3}^2<br>$$</p>
+<h3 id="括号"><a href="#括号" class="headerlink" title="括号"></a>括号</h3><p><code>$f(x, y) = 100 * \lbrace[(x + y) * 3] - 5\rbrace$</code><br>$$<br>f(x, y) = 100 * \lbrace[(x + y) * 3] - 5\rbrace \<br>f(x, y) = 100 * {[(x + y) * 3] - 5}<br>$$</p>
+<h3 id="分数"><a href="#分数" class="headerlink" title="分数"></a>分数</h3><p><code>$\frac&#123;1&#125;&#123;3&#125; 与 \cfrac&#123;1&#125;&#123;3&#125;$</code><br>$$<br>\frac{1}{3} \ 与 \ \cfrac{1}{3}<br>$$</p>
+<h3 id="开方"><a href="#开方" class="headerlink" title="开方"></a>开方</h3><p><code>$\sqrt[3]&#123;X&#125;$</code> 和 <code>$\sqrt&#123;5 - x&#125;$</code><br>$$<br>\sqrt[3]{X} \ 和 \ \sqrt{5 - x}<br>$$</p>
+<h2 id="其他字符"><a href="#其他字符" class="headerlink" title="其他字符"></a>其他字符</h2><h3 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">\pm \times \div \mid \nmid \cdot \circ \ast</span><br><span class="line">\bigodot \bigotimes \bigoplus</span><br><span class="line">\leq \geq \neq \approx \equiv</span><br><span class="line">\sum \prod</span><br></pre></td></tr></table></figure>
+
+
+<p>$$<br>\pm \ \times \ \div \ \mid \ \nmid \ \cdot \ \circ \ \ast \ \bigodot \ \bigotimes \ \bigoplus \ \leq \ \geq \ \neq \ \approx \ \equiv \ \sum \ \prod<br>$$</p>
+<p><img src="https://s2.loli.net/2022/05/01/NWYD3vPce9shnHX.png" alt="image-20220501033406229"></p>
+<h3 id="对数运算符"><a href="#对数运算符" class="headerlink" title="对数运算符"></a>对数运算符</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\log \ \lg \ \ln</span><br></pre></td></tr></table></figure>
+
+<p>$$<br>\log \ \lg \ \ln<br>$$</p>
+<p><img src="https://s2.loli.net/2022/05/01/YTgwi5HrFhKnxbR.png" alt="image-20220501033444782"></p>
+<h3 id="三角运算符"><a href="#三角运算符" class="headerlink" title="三角运算符"></a>三角运算符</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\bot \ \angle \ \sin \ \cos \ \tan \ \cot \ \sec \ \csc</span><br></pre></td></tr></table></figure>
+
+<p>$$<br>\bot \ \angle \ \sin \ \cos \ \tan \ \cot \ \sec \ \csc<br>$$</p>
+<p><img src="https://s2.loli.net/2022/05/01/vqOX2QVDKsc56xI.png" alt="image-20220501033513958"></p>
+<h3 id="微积分运算符"><a href="#微积分运算符" class="headerlink" title="微积分运算符"></a>微积分运算符</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\prime \ \int \ \iint \ \iiint \ \oint \ \lim \ \infty \ \nabla \ \mathrm&#123;d&#125;</span><br></pre></td></tr></table></figure>
+
+<p>$$<br>\prime \ \int \ \iint \ \iiint \ \oint \ \lim \ \infty \ \nabla \ \mathrm{d}<br>$$</p>
+<p><img src="https://s2.loli.net/2022/05/01/cs216gjAeQZxnXq.png" alt="image-20220501033539620"></p>
+<h3 id="集合运算符"><a href="#集合运算符" class="headerlink" title="集合运算符"></a>集合运算符</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\emptyset \in \notin \subset \subseteq \supseteq</span><br><span class="line">\bigcap \bigcup \bigvee \bigwedge \biguplus \bigsqcup</span><br></pre></td></tr></table></figure>
+
+<p>$$<br>\emptyset \ \in \ \notin \ \subset \ \subseteq \ \supseteq \ \bigcap \ \bigcup \ \bigvee \ \bigwedge \ \biguplus \bigsqcup<br>$$</p>
+<p><img src="https://s2.loli.net/2022/05/01/geXdC9TV7sk5Ij2.png" alt="image-20220501033612481"></p>
+<h3 id="希腊字母"><a href="#希腊字母" class="headerlink" title="希腊字母"></a>希腊字母</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">A \  \alpha \ B \  \beta \  \Gamma \  \gamma \ </span><br><span class="line">\Delta \  \delta \ E \  \epsilon \ Z \  \zeta \ </span><br><span class="line">H \  \eta \  \Theta \  \theta \ I \  \iota \ </span><br><span class="line">K \  \kappa \ \Lambda \  \lambda \ M \  \mu \ N \  \nu \ </span><br><span class="line">Xi \  \xi \ O \  \omicron \  \Pi \  \pi \ </span><br><span class="line">P \  \rho \  \Sigma \  \sigma \ T \  \tau \  </span><br><span class="line">\Upsilon \  \upsilon \  \Phi \  \phi \ </span><br><span class="line">X \  \chi \  \Psi \  \psi \  \Omega \  \omega</span><br></pre></td></tr></table></figure>
+
+
+<p>$$<br>A \  \alpha \ B \  \beta \  \Gamma \  \gamma \ \<br>\Delta \  \delta \ E \  \epsilon \ Z \  \zeta \ \<br>H \  \eta \  \Theta \  \theta \ I \  \iota \ \<br>K \  \kappa \ \Lambda \  \lambda \ M \  \mu \ N \  \nu \ \<br>Xi \  \xi \ O \  \omicron \  \Pi \  \pi \ \<br>P \  \rho \  \Sigma \  \sigma \ T \  \tau \ \<br> \Upsilon \  \upsilon \  \Phi \  \phi \ \<br> X \  \chi \  \Psi \  \psi \  \Omega \  \omega<br>$$</p>
+<p><img src="https://s2.loli.net/2022/05/01/42K15g7sFchql3S.png" alt="image-20220501034204219"></p>
 
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/How-I-used-Python-to-Collect-Data-from-any-Website/" target="_self">
+              <a href="/Creating%20a%20React%20app%20with%20TypeScript%20and%20ESLint%20with%20Webpack%205/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>Prev</span>
               </a>
@@ -155,27 +162,11 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime" title="Update time"></i>
-              2020-12-16
+              2022-05-01
             </span>
             
-                  <span class="post-tags">
-                    <i class="iconfont icon-tags" title="Tags"></i>
-                    
-                    <span class="span--tag">
-                      <a href="/tags/Tools/" title="Tools">
-                        <b>#</b> Tools
-                      </a>
-                    </span>
-                    
-                  </span>
-              
           </div>
           <div class="post-foot-prev">
-            
-              <a href="/nlp-routes/" target="_self">
-                <span>Next</span>
-                <i class="iconfont icon-chevronright"></i>
-              </a>
             
           </div>
         </div>
@@ -185,7 +176,7 @@
   <div class="post-catalog" id="catalog">
     <div class="title">Contents</div>
     <div class="catalog-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%B8%8B%E8%BD%BD%E5%B9%B6%E8%AE%BE%E7%BD%AEPicGo"><span class="toc-text">一、下载并设置PicGo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%B8%8B%E8%BD%BD%E5%B9%B6%E8%AE%BE%E7%BD%AETypora"><span class="toc-text">二、下载并设置Typora</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%EF%BC%9A"><span class="toc-text">参考：</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E5%86%85%E5%85%AC%E5%BC%8F"><span class="toc-text">行内公式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8B%AC%E7%AB%8B%E5%85%AC%E5%BC%8F"><span class="toc-text">独立公式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E8%A1%8C%E5%85%AC%E5%BC%8F"><span class="toc-text">多行公式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%AC%A6%E5%8F%B7"><span class="toc-text">常用符号</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E4%B8%8B%E6%A0%87"><span class="toc-text">上下标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%AC%E5%8F%B7"><span class="toc-text">括号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%95%B0"><span class="toc-text">分数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E6%96%B9"><span class="toc-text">开方</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%AD%97%E7%AC%A6"><span class="toc-text">其他字符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">关系运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E6%95%B0%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">对数运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E8%A7%92%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">三角运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AE%E7%A7%AF%E5%88%86%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">微积分运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">集合运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%8C%E8%85%8A%E5%AD%97%E6%AF%8D"><span class="toc-text">希腊字母</span></a></li></ol></li></ol>
     </div>
   </div>
 
