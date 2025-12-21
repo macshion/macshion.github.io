@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang=en>
+    <head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="This post will cover how to use webpack 5 to bundle a React and TypeScript app. Our setup will include type checking with TypeScript and linting with ESLint in the Webpack process, which will help cod">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Creating a React app with TypeScript and ESLint with Webpack 5">
+<meta property="og:url" content="https://macshion.github.io/Creating-a-React-app-with-TypeScript-and-ESLint-with-Webpack-5/index.html">
+<meta property="og:site_name" content="Macshion&#39;s blog">
+<meta property="og:description" content="This post will cover how to use webpack 5 to bundle a React and TypeScript app. Our setup will include type checking with TypeScript and linting with ESLint in the Webpack process, which will help cod">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.carlrippon.com/static/9d15c1b7d155ac0ced0ca045c275950d/799d3/banner.png">
+<meta property="og:image" content="https://www.carlrippon.com/static/787ce99d13383cf77df478edace19235/2342d/start.png">
+<meta property="og:image" content="https://www.carlrippon.com/601d4d9f6b8478338e988c783a7abcd0/live-reload.gif">
+<meta property="og:image" content="https://www.carlrippon.com/static/cc0a6363f9131706c307094e4ab4d2d5/799d3/type-error.png">
+<meta property="og:image" content="https://www.carlrippon.com/static/a86eab147728a9f211edae8b36fcf60c/799d3/type-error-fix.png">
+<meta property="og:image" content="https://www.carlrippon.com/static/d9ccf930ba2aaab321927afaa6d4eb4a/799d3/lint-error.png">
+<meta property="og:image" content="https://www.carlrippon.com/static/d4c033763f1c20c41f6cc87dada37ddb/799d3/prod-files.png">
+<meta property="article:published_time" content="2022-04-30T19:11:39.000Z">
+<meta property="article:modified_time" content="2025-12-21T09:51:35.466Z">
+<meta property="article:author" content="Macshion">
+<meta property="article:tag" content="React">
+<meta property="article:tag" content="TypeScript">
+<meta property="article:tag" content="Webpack">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.carlrippon.com/static/9d15c1b7d155ac0ced0ca045c275950d/799d3/banner.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Creating a React app with TypeScript and ESLint with Webpack 5</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KKGH5P6E2M"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KKGH5P6E2M');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+    <body class="max-width mx-auto px3 ltr">
+
+<div id="particle-background"></div>
+
+        
+        <div class="post">
+            <div id="navLeft">
+                <ul>
+                    
+                    <!--
+     -->
+                    <li><a href="/">Home</a></li>
+                    <!--
+   -->
+                    <!--
+     -->
+                    <li><a href="/about/">About</a></li>
+                    <!--
+   -->
+                    <!--
+     -->
+                    <li><a href="/archives/">Writing</a></li>
+                    <!--
+   -->
+                    <!--
+     -->
+                    <li><a href="/tags/">Tags</a></li>
+                    <!--
+   -->
+                    <!--
+     -->
+                    <li><a target="_blank" rel="noopener" href="http://github.com/macshion">Projects</a></li>
+                    <!--
+   -->
+                </ul>
+            </div>
+        </div>
+        <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/tags/">Tags</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/macshion">Projects</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/Dingding-interview/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/markdown-latex-math/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://macshion.github.io/Creating-a-React-app-with-TypeScript-and-ESLint-with-Webpack-5/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://macshion.github.io/Creating-a-React-app-with-TypeScript-and-ESLint-with-Webpack-5/&text=Creating a React app with TypeScript and ESLint with Webpack 5"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://macshion.github.io/Creating-a-React-app-with-TypeScript-and-ESLint-with-Webpack-5/&title=Creating a React app with TypeScript and ESLint with Webpack 5"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://macshion.github.io/Creating-a-React-app-with-TypeScript-and-ESLint-with-Webpack-5/&is_video=false&description=Creating a React app with TypeScript and ESLint with Webpack 5"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Creating a React app with TypeScript and ESLint with Webpack 5&body=Check out this article: https://macshion.github.io/Creating-a-React-app-with-TypeScript-and-ESLint-with-Webpack-5/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://macshion.github.io/Creating-a-React-app-with-TypeScript-and-ESLint-with-Webpack-5/&title=Creating a React app with TypeScript and ESLint with Webpack 5"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://macshion.github.io/Creating-a-React-app-with-TypeScript-and-ESLint-with-Webpack-5/&title=Creating a React app with TypeScript and ESLint with Webpack 5"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://macshion.github.io/Creating-a-React-app-with-TypeScript-and-ESLint-with-Webpack-5/&title=Creating a React app with TypeScript and ESLint with Webpack 5"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://macshion.github.io/Creating-a-React-app-with-TypeScript-and-ESLint-with-Webpack-5/&title=Creating a React app with TypeScript and ESLint with Webpack 5"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://macshion.github.io/Creating-a-React-app-with-TypeScript-and-ESLint-with-Webpack-5/&name=Creating a React app with TypeScript and ESLint with Webpack 5&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://macshion.github.io/Creating-a-React-app-with-TypeScript-and-ESLint-with-Webpack-5/&t=Creating a React app with TypeScript and ESLint with Webpack 5"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Creating-a-basic-project"><span class="toc-number">1.</span> <span class="toc-text">Creating a basic project</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Adding-React-and-TypeScript"><span class="toc-number">2.</span> <span class="toc-text">Adding React and TypeScript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Adding-a-root-React-component"><span class="toc-number">3.</span> <span class="toc-text">Adding a root React component</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Adding-Babel"><span class="toc-number">4.</span> <span class="toc-text">Adding Babel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configuring-Babel"><span class="toc-number">5.</span> <span class="toc-text">Configuring Babel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Adding-linting"><span class="toc-number">6.</span> <span class="toc-text">Adding linting</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Adding-Webpack"><span class="toc-number">7.</span> <span class="toc-text">Adding Webpack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configuring-development"><span class="toc-number">8.</span> <span class="toc-text">Configuring development</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Adding-an-npm-script-to-run-the-app-in-dev-mode"><span class="toc-number">9.</span> <span class="toc-text">Adding an npm script to run the app in dev mode</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Adding-type-checking-into-the-webpack-process"><span class="toc-number">10.</span> <span class="toc-text">Adding type checking into the webpack process</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Adding-linting-into-the-webpack-process"><span class="toc-number">11.</span> <span class="toc-text">Adding linting into the webpack process</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configuring-production"><span class="toc-number">12.</span> <span class="toc-text">Configuring production</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Adding-an-npm-script-to-build-the-app-for-production"><span class="toc-number">13.</span> <span class="toc-text">Adding an npm script to build the app for production</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+        
+        <div class="content index py4 ">
+            
+            <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Creating a React app with TypeScript and ESLint with Webpack 5
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Macshion</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-04-30T19:11:39.000Z" class="dt-published" itemprop="datePublished">2022-05-01</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/English/">English</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/React/" rel="tag">React</a>, <a class="p-category" href="/tags/TypeScript/" rel="tag">TypeScript</a>, <a class="p-category" href="/tags/Webpack/" rel="tag">Webpack</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>This post will cover how to use <a target="_blank" rel="noopener" href="https://webpack.js.org/">webpack 5</a> to bundle a React and TypeScript app. Our setup will include type checking with TypeScript and linting with <a target="_blank" rel="noopener" href="https://eslint.org/">ESLint</a> in the Webpack process, which will help code quality. We will configure Webpack to give us a great development experience with hot reloading and an optimized production bundle.</p>
+<p> <a target="_blank" rel="noopener" href="https://www.carlrippon.com/static/9d15c1b7d155ac0ced0ca045c275950d/14e05/banner.png"><img src="https://www.carlrippon.com/static/9d15c1b7d155ac0ced0ca045c275950d/799d3/banner.png"></a> </p>
+<h2 id="Creating-a-basic-project"><a href="#Creating-a-basic-project" class="headerlink" title="Creating a basic project"></a>Creating a basic project</h2><p>We’ll start by creating the following folders in a root folder of our choice:</p>
+<ul>
+<li><code>build</code>: This is where all the artifacts from the build output will be.</li>
+<li><code>src</code>: This will hold our source code.</li>
+</ul>
+<p>Note that a <code>node_modules</code> folder will also be created as we start to install the project’s dependencies.</p>
+<p>In the root of the project, add the following <code>package.json</code> file:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;my-app&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0.0.1&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>This file will automatically update with our project dependencies as we install them throughout this post.</p>
+<p>Let’s add the following <code>index.html</code> file into the <code>src</code> folder:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>My app<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>This HTML file is a template that Webpack will use in the bundling process. We will eventually tell Webpack to inject the React app into the <code>root</code> <code>div</code> element and reference the bundled JavaScript and CSS.</p>
+<h2 id="Adding-React-and-TypeScript"><a href="#Adding-React-and-TypeScript" class="headerlink" title="Adding React and TypeScript"></a>Adding React and TypeScript</h2><p>Add the following commands in a Terminal to install React, TypeScript, and the React types:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install react react-dom</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev typescript</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev @types/react @types/react-dom</span><br></pre></td></tr></table></figure>
+
+<p>TypeScript is configured with a file called <code>tsconfig.json</code>. Let’s create this file in the root of our project with the following content:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;compilerOptions&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;lib&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;dom&quot;</span><span class="punctuation">,</span> <span class="string">&quot;dom.iterable&quot;</span><span class="punctuation">,</span> <span class="string">&quot;esnext&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;allowJs&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;allowSyntheticDefaultImports&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;skipLibCheck&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;esModuleInterop&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;strict&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;forceConsistentCasingInFileNames&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;moduleResolution&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;resolveJsonModule&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;isolatedModules&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;noEmit&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;jsx&quot;</span><span class="punctuation">:</span> <span class="string">&quot;react&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;include&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;src&quot;</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>We are only going to use TypeScript in our project for type checking. We are going to eventually use <a target="_blank" rel="noopener" href="https://babeljs.io/">Babel</a> to do the code transpilation. So, the compiler options in our <code>tsconfig.json</code> are focused on type checking, not code transpilation.</p>
+<p>Here’s an explanation of the settings we have used:</p>
+<ul>
+<li><code>lib</code>: The standard typing to be included in the type checking process. In our case, we have chosen to use the types for the browser’s DOM and the latest version of ECMAScript.</li>
+<li><code>allowJs</code>: Whether to allow JavaScript files to be compiled.</li>
+<li><code>allowSyntheticDefaultImports</code>: This allows default imports from modules with no default export in the type checking process.</li>
+<li><code>skipLibCheck</code>: Whether to skip type checking of all the type declaration files (*.d.ts).</li>
+<li><code>esModuleInterop</code>: This enables compatibility with Babel.</li>
+<li><code>strict</code>: This sets the level of type checking to very high. When this is <code>true</code>, the project is said to be running in strict mode.</li>
+<li><code>forceConsistentCasingInFileNames</code>: Ensures that the casing of referenced file names is consistent during the type checking process.</li>
+<li><code>moduleResolution</code>: How module dependencies get resolved, which is node for our project.</li>
+<li><code>resolveJsonModule</code>: This allows modules to be in <code>.json</code> files which are useful for configuration files.</li>
+<li><code>noEmit</code>: Whether to suppress TypeScript generating code during the compilation process. This is <code>true</code> in our project because Babel will be generating the JavaScript code.</li>
+<li><code>jsx</code>: Whether to support JSX in <code>.tsx</code> files.</li>
+<li><code>include</code>: These are the files and folders for TypeScript to check. In our project, we have specified all the files in the <code>src</code> folder.</li>
+</ul>
+<h2 id="Adding-a-root-React-component"><a href="#Adding-a-root-React-component" class="headerlink" title="Adding a root React component"></a>Adding a root React component</h2><p>Let’s create a simple React component in an <code>index.tsx</code> file in the <code>src</code> folder. This will eventually be displayed in <code>index.html</code>.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import React from &quot;react&quot;;</span><br><span class="line">import ReactDOM from &quot;react-dom&quot;;</span><br><span class="line"></span><br><span class="line">const App = () =&gt; (</span><br><span class="line">  &lt;h1&gt;My React and TypeScript App!&lt;/h1&gt;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;React.StrictMode&gt;  &lt;App /&gt;  &lt;/React.StrictMode&gt;,</span><br><span class="line">  document.getElementById(&quot;root&quot;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>We have created the React app in <a target="_blank" rel="noopener" href="https://reactjs.org/docs/strict-mode.html">strict mode</a> and injected it into a <code>div</code> element that has an <code>id</code> of <code>&quot;root&quot;</code>.</p>
+<h2 id="Adding-Babel"><a href="#Adding-Babel" class="headerlink" title="Adding Babel"></a>Adding Babel</h2><p>Our project is going to use <a target="_blank" rel="noopener" href="https://babeljs.io/">Babel</a> to convert our React and TypeScript code to JavaScript. Let’s install Babel with the necessary plugins:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev @babel/core @babel/preset-env @babel/preset-react @babel/preset-typescript @babel/plugin-transform-runtime @babel/runtime</span><br></pre></td></tr></table></figure>
+
+<p>Here’s an explanation of the packages we have just installed:</p>
+<ul>
+<li><code>@babel/core</code>: As the name suggests, this is the core Babel library.</li>
+<li><code>@babel/preset-env</code>: This is a collection of plugins that allow us to use the latest JavaScript features but still target browsers that don’t support them.</li>
+<li><code>@babel/preset-react</code>: This is a collection of plugins that enable Babel to transform React code into JavaScript.</li>
+<li><code>@babel/preset-typescript</code>: This is a plugin that enables Babel to transform TypeScript code into JavaScript.</li>
+<li><code>@babel/plugin-transform-runtime</code> and <code>@babel/runtime</code>: These are plugins that allow us to use the <code>async</code> and <code>await</code> JavaScript features.</li>
+</ul>
+<h2 id="Configuring-Babel"><a href="#Configuring-Babel" class="headerlink" title="Configuring Babel"></a>Configuring Babel</h2><p>Babel is configured in a file called <code>.babelrc</code>. Let’s create this file in the root of our project with the following content:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;presets&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;@babel/preset-env&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;@babel/preset-react&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;@babel/preset-typescript&quot;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;plugins&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">[</span></span><br><span class="line">      <span class="string">&quot;@babel/plugin-transform-runtime&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;regenerator&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>This configuration tells Babel to use the plugins we have installed.</p>
+<h2 id="Adding-linting"><a href="#Adding-linting" class="headerlink" title="Adding linting"></a>Adding linting</h2><p>We are going to use <a target="_blank" rel="noopener" href="https://eslint.org/"><strong>ESLint</strong></a> in our project. ESLint can help us find problematic coding patterns or code that doesn’t adhere to specific style guidelines.</p>
+<p>So, let’s install ESLint along with the plugins we are going to need:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev eslint eslint-plugin-react eslint-plugin-react-hooks @typescript-eslint/parser @typescript-eslint/eslint-plugin</span><br></pre></td></tr></table></figure>
+
+<p>Below is an explanation of the packages that we just installed:</p>
+<ul>
+<li><code>eslint</code>: This is the core ESLint library.</li>
+<li><code>eslint-plugin-react</code>: This contains some standard linting rules for React code.</li>
+<li><code>eslint-plugin-react-hooks</code>: This includes some linting rules for React hooks code.</li>
+<li><code>@typescript-eslint/parser</code>: This allows TypeScript code to be linted.</li>
+<li><code>@typescript-eslint/eslint-plugin</code>: This contains some standard linting rules for TypeScript code.</li>
+</ul>
+<p>ESLint can be configured in a <code>.eslintrc.json</code> file in the project root.</p>
+<p>Let’s create the configuration file containing the following:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;parser&quot;</span><span class="punctuation">:</span> <span class="string">&quot;@typescript-eslint/parser&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;parserOptions&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;ecmaVersion&quot;</span><span class="punctuation">:</span> <span class="number">2018</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;sourceType&quot;</span><span class="punctuation">:</span> <span class="string">&quot;module&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;plugins&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;@typescript-eslint&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;react-hooks&quot;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;extends&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;plugin:react/recommended&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;plugin:@typescript-eslint/recommended&quot;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;rules&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;react-hooks/rules-of-hooks&quot;</span><span class="punctuation">:</span> <span class="string">&quot;error&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;react-hooks/exhaustive-deps&quot;</span><span class="punctuation">:</span> <span class="string">&quot;warn&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;react/prop-types&quot;</span><span class="punctuation">:</span> <span class="string">&quot;off&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;settings&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;react&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;pragma&quot;</span><span class="punctuation">:</span> <span class="string">&quot;React&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;detect&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>We have configured ESLint to use the TypeScript parser, and the standard React and TypeScript rules as a base set of rules. We’ve explicitly added the two React hooks rules and suppressed the <code>react/prop-types</code> rule because prop types aren’t relevant in React with TypeScript projects. We have also told ESLint to detect the version of React we are using.</p>
+<h2 id="Adding-Webpack"><a href="#Adding-Webpack" class="headerlink" title="Adding Webpack"></a>Adding Webpack</h2><p>Webpack is a popular tool that we can use to create performant bundles containing our app’s JavaScript code. It can reference these bundles in our <code>index.html</code>.</p>
+<p>Let’s install the core Webpack library as well as its command-line interface:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev webpack webpack-cli</span><br></pre></td></tr></table></figure>
+
+<p>TypeScript types are included in the <code>webpack</code> package, so we don’t need to install them separately.</p>
+<p>Webpack has a <a target="_blank" rel="noopener" href="https://webpack.js.org/configuration/dev-server/">web server</a> that we will use during development. Let’s install this:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev webpack-dev-server @types/webpack-dev-server</span><br></pre></td></tr></table></figure>
+
+<p>TypeScript types aren’t included in the <code>webpack-dev-server</code> package, which is why we installed the <code>@types/webpack-dev-server</code> package.</p>
+<p>We need a Webpack plugin, <code>babel-loader</code>, to allow Babel to transpile the React and TypeScript code into JavaScript. Let’s install this:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev babel-loader</span><br></pre></td></tr></table></figure>
+
+<p>We also need a Webpack plugin, <code>html-webpack-plugin</code>, which will generate the HTML. Let’s install this:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev html-webpack-plugin</span><br></pre></td></tr></table></figure>
+
+<h2 id="Configuring-development"><a href="#Configuring-development" class="headerlink" title="Configuring development"></a>Configuring development</h2><p>The Webpack configuration file is JavaScript-based as standard. However, we can use TypeScript if we install a package called <code>ts-node</code>. Let’s install this:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev ts-node</span><br></pre></td></tr></table></figure>
+
+<p>We are going to add two configuration files for Webpack - one for development and one for production.</p>
+<p>Let’s add a development configuration file first. Name the file <code>webpack.dev.config.ts</code> and create it in the project’s root directory with the following content:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> path <span class="keyword">from</span> <span class="string">&quot;path&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Configuration</span>, <span class="title class_">HotModuleReplacementPlugin</span> &#125; <span class="keyword">from</span> <span class="string">&quot;webpack&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">HtmlWebpackPlugin</span> <span class="keyword">from</span> <span class="string">&quot;html-webpack-plugin&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">config</span>: <span class="title class_">Configuration</span> = &#123;</span><br><span class="line">  <span class="attr">mode</span>: <span class="string">&quot;development&quot;</span>,</span><br><span class="line">  <span class="attr">output</span>: &#123;</span><br><span class="line">    <span class="attr">publicPath</span>: <span class="string">&quot;/&quot;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">entry</span>: <span class="string">&quot;./src/index.tsx&quot;</span>,</span><br><span class="line">  <span class="attr">module</span>: &#123;</span><br><span class="line">    <span class="attr">rules</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.(ts|js)x?$/i</span>,</span><br><span class="line">        <span class="attr">exclude</span>: <span class="regexp">/node_modules/</span>,</span><br><span class="line">        <span class="attr">use</span>: &#123;</span><br><span class="line">          <span class="attr">loader</span>: <span class="string">&quot;babel-loader&quot;</span>,</span><br><span class="line">          <span class="attr">options</span>: &#123;</span><br><span class="line">            <span class="attr">presets</span>: [</span><br><span class="line">              <span class="string">&quot;@babel/preset-env&quot;</span>,</span><br><span class="line">              <span class="string">&quot;@babel/preset-react&quot;</span>,</span><br><span class="line">              <span class="string">&quot;@babel/preset-typescript&quot;</span>,</span><br><span class="line">            ],</span><br><span class="line">          &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">resolve</span>: &#123;</span><br><span class="line">    <span class="attr">extensions</span>: [<span class="string">&quot;.tsx&quot;</span>, <span class="string">&quot;.ts&quot;</span>, <span class="string">&quot;.js&quot;</span>],</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">HtmlWebpackPlugin</span>(&#123;</span><br><span class="line">      <span class="attr">template</span>: <span class="string">&quot;src/index.html&quot;</span>,</span><br><span class="line">    &#125;),</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">HotModuleReplacementPlugin</span>(),</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">devtool</span>: <span class="string">&quot;inline-source-map&quot;</span>,</span><br><span class="line">  <span class="attr">devServer</span>: &#123;</span><br><span class="line">    <span class="attr">static</span>: path.<span class="title function_">join</span>(__dirname, <span class="string">&quot;build&quot;</span>),</span><br><span class="line">    <span class="attr">historyApiFallback</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">port</span>: <span class="number">4000</span>,</span><br><span class="line">    <span class="attr">open</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">hot</span>: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> config;</span><br></pre></td></tr></table></figure>
+
+<p>Here are the critical bits in this configuration file:</p>
+<ul>
+<li>The <code>mode</code> field tells Webpack whether the app needs to be bundled for production or development. We are configuring Webpack for development, so we have set this to <code>&quot;development&quot;</code>. Webpack will automatically set <code>process.env.NODE_ENV</code> to <code>&quot;development&quot;</code> which means we get the React development tools included in the bundle.</li>
+<li>The <code>output.public</code> field tells Webpack what the root path is in the app. This is important for deep linking in the dev server to work properly.</li>
+<li>The <code>entry</code> field tells Webpack where to start looking for modules to bundle. In our project, this is <code>index.tsx</code>.</li>
+<li>The <code>module</code> field tells Webpack how different modules will be treated. Our project is telling Webpack to use the <code>babel-loader</code> plugin to process files with <code>.js</code>, <code>.ts</code>, and <code>.tsx</code> extensions.</li>
+<li>The <code>resolve.extensions</code> field tells Webpack what file types to look for in which order during module resolution. We need to tell it to look for TypeScript files as well as JavaScript files.</li>
+<li>The <code>HtmlWebpackPlugin</code> creates the HTML file. We have told this to use our <code>index.html</code> in the <code>src</code> folder as the template.</li>
+<li>The <code>HotModuleReplacementPlugin</code> and <code>devServer.hot</code> allow modules to be updated while an application is running, without a full reload.</li>
+<li>The <code>devtool</code> field tells Webpack to use full inline source maps. This allows us to debug the original code before transpilation.</li>
+<li>The <code>devServer</code> field configures the Webpack development server. We tell Webpack that the root of the webserver is the <code>build</code> folder, and to serve files on port <code>4000</code>. <code>historyApiFallback</code> is necessary for deep links to work in multi-page apps. We are also telling Webpack to open the browser after the server has been started.</li>
+</ul>
+<h2 id="Adding-an-npm-script-to-run-the-app-in-dev-mode"><a href="#Adding-an-npm-script-to-run-the-app-in-dev-mode" class="headerlink" title="Adding an npm script to run the app in dev mode"></a>Adding an npm script to run the app in dev mode</h2><p>We will leverage npm scripts to start our app in development mode. Let’s add a <code>scripts</code> section to <code>package.json</code> with the following script:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...<span class="punctuation">,</span></span><br><span class="line"> <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">   <span class="attr">&quot;start&quot;</span><span class="punctuation">:</span> <span class="string">&quot;webpack serve --config webpack.dev.config.ts&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"> ...</span><br></pre></td></tr></table></figure>
+
+<p>The script starts the Webpack development server. We have used the <code>config</code> option to reference the development configuration file we have just created.</p>
+<p>Let’s run the following command in a terminal to start the app in development mode:</p>
+<p>After a few seconds, the Webpack development server will start, and our app will be opened in our default browser:</p>
+<p> <a target="_blank" rel="noopener" href="https://www.carlrippon.com/static/787ce99d13383cf77df478edace19235/2342d/start.png"><img src="https://www.carlrippon.com/static/787ce99d13383cf77df478edace19235/2342d/start.png"></a> </p>
+<p>Notice that Webpack hasn’t bundled any files in the build folder. This is because the files are in memory in the Webpack dev server.</p>
+<p>Let’s change the content of the <code>h1</code> element inside the <code>App</code> component. Notice how the browser automatically refreshes to show the updated app when the file is saved:</p>
+<p><img src="https://www.carlrippon.com/601d4d9f6b8478338e988c783a7abcd0/live-reload.gif"></p>
+<p>Nice! 😊</p>
+<h2 id="Adding-type-checking-into-the-webpack-process"><a href="#Adding-type-checking-into-the-webpack-process" class="headerlink" title="Adding type checking into the webpack process"></a>Adding type checking into the webpack process</h2><p>The Webpack process won’t do any type checking at the moment. We can use a package called <a target="_blank" rel="noopener" href="https://github.com/TypeStrong/fork-ts-checker-webpack-plugin"><code>fork-ts-checker-webpack-plugin</code></a> to enable the Webpack process to type check the code. This means that Webpack will inform us of any type errors. Let’s install this package:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev fork-ts-checker-webpack-plugin @types/fork-ts-checker-webpack-plugin</span><br></pre></td></tr></table></figure>
+
+<p>Let’s add this to <code>webpack.dev.config.ts</code>:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">ForkTsCheckerWebpackPlugin</span> <span class="keyword">from</span> <span class="string">&#x27;fork-ts-checker-webpack-plugin&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">config</span>: <span class="title class_">Configuration</span> = &#123;</span><br><span class="line">  ...,</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    ...,</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">ForkTsCheckerWebpackPlugin</span>(&#123;</span><br><span class="line">      <span class="attr">async</span>: <span class="literal">false</span></span><br><span class="line">    &#125;),</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>We have used the <code>async</code> flag to tell Webpack to wait for the type checking process to finish before it emits any code.</p>
+<p>We’ll need to stop and restart the app for this additional configuration to take effect.</p>
+<p>Let’s make a change to the heading that is rendered in <code>index.tsx</code>. Let’s reference a variable called <code>today</code> in the heading:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">const App = () =&gt; &lt;h1&gt;My React and TypeScript App!! &#123;today&#125;&lt;/h1&gt;;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>Of course, this is an error because we haven’t declared and initialized <code>today</code> anywhere. Webpack will raise this type error in the terminal:</p>
+<p> <a target="_blank" rel="noopener" href="https://www.carlrippon.com/static/cc0a6363f9131706c307094e4ab4d2d5/36e7e/type-error.png"><img src="https://www.carlrippon.com/static/cc0a6363f9131706c307094e4ab4d2d5/799d3/type-error.png"></a> </p>
+<p>Let’s resolve this now by changing the rendered header to reference something that is valid:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const App = () =&gt; (</span><br><span class="line">  &lt;h1&gt; My React and TypeScript App!!&#123;&quot; &quot;&#125;  &#123;new Date().toLocaleDateString()&#125;  &lt;/h1&gt;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>The type errors will vanish, and the running app will have been updated to include today’s date:</p>
+<p> <a target="_blank" rel="noopener" href="https://www.carlrippon.com/static/a86eab147728a9f211edae8b36fcf60c/03058/type-error-fix.png"><img src="https://www.carlrippon.com/static/a86eab147728a9f211edae8b36fcf60c/799d3/type-error-fix.png"></a> </p>
+<h2 id="Adding-linting-into-the-webpack-process"><a href="#Adding-linting-into-the-webpack-process" class="headerlink" title="Adding linting into the webpack process"></a>Adding linting into the webpack process</h2><p>The Webpack process won’t do any linting at the moment. We can use a package called <a target="_blank" rel="noopener" href="https://github.com/webpack-contrib/eslint-webpack-plugin"><code>ESLintPlugin</code></a> to enable the Webpack process to lint the code with ESLint. This means that Webpack will inform us of any linting errors. Let’s install this package:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev eslint-webpack-plugin</span><br></pre></td></tr></table></figure>
+
+<p>Let’s add this to <code>webpack.dev.config.ts</code>:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">ESLintPlugin</span> <span class="keyword">from</span> <span class="string">&quot;eslint-webpack-plugin&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">config</span>: <span class="title class_">Configuration</span> = &#123;</span><br><span class="line">  ...,</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    ...,</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">ESLintPlugin</span>(&#123;</span><br><span class="line">      <span class="attr">extensions</span>: [<span class="string">&quot;js&quot;</span>, <span class="string">&quot;jsx&quot;</span>, <span class="string">&quot;ts&quot;</span>, <span class="string">&quot;tsx&quot;</span>],</span><br><span class="line">    &#125;),</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>We have used the <code>extensions</code> setting to tell the plugin to lint TypeScript files as well as JavaScript files.</p>
+<p>We’ll need to stop and restart the app for this additional configuration to take effect.</p>
+<p>In <code>index.tsx</code>, add an unused variable:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> unused = <span class="string">&quot;something&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>Webpack will inform us of the linting warning:</p>
+<p> <a target="_blank" rel="noopener" href="https://www.carlrippon.com/static/d9ccf930ba2aaab321927afaa6d4eb4a/da2b8/lint-error.png"><img src="https://www.carlrippon.com/static/d9ccf930ba2aaab321927afaa6d4eb4a/799d3/lint-error.png"></a> </p>
+<p>If we remove this unused line, the warning will disappear.</p>
+<p>That completes our development configuration.</p>
+<h2 id="Configuring-production"><a href="#Configuring-production" class="headerlink" title="Configuring production"></a>Configuring production</h2><p>The Webpack configuration for production is a little different - we want files to be bundled in the file system optimized for production without any dev stuff.</p>
+<p>Let’s create a file in the project root called <code>webpack.prod.config.ts</code> with the following content:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> path <span class="keyword">from</span> <span class="string">&quot;path&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Configuration</span> &#125; <span class="keyword">from</span> <span class="string">&quot;webpack&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">HtmlWebpackPlugin</span> <span class="keyword">from</span> <span class="string">&quot;html-webpack-plugin&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">ForkTsCheckerWebpackPlugin</span> <span class="keyword">from</span> <span class="string">&quot;fork-ts-checker-webpack-plugin&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">ESLintPlugin</span> <span class="keyword">from</span> <span class="string">&quot;eslint-webpack-plugin&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">CleanWebpackPlugin</span> &#125; <span class="keyword">from</span> <span class="string">&quot;clean-webpack-plugin&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">config</span>: <span class="title class_">Configuration</span> = &#123;</span><br><span class="line">  <span class="attr">mode</span>: <span class="string">&quot;production&quot;</span>,</span><br><span class="line">  <span class="attr">entry</span>: <span class="string">&quot;./src/index.tsx&quot;</span>,</span><br><span class="line">  <span class="attr">output</span>: &#123;</span><br><span class="line">    <span class="attr">path</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&quot;build&quot;</span>),</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&quot;[name].[contenthash].js&quot;</span>,</span><br><span class="line">    <span class="attr">publicPath</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">module</span>: &#123;</span><br><span class="line">    <span class="attr">rules</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.(ts|js)x?$/i</span>,</span><br><span class="line">        <span class="attr">exclude</span>: <span class="regexp">/node_modules/</span>,</span><br><span class="line">        <span class="attr">use</span>: &#123;</span><br><span class="line">          <span class="attr">loader</span>: <span class="string">&quot;babel-loader&quot;</span>,</span><br><span class="line">          <span class="attr">options</span>: &#123;</span><br><span class="line">            <span class="attr">presets</span>: [</span><br><span class="line">              <span class="string">&quot;@babel/preset-env&quot;</span>,</span><br><span class="line">              <span class="string">&quot;@babel/preset-react&quot;</span>,</span><br><span class="line">              <span class="string">&quot;@babel/preset-typescript&quot;</span>,</span><br><span class="line">            ],</span><br><span class="line">          &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">resolve</span>: &#123;</span><br><span class="line">    <span class="attr">extensions</span>: [<span class="string">&quot;.tsx&quot;</span>, <span class="string">&quot;.ts&quot;</span>, <span class="string">&quot;.js&quot;</span>],</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">HtmlWebpackPlugin</span>(&#123;</span><br><span class="line">      <span class="attr">template</span>: <span class="string">&quot;src/index.html&quot;</span>,</span><br><span class="line">    &#125;),</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">ForkTsCheckerWebpackPlugin</span>(&#123;</span><br><span class="line">      <span class="attr">async</span>: <span class="literal">false</span>,</span><br><span class="line">    &#125;),</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">ESLintPlugin</span>(&#123;</span><br><span class="line">      <span class="attr">extensions</span>: [<span class="string">&quot;js&quot;</span>, <span class="string">&quot;jsx&quot;</span>, <span class="string">&quot;ts&quot;</span>, <span class="string">&quot;tsx&quot;</span>],</span><br><span class="line">    &#125;),</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">CleanWebpackPlugin</span>(),</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> config;</span><br></pre></td></tr></table></figure>
+
+<p>This is similar to the development configuration with the following differences:</p>
+<ul>
+<li>We’ve specified the <code>mode</code> to be production. Webpack will automatically set <code>process.env.NODE_ENV</code> to <code>&quot;production&quot;</code> which means we won’t get the React development tools included in the bundle.</li>
+<li>The <code>output</code> field tells Webpack where to bundle our code. In our project, this is the <code>build</code> folder. We have used the <code>[name]</code> token to allow Webpack to name the files if our app is code split. We have used the <code>[contenthash]</code> token so that the bundle file name changes when its content changes, which will bust the browser cache.</li>
+<li>The <a target="_blank" rel="noopener" href="https://github.com/johnagan/clean-webpack-plugin"><code>CleanWebpackPlugin</code></a> plugin will clear out the build folder at the start of the bundling process.</li>
+</ul>
+<p>We will need to install <code>CleanWebpackPlugin</code> using the following command:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev clean-webpack-plugin</span><br></pre></td></tr></table></figure>
+
+<h2 id="Adding-an-npm-script-to-build-the-app-for-production"><a href="#Adding-an-npm-script-to-build-the-app-for-production" class="headerlink" title="Adding an npm script to build the app for production"></a>Adding an npm script to build the app for production</h2><p>Let’s add an npm script to build the app for production:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...,</span><br><span class="line"> <span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">   ...,</span><br><span class="line">   <span class="string">&quot;build&quot;</span>: <span class="string">&quot;webpack --config webpack.prod.config.ts&quot;</span>,</span><br><span class="line"> &#125;,</span><br><span class="line"> ...</span><br></pre></td></tr></table></figure>
+
+<p>The script starts the Webpack bundling process. We have used the <code>config</code> option to reference the production configuration file we have just created.</p>
+<p>Let’s run the following command in a terminal to start the app in development mode:</p>
+<p>After a few seconds, the Webpack will place the bundled files in the <code>build</code> folder.</p>
+<p>If we look at the JavaScript file, we will see it is minified. Webpack uses its <a target="_blank" rel="noopener" href="https://webpack.js.org/plugins/terser-webpack-plugin/">TerserWebpackPlugin</a> out of the box in production mode to minify code. The JavaScript bundle contains all the code from our app as well as the code from the <code>react</code> and <code>react-dom</code> packages.</p>
+<p>If we look at the html file, we will see all the spaces have been removed. If we look closely, we will see a script element referencing our JavaScript file which the <a target="_blank" rel="noopener" href="https://webpack.js.org/plugins/html-webpack-plugin/#root">HtmlWebpackPlugin</a> did for us.</p>
+<p> <a target="_blank" rel="noopener" href="https://www.carlrippon.com/static/d4c033763f1c20c41f6cc87dada37ddb/af0ed/prod-files.png"><img src="https://www.carlrippon.com/static/d4c033763f1c20c41f6cc87dada37ddb/799d3/prod-files.png"></a> </p>
+<p>Nice! 😊</p>
+<p>That’s it! Our project is now set up ready for us efficiently develop our React and TypeScript app. The <code>build</code> command allows us to integrate it into our CI&#x2F;CD process easily.</p>
+<p>This code is available in GitHub at <a target="_blank" rel="noopener" href="https://github.com/carlrip/react-typescript-eslint-webpack">https://github.com/carlrip/react-typescript-eslint-webpack</a></p>
+
+  </div>
+</article>
+
+
+
+            
+            <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/tags/">Tags</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/macshion">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Creating-a-basic-project"><span class="toc-number">1.</span> <span class="toc-text">Creating a basic project</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Adding-React-and-TypeScript"><span class="toc-number">2.</span> <span class="toc-text">Adding React and TypeScript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Adding-a-root-React-component"><span class="toc-number">3.</span> <span class="toc-text">Adding a root React component</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Adding-Babel"><span class="toc-number">4.</span> <span class="toc-text">Adding Babel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configuring-Babel"><span class="toc-number">5.</span> <span class="toc-text">Configuring Babel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Adding-linting"><span class="toc-number">6.</span> <span class="toc-text">Adding linting</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Adding-Webpack"><span class="toc-number">7.</span> <span class="toc-text">Adding Webpack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configuring-development"><span class="toc-number">8.</span> <span class="toc-text">Configuring development</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Adding-an-npm-script-to-run-the-app-in-dev-mode"><span class="toc-number">9.</span> <span class="toc-text">Adding an npm script to run the app in dev mode</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Adding-type-checking-into-the-webpack-process"><span class="toc-number">10.</span> <span class="toc-text">Adding type checking into the webpack process</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Adding-linting-into-the-webpack-process"><span class="toc-number">11.</span> <span class="toc-text">Adding linting into the webpack process</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configuring-production"><span class="toc-number">12.</span> <span class="toc-text">Configuring production</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Adding-an-npm-script-to-build-the-app-for-production"><span class="toc-number">13.</span> <span class="toc-text">Adding an npm script to build the app for production</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://macshion.github.io/Creating-a-React-app-with-TypeScript-and-ESLint-with-Webpack-5/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://macshion.github.io/Creating-a-React-app-with-TypeScript-and-ESLint-with-Webpack-5/&text=Creating a React app with TypeScript and ESLint with Webpack 5"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://macshion.github.io/Creating-a-React-app-with-TypeScript-and-ESLint-with-Webpack-5/&title=Creating a React app with TypeScript and ESLint with Webpack 5"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://macshion.github.io/Creating-a-React-app-with-TypeScript-and-ESLint-with-Webpack-5/&is_video=false&description=Creating a React app with TypeScript and ESLint with Webpack 5"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Creating a React app with TypeScript and ESLint with Webpack 5&body=Check out this article: https://macshion.github.io/Creating-a-React-app-with-TypeScript-and-ESLint-with-Webpack-5/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://macshion.github.io/Creating-a-React-app-with-TypeScript-and-ESLint-with-Webpack-5/&title=Creating a React app with TypeScript and ESLint with Webpack 5"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://macshion.github.io/Creating-a-React-app-with-TypeScript-and-ESLint-with-Webpack-5/&title=Creating a React app with TypeScript and ESLint with Webpack 5"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://macshion.github.io/Creating-a-React-app-with-TypeScript-and-ESLint-with-Webpack-5/&title=Creating a React app with TypeScript and ESLint with Webpack 5"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://macshion.github.io/Creating-a-React-app-with-TypeScript-and-ESLint-with-Webpack-5/&title=Creating a React app with TypeScript and ESLint with Webpack 5"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://macshion.github.io/Creating-a-React-app-with-TypeScript-and-ESLint-with-Webpack-5/&name=Creating a React app with TypeScript and ESLint with Webpack 5&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://macshion.github.io/Creating-a-React-app-with-TypeScript-and-ESLint-with-Webpack-5/&t=Creating a React app with TypeScript and ESLint with Webpack 5"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+            
+            <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2025
+    Macshion
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/tags/">Tags</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/macshion">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+        </div>
+        <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+        <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+
+<!-- Particle Background -->
+
+<script src="/js/particle-config.js"></script>
+
+
+<script src="/js/particle-background.js"></script>
+
+    </body>
+
+    </html>

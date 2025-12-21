@@ -67,7 +67,7 @@
 
     <body class="max-width mx-auto px3 ltr">
 
-<div class="stars"></div>
+<div id="particle-background"></div>
 
         
         <div class="content index py4 h-card">
@@ -104,7 +104,8 @@
 </header>
 
             
-            <section id="about" class="p-note">
+            <!-- 个人介绍区域 -->
+<section id="about" class="p-note">
   
     <p>Hi there 👋 I’m a Front-End Engineer😊</p>
 
@@ -137,6 +138,144 @@
   
 </section>
 
+<!-- 多语言分区选择 -->
+<section id="language-selector" class="language-section">
+  <span class="h1">Choose Your Language / 选择语言</span>
+  
+  
+  
+  <div class="language-cards">
+    <!-- English Card -->
+    <div class="language-card english-card">
+      <div class="language-header">
+        <h2 class="language-title">
+          <i class="fa-solid fa-globe"></i> English
+        </h2>
+        <p class="language-count">10 Articles</p>
+      </div>
+      
+      <div class="language-stats">
+        <div class="stat-item">
+          <span class="stat-label">Total Words:</span>
+          <span class="stat-value">560,770</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Avg. Read Time:</span>
+          <span class="stat-value">
+            
+              31h 10m
+            
+          </span>
+        </div>
+        
+        <div class="stat-item">
+          <span class="stat-label">Latest Update:</span>
+          <span class="stat-value">May 01, 2022</span>
+        </div>
+        
+      </div>
+
+      <div class="language-body">
+        <p class="language-desc">Read posts in English</p>
+        <a href="/categories/English/" class="btn-read-more">
+          Browse All <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <!-- 最新文章预览 -->
+      
+      <div class="preview-articles">
+        <h3 class="preview-title">Latest Posts</h3>
+        <ul class="preview-list">
+          
+          
+          <li class="preview-item">
+            <span class="preview-date">May 01</span>
+            <a href="/Creating-a-React-app-with-TypeScript-and-ESLint-with-Webpack-5/" class="preview-link">Creating a React app with TypeScript and ESLint with Webpack 5</a>
+          </li>
+          
+          <li class="preview-item">
+            <span class="preview-date">Sep 27</span>
+            <a href="/NextJS-Application-Deployed-in-Subfolder/" class="preview-link">Deploy Your Next JS Application in Subfolder</a>
+          </li>
+          
+          <li class="preview-item">
+            <span class="preview-date">Mar 25</span>
+            <a href="/nextjs-umijs/" class="preview-link">How does UmiJS stack up against Next.js?</a>
+          </li>
+          
+        </ul>
+      </div>
+      
+    </div>
+
+    <!-- Chinese Card -->
+    <div class="language-card chinese-card">
+      <div class="language-header">
+        <h2 class="language-title">
+          <i class="fa-solid fa-book"></i> 中文
+        </h2>
+        <p class="language-count">27 篇文章</p>
+      </div>
+
+      <div class="language-stats">
+        <div class="stat-item">
+          <span class="stat-label">总字数：</span>
+          <span class="stat-value">405,287</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">平均阅读时间：</span>
+          <span class="stat-value">
+            
+              约 22 小时 31 分钟
+            
+          </span>
+        </div>
+        
+        <div class="stat-item">
+          <span class="stat-label">最新更新：</span>
+          <span class="stat-value">2022年05月01日</span>
+        </div>
+        
+      </div>
+
+      <div class="language-body">
+        <p class="language-desc">阅读中文文章</p>
+        <a href="/categories/%E4%B8%AD%E6%96%87/" class="btn-read-more">
+          查看全部 <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <!-- 最新文章预览 -->
+      
+      <div class="preview-articles">
+        <h3 class="preview-title">最新文章</h3>
+        <ul class="preview-list">
+          
+          
+          <li class="preview-item">
+            <span class="preview-date">05月01日</span>
+            <a href="/how-webpack-build-packages/" class="preview-link">Webpack前端构建⼯具原理剖析</a>
+          </li>
+          
+          <li class="preview-item">
+            <span class="preview-date">05月01日</span>
+            <a href="/Dingding-interview/" class="preview-link">钉钉面试官分享：前端面试问什么？</a>
+          </li>
+          
+          <li class="preview-item">
+            <span class="preview-date">05月01日</span>
+            <a href="/markdown-latex-math/" class="preview-link">LaTeX - 在Markdown中插入数学公式</a>
+          </li>
+          
+        </ul>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- 最新文章展示 -->
 <section id="writing">
 
   <span class="h1"><a href="/archives/">Writing</a></span>
@@ -182,6 +321,26 @@
         <span>
     
         <a class="" href="/Dingding-interview/">钉钉面试官分享：前端面试问什么？</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2022-04-30T19:11:39.000Z" class="dt-published" itemprop="datePublished">2022-05-01</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/Creating-a-React-app-with-TypeScript-and-ESLint-with-Webpack-5/">Creating a React app with TypeScript and ESLint with Webpack 5</a>
     
 
 
@@ -328,33 +487,13 @@
 </span>
       </li>
     
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2021-01-09T13:31:00.000Z" class="dt-published" itemprop="datePublished">2021-01-09</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/Youtube-ltc%E4%B8%8B%E8%BD%BD%E6%B2%B9%E7%AE%A1%E5%92%8CB%E7%AB%99%E8%A7%86%E9%A2%91/">Youtube-ltc下载油管和B站视频</a>
-    
-
-
-</span>
-      </li>
-    
   </ul>
   
   <span class="h6"><a href="/archives/">View More >></a></span>
       
   
         <div class="category-list">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/English/">English</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E6%96%87/">中文</a><span class="category-list-count">27</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/English/">English</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E6%96%87/">中文</a><span class="category-list-count">27</span></li></ul>
          </div>
 
 </section>
@@ -418,6 +557,14 @@
 <!-- Disqus Comments -->
 
 <!-- utterances Comments -->
+
+
+<!-- Particle Background -->
+
+<script src="/js/particle-config.js"></script>
+
+
+<script src="/js/particle-background.js"></script>
 
     </body>
 
