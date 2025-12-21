@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang=en>
+    <head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="SVG 是可缩放矢量图形（Scalable Vector Graphics, SVG），一种用来描述二维矢量图形的 XML 标记语言。SVG 图像在放大或改变尺寸的情况下其图形质量不会有所损失。SVG是万维网联盟的标准，与诸如 DOM 和 XSL 之类的 W3C 标准是一个整体。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SVG 基础知识（一） - SVG 视口">
+<meta property="og:url" content="https://macshion.github.io/svg-basic1/index.html">
+<meta property="og:site_name" content="Macshion&#39;s blog">
+<meta property="og:description" content="SVG 是可缩放矢量图形（Scalable Vector Graphics, SVG），一种用来描述二维矢量图形的 XML 标记语言。SVG 图像在放大或改变尺寸的情况下其图形质量不会有所损失。SVG是万维网联盟的标准，与诸如 DOM 和 XSL 之类的 W3C 标准是一个整体。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-08-11T15:09:12.000Z">
+<meta property="article:modified_time" content="2025-12-21T09:44:26.724Z">
+<meta property="article:author" content="Macshion">
+<meta property="article:tag" content="SVG">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>SVG 基础知识（一） - SVG 视口</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KKGH5P6E2M"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KKGH5P6E2M');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+    <body class="max-width mx-auto px3 ltr">
+
+<div class="stars"></div>
+
+        
+        <div class="post">
+            <div id="navLeft">
+                <ul>
+                    
+                    <!--
+     -->
+                    <li><a href="/">Home</a></li>
+                    <!--
+   -->
+                    <!--
+     -->
+                    <li><a href="/about/">About</a></li>
+                    <!--
+   -->
+                    <!--
+     -->
+                    <li><a href="/archives/">Writing</a></li>
+                    <!--
+   -->
+                    <!--
+     -->
+                    <li><a href="/tags/">Tags</a></li>
+                    <!--
+   -->
+                    <!--
+     -->
+                    <li><a target="_blank" rel="noopener" href="http://github.com/macshion">Projects</a></li>
+                    <!--
+   -->
+                </ul>
+            </div>
+        </div>
+        <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/tags/">Tags</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/macshion">Projects</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/Redux-tutorial/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/June&July-2019/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://macshion.github.io/svg-basic1/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://macshion.github.io/svg-basic1/&text=SVG 基础知识（一） - SVG 视口"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://macshion.github.io/svg-basic1/&title=SVG 基础知识（一） - SVG 视口"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://macshion.github.io/svg-basic1/&is_video=false&description=SVG 基础知识（一） - SVG 视口"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=SVG 基础知识（一） - SVG 视口&body=Check out this article: https://macshion.github.io/svg-basic1/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://macshion.github.io/svg-basic1/&title=SVG 基础知识（一） - SVG 视口"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://macshion.github.io/svg-basic1/&title=SVG 基础知识（一） - SVG 视口"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://macshion.github.io/svg-basic1/&title=SVG 基础知识（一） - SVG 视口"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://macshion.github.io/svg-basic1/&title=SVG 基础知识（一） - SVG 视口"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://macshion.github.io/svg-basic1/&name=SVG 基础知识（一） - SVG 视口&description=&lt;p&gt;SVG 是可缩放矢量图形（Scalable Vector Graphics, SVG），一种用来描述二维矢量图形的 XML 标记语言。SVG 图像在放大或改变尺寸的情况下其图形质量不会有所损失。SVG是万维网联盟的标准，与诸如 DOM 和 XSL 之类的 W3C 标准是一个整体。&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://macshion.github.io/svg-basic1/&t=SVG 基础知识（一） - SVG 视口"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SVG-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">SVG 是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SVG-%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="toc-number">2.</span> <span class="toc-text">SVG 的优势</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SVG-%E8%A7%86%E5%8F%A3"><span class="toc-number">3.</span> <span class="toc-text">SVG 视口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#viewport"><span class="toc-number">3.1.</span> <span class="toc-text">viewport</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#viewBox"><span class="toc-number">3.2.</span> <span class="toc-text">viewBox</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#preserveAspectRatio"><span class="toc-number">3.3.</span> <span class="toc-text">preserveAspectRatio</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+        
+        <div class="content index py4 ">
+            
+            <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        SVG 基础知识（一） - SVG 视口
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Macshion</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-08-11T15:09:12.000Z" class="dt-published" itemprop="datePublished">2019-08-12</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/%E4%B8%AD%E6%96%87/">中文</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/SVG/" rel="tag">SVG</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>SVG 是可缩放矢量图形（Scalable Vector Graphics, SVG），一种用来描述二维矢量图形的 XML 标记语言。SVG 图像在放大或改变尺寸的情况下其图形质量不会有所损失。SVG是万维网联盟的标准，与诸如 DOM 和 XSL 之类的 W3C 标准是一个整体。</p>
+<span id="more"></span>
+<h2 id="SVG-是什么？"><a href="#SVG-是什么？" class="headerlink" title="SVG 是什么？"></a>SVG 是什么？</h2><ul>
+<li>SVG 指可伸缩矢量图形（Scalable Vector Graphics）；</li>
+<li>SVG 用来定义用于网络的基于矢量的图形；</li>
+<li>SVG 使用XML格式定义图形；</li>
+<li>SVG 图像在放大或改变尺寸的情况下其图形质量不会有所损失；</li>
+<li>SVG 是万维网联盟的标准；</li>
+<li>SVG 与诸如 DOM 和 XSL 之类的 W3C 标准是一个整体。</li>
+</ul>
+<h2 id="SVG-的优势"><a href="#SVG-的优势" class="headerlink" title="SVG 的优势"></a>SVG 的优势</h2><ul>
+<li>SVG 可被非常多的工具读取和修改（比如记事本）；</li>
+<li>SVG 图像中的文本是可选的，同时也是可搜索的（很适合制作地图）；</li>
+<li>SVG 与 JPEG 和 GIF 图像比起来，尺寸更小，且可压缩性更强（小）；</li>
+<li>SVG 图像可在任何的分辨率下被高质量地打印，可在图像质量不下降的情况下被放大（可伸缩）；</li>
+<li>SVG 文件是纯粹的 XML，可以与Java技术一起运行，与其他标准（比如 XSL 和 DOM）相兼容（开放标准）。</li>
+</ul>
+<h2 id="SVG-视口"><a href="#SVG-视口" class="headerlink" title="SVG 视口"></a>SVG 视口</h2><h3 id="viewport"><a href="#viewport" class="headerlink" title="viewport"></a>viewport</h3><p>  SVG 可见区域的大小，或者可以想像成舞台大小，画布大小。</p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">width</span>=<span class="string">&quot;800&quot;</span> <span class="attr">height</span>=<span class="string">&quot;600&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>SVG单位：em&#x2F;rem, ex, px, in, cm, mm</p>
+<table>
+<thead>
+<tr>
+<th align="center">单位</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">em</td>
+<td align="left">相对于父元素的字体大小</td>
+</tr>
+<tr>
+<td align="center">ex</td>
+<td align="left">相对于小写字母“x”的高度</td>
+</tr>
+<tr>
+<td align="center">px</td>
+<td align="left">相对于屏幕分辨率而不是视窗的大小：通常为1个点或1&#x2F;72英寸</td>
+</tr>
+<tr>
+<td align="center">in</td>
+<td align="left">inch, 表英寸</td>
+</tr>
+<tr>
+<td align="center">cm</td>
+<td align="left">centimeter, 表厘米</td>
+</tr>
+<tr>
+<td align="center">mm</td>
+<td align="left">millimeter, 表毫米</td>
+</tr>
+</tbody></table>
+<h3 id="viewBox"><a href="#viewBox" class="headerlink" title="viewBox"></a>viewBox</h3><p>视区盒子，SVG就像是我们的显示器屏幕，viewBox 就是截屏工具选中的那个框框， 最终的呈现就是把框框中的截屏内容再次在显示器中全屏显示！</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">viewBox=<span class="string">&quot;x,y,width,height&quot;</span></span><br><span class="line"><span class="comment">// x: 左上角横坐标, y: 左上角纵坐标, width: 宽度, height: 高度</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="preserveAspectRatio"><a href="#preserveAspectRatio" class="headerlink" title="preserveAspectRatio"></a>preserveAspectRatio</h3><p>使用 preserveAspectRatio 属性来让 viewBox 保持宽高比。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">preserveAspectRatio=[defer]&lt;align&gt;&lt;meetOrSlice&gt;</span><br></pre></td></tr></table></figure>
+<p>defer 参数是可选值，它仅仅在 image 元素上应用 preserveAspectRatio 属性时才使用。在使用其他元素时会被忽略。<br>align 参数控制 viewBox 是否强制进行均匀的缩放。</p>
+<table>
+<thead>
+<tr>
+<th align="center">取值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">xMin</td>
+<td align="left">viewBox 的最小 X 值对齐 viewport 的左边部</td>
+</tr>
+<tr>
+<td align="center">xMid</td>
+<td align="left">viewBox 的 X 轴中点对齐 viewport 的 X 轴中点</td>
+</tr>
+<tr>
+<td align="center">xMax</td>
+<td align="left">viewBox 的最大 X 值对齐 viewport 的右边部</td>
+</tr>
+<tr>
+<td align="center">YMin</td>
+<td align="left">viewBox 的最小 Y 值对齐 viewport 的顶边</td>
+</tr>
+<tr>
+<td align="center">YMid</td>
+<td align="left">viewBox 的 Y 轴中点对齐 viewport 的 Y 轴中点</td>
+</tr>
+<tr>
+<td align="center">YMax</td>
+<td align="left">viewBox 的最小 Y 值对齐 viewport 的底边</td>
+</tr>
+</tbody></table>
+<p>![SVG preserveAspectRatio align 参数图解](&#x2F;img&#x2F;2019&#x2F;08&#x2F;Screen Shot 2019-08-12 at 01.19.47.png)</p>
+<p>align 参数的3x3种组合取值</p>
+<table>
+<thead>
+<tr>
+<th align="center">取值</th>
+<th align="left">描述</th>
+<th align="left">类比</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">xMinYMin</td>
+<td align="left">viewBox 的 &lt;min-x&gt; 对齐 viewport 的最小 X 值，min-y 对齐 viewport 的最小 Y 值</td>
+<td align="left">background-position: 0% 0%;</td>
+</tr>
+<tr>
+<td align="center">xMinYmid</td>
+<td align="left">viewBox 的 &lt;min-x&gt; 对齐 viewport 的最小 X 值，viewBox 的 Y 轴中点 对齐 viewport 的 Y 轴中点</td>
+<td align="left">background-position: 0% 50%;</td>
+</tr>
+<tr>
+<td align="center">xMinYMax</td>
+<td align="left">viewBox 的 &lt;min-x&gt; 对齐 viewport 的最小 X 值，min-y+&lt;height&gt; 对齐 viewport 的最小Y值</td>
+<td align="left">background-position: 0% 100%;</td>
+</tr>
+</tbody></table>
+
+  </div>
+</article>
+
+
+
+            
+            <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/tags/">Tags</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/macshion">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SVG-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">SVG 是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SVG-%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="toc-number">2.</span> <span class="toc-text">SVG 的优势</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SVG-%E8%A7%86%E5%8F%A3"><span class="toc-number">3.</span> <span class="toc-text">SVG 视口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#viewport"><span class="toc-number">3.1.</span> <span class="toc-text">viewport</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#viewBox"><span class="toc-number">3.2.</span> <span class="toc-text">viewBox</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#preserveAspectRatio"><span class="toc-number">3.3.</span> <span class="toc-text">preserveAspectRatio</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://macshion.github.io/svg-basic1/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://macshion.github.io/svg-basic1/&text=SVG 基础知识（一） - SVG 视口"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://macshion.github.io/svg-basic1/&title=SVG 基础知识（一） - SVG 视口"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://macshion.github.io/svg-basic1/&is_video=false&description=SVG 基础知识（一） - SVG 视口"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=SVG 基础知识（一） - SVG 视口&body=Check out this article: https://macshion.github.io/svg-basic1/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://macshion.github.io/svg-basic1/&title=SVG 基础知识（一） - SVG 视口"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://macshion.github.io/svg-basic1/&title=SVG 基础知识（一） - SVG 视口"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://macshion.github.io/svg-basic1/&title=SVG 基础知识（一） - SVG 视口"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://macshion.github.io/svg-basic1/&title=SVG 基础知识（一） - SVG 视口"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://macshion.github.io/svg-basic1/&name=SVG 基础知识（一） - SVG 视口&description=&lt;p&gt;SVG 是可缩放矢量图形（Scalable Vector Graphics, SVG），一种用来描述二维矢量图形的 XML 标记语言。SVG 图像在放大或改变尺寸的情况下其图形质量不会有所损失。SVG是万维网联盟的标准，与诸如 DOM 和 XSL 之类的 W3C 标准是一个整体。&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://macshion.github.io/svg-basic1/&t=SVG 基础知识（一） - SVG 视口"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+            
+            <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2025
+    Macshion
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/tags/">Tags</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/macshion">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+        </div>
+        <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+        <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    </body>
+
+    </html>

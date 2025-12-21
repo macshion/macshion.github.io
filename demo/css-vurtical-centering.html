@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang=en>
+    <head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="CSS垂直居中                   *{             margin:0;             padding:0;         }         &#x2F;* 方法一：父元素设置{display:flex;align-content:center;align-items:center;} *&#x2F;         .yellow{">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Macshion&#39;s blog">
+<meta property="og:url" content="https://macshion.github.io/demo/css-vurtical-centering.html">
+<meta property="og:site_name" content="Macshion&#39;s blog">
+<meta property="og:description" content="CSS垂直居中                   *{             margin:0;             padding:0;         }         &#x2F;* 方法一：父元素设置{display:flex;align-content:center;align-items:center;} *&#x2F;         .yellow{">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-12-21T09:44:26.724Z">
+<meta property="article:modified_time" content="2025-12-21T09:44:26.724Z">
+<meta property="article:author" content="Macshion">
+<meta property="article:tag" content="前端开发,前端技术,前端博客,前端技术博客">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Macshion&#39;s blog</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KKGH5P6E2M"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KKGH5P6E2M');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+    <body class="max-width mx-auto px3 ltr">
+
+<div class="stars"></div>
+
+        
+        <div class="content index py4 ">
+            
+            <header id="header">
+  <a class="u-url u-uid" href="/">
+  
+    
+      <img id="logo" alt class="u-logo" src="/images/logo.png" />
+    
+  
+    <div id="title">
+      <h1 class="p-name">Macshion&#39;s blog</h1>
+    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-2x"></i></a>
+      </li>
+      <!--
+     --><li><a href="/">Home</a></li><!--
+   --><!--
+     --><li><a href="/about/">About</a></li><!--
+   --><!--
+     --><li><a href="/archives/">Writing</a></li><!--
+   --><!--
+     --><li><a href="/tags/">Tags</a></li><!--
+   --><!--
+     --><li><a target="_blank" rel="noopener" href="http://github.com/macshion">Projects</a></li><!--
+   -->
+    </ul>
+  </div>
+</header>
+
+            
+            <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  
+
+  <div class="content" itemprop="articleBody">
+      
+          <!DOCTYPE html>
+<html>
+    <head>
+        <title>CSS垂直居中</title>
+    </head>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        /* 方法一：父元素设置{display:flex;align-content:center;align-items:center;} */
+        .yellow{
+            margin-top:50px;
+            width:100%;
+            height:800px;
+            display: flex;
+            align-content: center;
+            align-items: center;
+            background-color: yellow;
+        }
+        /* 方法二：父元素和子元素设置相同宽高+父元素设置padding */
+        .red{
+            margin: 0 auto;
+            width: 400px;
+            height:400px;
+            padding:100px;
+            box-sizing: content-box;
+            background-color: red;
+        }
+        .aqua{
+            width:400px;
+            height:400px;
+            background-color: aqua;
+            /*parent*/
+            position: relative;
+        }
+        /*
+        方法三：
+        父元素相对定位，子元素绝对定位，left、right、top、bottom为0；margin为auto;
+        绝对定位盒子模型有个特点：left+right+width+padding+margin=包含块的宽度；
+        所以此时可以将left、right（默认值为auto，所以需要重设置）设置为0，而padding已经确定（未设置时默认值为0px），
+        所以剩下的都是margin，但是margin的默认值是0px。所以就将magin设为auto，使得元素自动居中了；
+        */
+        .bisque{
+            height:300px;
+            width:300px;
+            position: absolute;
+            left:0;
+            right:0;
+            top:0;
+            bottom:0;
+            margin: auto;
+            background-color:bisque;
+        }
+        .relative-parent{
+            width:100%;
+            height:100%;
+            position: relative;
+        }
+        /*
+        方法四（1）：
+        子元素宽高固定，父相对子绝对，上下为50%，使用margin-left和margin-top设为子元素的一半的负数。就是将偏离父元素中心的那段拽回来；
+        绝对定位脱离文档流，不会对后续元素的布局造成影响。但如果绝对定位元素是唯一的元素则父元素也会失去高度。
+        */
+        .green{
+            background-color: green;
+            height:200px;
+            width:200px;
+            position: absolute;
+            left:50%;
+            top:50%;
+            margin-left:-100px;
+            margin-top: -100px;
+        }
+        /*
+        方法四（2）：
+        父元素相对定位，子元素绝对定位；
+        将子元素left和top直接设为50%，相对的是父元素；
+        子元素宽高不固定，使用transform:translate(-50%,-50%)将偏离父元素中心的那段拽回来；
+        */
+        .darkorchid{
+            background-color: darkorchid;
+            position: absolute;
+            margin-top:50%;
+            margin-left:50%;
+            transform: translate(-50%,-50%);
+        }
+        /*方法五 table-cell+inline-block*/
+        .tablecell-parent{
+            display: table-cell;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .pink{
+            background-color: pink;
+            display: inline-block;
+        }
+    </style>
+    <body>
+        <div class="yellow">
+            <div class="red">
+                <div class="aqua">
+                    <div class="bisque">
+                        <div class="relative-parent">
+                            <div class="green">
+                                <div class="relative-parent">
+                                    <div class="darkorchid">
+                                        <div class="tablecell-parent">
+                                                <div class="pink">垂直居中</div>
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+        
+  </div>
+</article>
+
+            
+            <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2025
+    Macshion
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/tags/">Tags</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/macshion">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+        </div>
+        <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+        <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    </body>
+
+    </html>

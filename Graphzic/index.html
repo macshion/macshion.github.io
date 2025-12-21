@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang=en>
+    <head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="一、Graphviz简介Graphviz是一个可以在Linux、macOS、Windows和Solaris系统上使用的开源图表可视化工具，它能使你具备用文本画图的能力，画出来的图形可导出为图片、SVG、PDF等格式。使用Graphviz之前需要先安装，具体步骤参考官方文档：https:&#x2F;&#x2F;graphviz.gitlab.io&#x2F;download&#x2F;。提示：Mac系统使用&#96;brew install gr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Graphzic与dot语言绘图">
+<meta property="og:url" content="https://macshion.github.io/Graphzic/index.html">
+<meta property="og:site_name" content="Macshion&#39;s blog">
+<meta property="og:description" content="一、Graphviz简介Graphviz是一个可以在Linux、macOS、Windows和Solaris系统上使用的开源图表可视化工具，它能使你具备用文本画图的能力，画出来的图形可导出为图片、SVG、PDF等格式。使用Graphviz之前需要先安装，具体步骤参考官方文档：https:&#x2F;&#x2F;graphviz.gitlab.io&#x2F;download&#x2F;。提示：Mac系统使用&#96;brew install gr">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/2021/image-20210622162833910.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/2021/image-20210622163216158.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/2021/demo.svg">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/2021/image-20210622164656933.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/2021/image-20210622165058213.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/2021/image-20210622165243138.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/2021/image-20210622165724800.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/2021/image-20210622170029325.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/2021/image-20210622171626854.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/2021/image-20210622204633195.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/2021/image-20210622171048859.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/2021/image-20210622171357857.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/2021/demo8.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/2021/image-20210622175352386.png">
+<meta property="article:published_time" content="2021-06-22T03:23:53.000Z">
+<meta property="article:modified_time" content="2025-12-21T09:44:26.719Z">
+<meta property="article:author" content="Macshion">
+<meta property="article:tag" content="Dot">
+<meta property="article:tag" content="Graphviz">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/macshion/PicBed/main/2021/image-20210622162833910.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>使用Graphzic与dot语言绘图</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KKGH5P6E2M"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KKGH5P6E2M');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+    <body class="max-width mx-auto px3 ltr">
+
+<div class="stars"></div>
+
+        
+        <div class="post">
+            <div id="navLeft">
+                <ul>
+                    
+                    <!--
+     -->
+                    <li><a href="/">Home</a></li>
+                    <!--
+   -->
+                    <!--
+     -->
+                    <li><a href="/about/">About</a></li>
+                    <!--
+   -->
+                    <!--
+     -->
+                    <li><a href="/archives/">Writing</a></li>
+                    <!--
+   -->
+                    <!--
+     -->
+                    <li><a href="/tags/">Tags</a></li>
+                    <!--
+   -->
+                    <!--
+     -->
+                    <li><a target="_blank" rel="noopener" href="http://github.com/macshion">Projects</a></li>
+                    <!--
+   -->
+                </ul>
+            </div>
+        </div>
+        <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/tags/">Tags</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/macshion">Projects</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/Frontend-study-roadmap/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/Using-Throttling-and-Debouncing-with-React-hooks/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://macshion.github.io/Graphzic/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://macshion.github.io/Graphzic/&text=使用Graphzic与dot语言绘图"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://macshion.github.io/Graphzic/&title=使用Graphzic与dot语言绘图"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://macshion.github.io/Graphzic/&is_video=false&description=使用Graphzic与dot语言绘图"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=使用Graphzic与dot语言绘图&body=Check out this article: https://macshion.github.io/Graphzic/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://macshion.github.io/Graphzic/&title=使用Graphzic与dot语言绘图"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://macshion.github.io/Graphzic/&title=使用Graphzic与dot语言绘图"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://macshion.github.io/Graphzic/&title=使用Graphzic与dot语言绘图"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://macshion.github.io/Graphzic/&title=使用Graphzic与dot语言绘图"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://macshion.github.io/Graphzic/&name=使用Graphzic与dot语言绘图&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://macshion.github.io/Graphzic/&t=使用Graphzic与dot语言绘图"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81Graphviz%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">一、Graphviz简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%94%9F%E6%88%90%E5%9B%BE%E7%89%87"><span class="toc-number">1.1.</span> <span class="toc-text">二、用命令行生成图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8dot%E8%AF%AD%E8%A8%80%E7%94%BB%E5%9B%BE"><span class="toc-number">1.2.</span> <span class="toc-text">二、使用dot语言画图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Demo1"><span class="toc-number">1.2.1.</span> <span class="toc-text">Demo1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Demo2"><span class="toc-number">1.2.2.</span> <span class="toc-text">Demo2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Demo3"><span class="toc-number">1.2.3.</span> <span class="toc-text">Demo3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Demo4"><span class="toc-number">1.2.4.</span> <span class="toc-text">Demo4</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Demo5-1"><span class="toc-number">1.2.5.</span> <span class="toc-text">Demo5-1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Demo5-2"><span class="toc-number">1.2.6.</span> <span class="toc-text">Demo5-2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Demo6"><span class="toc-number">1.2.7.</span> <span class="toc-text">Demo6</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Demo7"><span class="toc-number">1.2.8.</span> <span class="toc-text">Demo7</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Demo8"><span class="toc-number">1.2.9.</span> <span class="toc-text">Demo8</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Demo9"><span class="toc-number">1.2.10.</span> <span class="toc-text">Demo9</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+        
+        <div class="content index py4 ">
+            
+            <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        使用Graphzic与dot语言绘图
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Macshion</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-06-22T03:23:53.000Z" class="dt-published" itemprop="datePublished">2021-06-22</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/%E4%B8%AD%E6%96%87/">中文</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/Dot/" rel="tag">Dot</a>, <a class="p-category" href="/tags/Graphviz/" rel="tag">Graphviz</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="一、Graphviz简介"><a href="#一、Graphviz简介" class="headerlink" title="一、Graphviz简介"></a>一、Graphviz简介</h2><p>Graphviz是一个可以在Linux、macOS、Windows和Solaris系统上使用的开源图表可视化工具，它能使你具备用文本画图的能力，画出来的图形可导出为图片、SVG、PDF等格式。使用Graphviz之前需要先安装，具体步骤参考官方文档：<a target="_blank" rel="noopener" href="https://graphviz.gitlab.io/download/%E3%80%82%E6%8F%90%E7%A4%BA%EF%BC%9AMac%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8%60brew">https://graphviz.gitlab.io/download/。提示：Mac系统使用`brew</a> install graphviz&#96;来安装，Windows系统则下载exe安装包进行安装，并且需要配置系统环境变量：</p>
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/2021/image-20210622162833910.png" alt="image-20210622162833910"></p>
+<p>安装配置完成后，通过<code>dot -version</code>命令查看是否安装成功，成功会输出版本号等信息：</p>
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/2021/image-20210622163216158.png" alt="image-20210622163216158"></p>
+<h3 id="二、用命令行生成图片"><a href="#二、用命令行生成图片" class="headerlink" title="二、用命令行生成图片"></a>二、用命令行生成图片</h3><p>现在，你可以在电脑上创建一个demo.dot文本，写入图形代码:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">graph simple</span><br><span class="line">&#123;</span><br><span class="line">    a -- b -- c;</span><br><span class="line">    b -- d;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在终端&#x2F;命令行进入该.dot文件所在目录，通过命令把它转换为需要输出的格式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dot demo.dot –Tpng –o demo.png</span><br></pre></td></tr></table></figure>
+
+<p>恭喜你！成功画了一个图！打开demo.png，你将会看到这个图：</p>
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/2021/demo.svg"></p>
+<p>如果要输出svg格式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dot demo.dot –Tsvg –o demo.svg</span><br></pre></td></tr></table></figure>
+
+<p>如果你使用VSCode编程，建议安装 Graphviz (dot) language support for Visual Studio Code 和 Graphviz Preview 插件：</p>
+<h3 id="二、使用dot语言画图"><a href="#二、使用dot语言画图" class="headerlink" title="二、使用dot语言画图"></a>二、使用dot语言画图</h3><h4 id="Demo1"><a href="#Demo1" class="headerlink" title="Demo1"></a>Demo1</h4><p>graph方法是使用没有箭头的线连接节点，你还可以更改图形方向、形状及文字格式，用Graphviz画思维导图：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">graph g &#123;</span><br><span class="line">    rankdir=LR  //方向左右</span><br><span class="line">    dot语言-&gt;&#123;简介,语法,示例&#125;</span><br><span class="line">    dot语言[shape=box,fontcolor=red]</span><br><span class="line">    简介[color=red]</span><br><span class="line">    语法[color=green]</span><br><span class="line">    示例[color=blue]</span><br><span class="line">    简介-&gt;&#123;开源免费,UML绘图,导出svg&#125;</span><br><span class="line">    语法-&gt;&#123;&quot;digraph&quot;,&quot;graph&quot;&#125;</span><br><span class="line">    &quot;digraph&quot;-&gt;导向图[label=可以制作带方向的导图]</span><br><span class="line">    &quot;graph&quot;-&gt;无向图[label=可以制作不带方向的导图]</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/2021/image-20210622164656933.png" alt="image-20210622164656933"></p>
+<h4 id="Demo2"><a href="#Demo2" class="headerlink" title="Demo2"></a>Demo2</h4><p>使用“digraph”画有箭头的线：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">digraph &#123; a -&gt; b &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/2021/image-20210622165058213.png" alt="image-20210622165058213"></p>
+<h4 id="Demo3"><a href="#Demo3" class="headerlink" title="Demo3"></a>Demo3</h4><p>改变节点的形状和连接线样式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">digraph D &#123;</span><br><span class="line"></span><br><span class="line">  A [shape=diamond]</span><br><span class="line">  B [shape=box]</span><br><span class="line">  C [shape=circle]</span><br><span class="line"></span><br><span class="line">  A -&gt; B [style=dashed, color=grey]</span><br><span class="line">  A -&gt; C [color=&quot;black:invis:black&quot;]</span><br><span class="line">  A -&gt; D [penwidth=5, arrowhead=none]</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/2021/image-20210622165243138.png" alt="image-20210622165243138"></p>
+<h4 id="Demo4"><a href="#Demo4" class="headerlink" title="Demo4"></a>Demo4</h4><p>可以用来画流程图：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">digraph finite_state_machine &#123;</span><br><span class="line">    rankdir=LR;</span><br><span class="line">    size=&quot;8,5&quot;</span><br><span class="line"></span><br><span class="line">    node [shape = doublecircle]; S;</span><br><span class="line">    node [shape = point ]; qi</span><br><span class="line"></span><br><span class="line">    node [shape = circle];</span><br><span class="line">    qi -&gt; S;</span><br><span class="line">    S  -&gt; q1 [ label = &quot;next&quot; ];</span><br><span class="line">    S  -&gt; S  [ label = &quot;a&quot; ];</span><br><span class="line">    q1 -&gt; S  [ label = &quot;haha&quot; ];</span><br><span class="line">    q1 -&gt; q2 [ label = &quot;next&quot; ];</span><br><span class="line">    q2 -&gt; q1 [ label = &quot;b&quot; ];</span><br><span class="line">    q2 -&gt; q2 [ label = &quot;b&quot; ];</span><br><span class="line">    q2 -&gt; q3 [ label = &quot;next&quot; ];</span><br><span class="line">    q3 -&gt; q4 [ label = &quot;next&quot; ];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/2021/image-20210622165724800.png" alt="image-20210622165724800"></p>
+<h4 id="Demo5-1"><a href="#Demo5-1" class="headerlink" title="Demo5-1"></a>Demo5-1</h4><p>一棵简单的二叉树：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">digraph D &#123;</span><br><span class="line">  A -&gt; &#123;B,C&#125;</span><br><span class="line">  B -&gt; &#123;D,E&#125;</span><br><span class="line">  C -&gt; &#123;F,G&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/2021/image-20210622170029325.png" alt="image-20210622170029325"></p>
+<h4 id="Demo5-2"><a href="#Demo5-2" class="headerlink" title="Demo5-2"></a>Demo5-2</h4><p>别忘了节点形状是可以改变的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">digraph D &#123;</span><br><span class="line">node [shape = box];</span><br><span class="line">  A -&gt; &#123;B, C, D&#125; -&gt; &#123;F&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/2021/image-20210622171626854.png" alt="image-20210622171626854"></p>
+<p>更多形状：</p>
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/2021/image-20210622204633195.png" alt="image-20210622204633195"></p>
+<h4 id="Demo6"><a href="#Demo6" class="headerlink" title="Demo6"></a>Demo6</h4><p>用html画表格：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">digraph html&#123;</span><br><span class="line">   mytable[shape = none, margin = 0, label = &lt;</span><br><span class="line">   &lt;TABLE BORDER = &quot;0&quot; CELLBORDER = &quot;1&quot; CELLSPACING = &quot;0&quot; CELLPADDING = &quot;4&quot;&gt;</span><br><span class="line">   &lt;TR&gt;&lt;TD ROWSPAN = &quot;3&quot;&gt;&lt;FONT COLOR = &quot;red&quot;&gt;hello&lt;/FONT&gt;&lt;BR/&gt;world&lt;/TD&gt;</span><br><span class="line">   &lt;TD COLSPAN = &quot;3&quot;&gt;b&lt;/TD&gt;</span><br><span class="line">   &lt;TD ROWSPAN = &quot;3&quot;&gt;g&lt;/TD&gt;</span><br><span class="line">   &lt;TD ROWSPAN = &quot;3&quot;&gt;h&lt;/TD&gt;</span><br><span class="line">   &lt;/TR&gt;</span><br><span class="line">   &lt;TR&gt;&lt;TD&gt;c&lt;/TD&gt;</span><br><span class="line">   &lt;TD PORT = &quot;here&quot;&gt;d&lt;/TD&gt;</span><br><span class="line">   &lt;TD&gt;e&lt;/TD&gt;</span><br><span class="line">   &lt;/TR&gt;</span><br><span class="line">   &lt;TR&gt;&lt;TD COLSPAN = &quot;3&quot;&gt;f&lt;/TD&gt;</span><br><span class="line">   &lt;/TR&gt;</span><br><span class="line">   &lt;/TABLE&gt;</span><br><span class="line">   &gt;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/2021/image-20210622171048859.png" alt="image-20210622171048859"></p>
+<h4 id="Demo7"><a href="#Demo7" class="headerlink" title="Demo7"></a>Demo7</h4><p>使用rank把节点排列成对齐的行（列）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">digraph G&#123;</span><br><span class="line">   rankdir = LR</span><br><span class="line">   &#123;</span><br><span class="line">    node[shape = plaintext]</span><br><span class="line">    1995 -&gt; 1996 -&gt; 1997 -&gt; 1998 -&gt; 1999 -&gt; 2000 -&gt; 2001</span><br><span class="line">   &#125;</span><br><span class="line">   &#123;</span><br><span class="line">    node[shape = box, style = filled]</span><br><span class="line">    WAR3 -&gt; Xhero -&gt; Footman -&gt; DOTA</span><br><span class="line">    WAR3 -&gt; Battleship</span><br><span class="line">   &#125;</span><br><span class="line">   &#123;</span><br><span class="line">    &#123;rank = same 1996 WAR3&#125;</span><br><span class="line">    &#123;rank = same 1998 Xhero Battleship&#125;</span><br><span class="line">    &#123;rank = same 1999 Footman&#125;</span><br><span class="line">    &#123;rank = same 2001 DOTA&#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/2021/image-20210622171357857.png" alt="image-20210622171357857"></p>
+<h4 id="Demo8"><a href="#Demo8" class="headerlink" title="Demo8"></a>Demo8</h4><p>用控制符”n”,”ne”,”e”,”se”,”s”,”sw”,”w”和”nw”指定连接线的起止位置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">digraph G&#123;</span><br><span class="line">   node[shape = box]</span><br><span class="line">   c:n -&gt; d[label = n]</span><br><span class="line">   c1:ne -&gt; d1[label = ne]</span><br><span class="line">   c2:e -&gt; d2[label = e]</span><br><span class="line">   c3:se -&gt; d3[label = se]</span><br><span class="line">   c4:s -&gt; d4[label = s]</span><br><span class="line">   c5:sw -&gt; d5[label = sw]</span><br><span class="line">   c6:w -&gt; d6[label = w]</span><br><span class="line">   c7:nw -&gt; d7[label = nw]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/2021/demo8.png"></p>
+<h4 id="Demo9"><a href="#Demo9" class="headerlink" title="Demo9"></a>Demo9</h4><p>画流程图</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">digraph startgame &#123;</span><br><span class="line">    label=&quot;游戏资源更新流程&quot;</span><br><span class="line">    rankdir=&quot;TB&quot;</span><br><span class="line">    start[label=&quot;启动游戏&quot; shape=circle style=filled]</span><br><span class="line">    ifwifi[label=&quot;网络环境判断是否 WIFI&quot; shape=diamond]</span><br><span class="line">    needupdate[label=&quot;是否有资源需要更新&quot; shape=diamond]</span><br><span class="line">    startslientdl[label=&quot;静默下载&quot; shape=box]</span><br><span class="line">    enterhall[label=&quot;进入游戏大厅&quot; shape=box]</span><br><span class="line"></span><br><span class="line">    enterroom[label=&quot;进入房间&quot; shape=box]</span><br><span class="line">    resourceuptodate[label=&quot;资源不完整&quot; shape=diamond]</span><br><span class="line">    startplay[label=&quot;正常游戏&quot; shape=circle fillcolor=blue]</span><br><span class="line">    warning[label=&quot;提醒玩家是否更新&quot; shape=diamond]</span><br><span class="line">    startdl[label=&quot;进入下载界面&quot; shape=box]</span><br><span class="line">    //&#123;rank=same; needupdate, enterhall&#125;</span><br><span class="line"></span><br><span class="line">    &#123;shape=diamond; ifwifi, needupdate&#125;</span><br><span class="line"></span><br><span class="line">    start -&gt; ifwifi</span><br><span class="line">    ifwifi-&gt;needupdate[label=&quot;是&quot;]</span><br><span class="line">    ifwifi-&gt;enterhall[label=&quot;否&quot;]</span><br><span class="line">    needupdate-&gt;startslientdl[label=&quot;是&quot;]</span><br><span class="line">    startslientdl-&gt;enterhall</span><br><span class="line">    needupdate-&gt;enterhall[label=&quot;否&quot;]</span><br><span class="line"></span><br><span class="line">    enterhall -&gt; enterroom</span><br><span class="line">    enterroom -&gt; resourceuptodate</span><br><span class="line">    resourceuptodate -&gt; warning[label=&quot;是&quot;]</span><br><span class="line">    resourceuptodate -&gt; startplay[label=&quot;否&quot;]</span><br><span class="line">    warning -&gt; startdl[label=&quot;确认下载&quot;]</span><br><span class="line">    warning -&gt; enterhall[label=&quot;取消下载&quot;]</span><br><span class="line">    startdl -&gt; enterhall[label=&quot;取消下载&quot;]</span><br><span class="line">    startdl -&gt; startplay[label=&quot;下载完成&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/macshion/PicBed/main/2021/image-20210622175352386.png" alt="image-20210622175352386"></p>
+<p>如果要近一步学会使用Graphviz画图，你一定要浏览这个repo：<a target="_blank" rel="noopener" href="https://github.com/huangz1990/redisbook1e-gallery">https://github.com/huangz1990/redisbook1e-gallery</a></p>
+<p>参考资料：</p>
+<ul>
+<li>Graphviz官网： <a target="_blank" rel="noopener" href="http://www.graphviz.org/">http://www.graphviz.org/</a></li>
+<li>Graphviz官方dot指南文档《Drawing graphs with dot》：<a target="_blank" rel="noopener" href="http://www.graphviz.org/pdf/dotguide.pdf">http://www.graphviz.org/pdf/dotguide.pdf</a></li>
+<li>Graphviz Tutorial 1.0 文档：<a target="_blank" rel="noopener" href="https://graphviztutorial.readthedocs.io/zh_CN/latest/chap01.html">https://graphviztutorial.readthedocs.io/zh_CN/latest/chap01.html</a></li>
+<li>DOT语言学习笔记：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/51578351">https://zhuanlan.zhihu.com/p/51578351</a></li>
+<li>Dot语言教程：<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000004646829">https://segmentfault.com/a/1190000004646829</a></li>
+<li>《Redis 设计与实现》图片集：<a target="_blank" rel="noopener" href="http://1e-gallery.redisbook.com/index.html">http://1e-gallery.redisbook.com/index.html</a></li>
+<li>windows下Graphviz安装及入门教程: <a target="_blank" rel="noopener" href="https://blog.csdn.net/lanchunhui/article/details/49472949">https://blog.csdn.net/lanchunhui/article/details/49472949</a></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+            
+            <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/tags/">Tags</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/macshion">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81Graphviz%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">一、Graphviz简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%94%9F%E6%88%90%E5%9B%BE%E7%89%87"><span class="toc-number">1.1.</span> <span class="toc-text">二、用命令行生成图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8dot%E8%AF%AD%E8%A8%80%E7%94%BB%E5%9B%BE"><span class="toc-number">1.2.</span> <span class="toc-text">二、使用dot语言画图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Demo1"><span class="toc-number">1.2.1.</span> <span class="toc-text">Demo1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Demo2"><span class="toc-number">1.2.2.</span> <span class="toc-text">Demo2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Demo3"><span class="toc-number">1.2.3.</span> <span class="toc-text">Demo3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Demo4"><span class="toc-number">1.2.4.</span> <span class="toc-text">Demo4</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Demo5-1"><span class="toc-number">1.2.5.</span> <span class="toc-text">Demo5-1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Demo5-2"><span class="toc-number">1.2.6.</span> <span class="toc-text">Demo5-2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Demo6"><span class="toc-number">1.2.7.</span> <span class="toc-text">Demo6</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Demo7"><span class="toc-number">1.2.8.</span> <span class="toc-text">Demo7</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Demo8"><span class="toc-number">1.2.9.</span> <span class="toc-text">Demo8</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Demo9"><span class="toc-number">1.2.10.</span> <span class="toc-text">Demo9</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://macshion.github.io/Graphzic/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://macshion.github.io/Graphzic/&text=使用Graphzic与dot语言绘图"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://macshion.github.io/Graphzic/&title=使用Graphzic与dot语言绘图"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://macshion.github.io/Graphzic/&is_video=false&description=使用Graphzic与dot语言绘图"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=使用Graphzic与dot语言绘图&body=Check out this article: https://macshion.github.io/Graphzic/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://macshion.github.io/Graphzic/&title=使用Graphzic与dot语言绘图"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://macshion.github.io/Graphzic/&title=使用Graphzic与dot语言绘图"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://macshion.github.io/Graphzic/&title=使用Graphzic与dot语言绘图"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://macshion.github.io/Graphzic/&title=使用Graphzic与dot语言绘图"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://macshion.github.io/Graphzic/&name=使用Graphzic与dot语言绘图&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://macshion.github.io/Graphzic/&t=使用Graphzic与dot语言绘图"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+            
+            <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2025
+    Macshion
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/tags/">Tags</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/macshion">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+        </div>
+        <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+        <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    </body>
+
+    </html>
