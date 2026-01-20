@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang=en>
+    <head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="简介FFmpeg 是一个强大的工具，用于处理音频和视频文件。本指南旨在提供一个全面的资源，以帮助初学者和中级用户掌握其基础和高级功能。本文将覆盖格式转换、压缩、裁剪、截图、切分、合并、调速等多个方面。 安装Windows请访问 FFmpeg 的官方网站(https:&#x2F;&#x2F;ffmpeg.org&#x2F;)下载适用于 Windows 的安装包。 macOSmacOS 用户可以通过 Homebrew 轻松安装 F">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FFmpeg：音视频处理终极指南">
+<meta property="og:url" content="https://macshion.github.io/ffmpeg-ultimate-guide/index.html">
+<meta property="og:site_name" content="Macshion&#39;s blog">
+<meta property="og:description" content="简介FFmpeg 是一个强大的工具，用于处理音频和视频文件。本指南旨在提供一个全面的资源，以帮助初学者和中级用户掌握其基础和高级功能。本文将覆盖格式转换、压缩、裁剪、截图、切分、合并、调速等多个方面。 安装Windows请访问 FFmpeg 的官方网站(https:&#x2F;&#x2F;ffmpeg.org&#x2F;)下载适用于 Windows 的安装包。 macOSmacOS 用户可以通过 Homebrew 轻松安装 F">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-06-10T02:00:00.000Z">
+<meta property="article:modified_time" content="2025-12-21T15:00:41.874Z">
+<meta property="article:author" content="Macshion">
+<meta property="article:tag" content="ffmpeg">
+<meta property="article:tag" content="简介">
+<meta property="article:tag" content="音视频处理终极指南">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>FFmpeg：音视频处理终极指南</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KKGH5P6E2M"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KKGH5P6E2M');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+    <body class="max-width mx-auto px3 ltr">
+
+<div id="particle-background"></div>
+
+        
+        <div class="post">
+            <div id="navLeft">
+                <ul>
+                    
+                    <!--
+     -->
+                    <li><a href="/">Home</a></li>
+                    <!--
+   -->
+                    <!--
+     -->
+                    <li><a href="/about/">About</a></li>
+                    <!--
+   -->
+                    <!--
+     -->
+                    <li><a href="/archives/">Writing</a></li>
+                    <!--
+   -->
+                    <!--
+     -->
+                    <li><a href="/tags/">Tags</a></li>
+                    <!--
+   -->
+                    <!--
+     -->
+                    <li><a target="_blank" rel="noopener" href="http://github.com/macshion">Projects</a></li>
+                    <!--
+   -->
+                </ul>
+            </div>
+        </div>
+        <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/tags/">Tags</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/macshion">Projects</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/ffmpeg-command-cheat-sheet/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/how-webpack-build-packages/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://macshion.github.io/ffmpeg-ultimate-guide/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://macshion.github.io/ffmpeg-ultimate-guide/&text=FFmpeg：音视频处理终极指南"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://macshion.github.io/ffmpeg-ultimate-guide/&title=FFmpeg：音视频处理终极指南"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://macshion.github.io/ffmpeg-ultimate-guide/&is_video=false&description=FFmpeg：音视频处理终极指南"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=FFmpeg：音视频处理终极指南&body=Check out this article: https://macshion.github.io/ffmpeg-ultimate-guide/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://macshion.github.io/ffmpeg-ultimate-guide/&title=FFmpeg：音视频处理终极指南"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://macshion.github.io/ffmpeg-ultimate-guide/&title=FFmpeg：音视频处理终极指南"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://macshion.github.io/ffmpeg-ultimate-guide/&title=FFmpeg：音视频处理终极指南"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://macshion.github.io/ffmpeg-ultimate-guide/&title=FFmpeg：音视频处理终极指南"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://macshion.github.io/ffmpeg-ultimate-guide/&name=FFmpeg：音视频处理终极指南&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://macshion.github.io/ffmpeg-ultimate-guide/&t=FFmpeg：音视频处理终极指南"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Windows"><span class="toc-number">2.1.</span> <span class="toc-text">Windows</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#macOS"><span class="toc-number">2.2.</span> <span class="toc-text">macOS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux"><span class="toc-number">2.3.</span> <span class="toc-text">Linux</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%AA%92%E4%BD%93%E4%BF%A1%E6%81%AF"><span class="toc-number">3.</span> <span class="toc-text">查看媒体信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2"><span class="toc-number">4.</span> <span class="toc-text">格式转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E8%BD%AC%E6%8D%A2"><span class="toc-number">4.1.</span> <span class="toc-text">基础转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E8%B4%A8%E9%87%8F%E8%BD%AC%E6%8D%A2"><span class="toc-number">4.2.</span> <span class="toc-text">高质量转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E5%8E%8B%E7%BC%A9"><span class="toc-number">5.</span> <span class="toc-text">视频压缩</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E5%8E%8B%E7%BC%A9"><span class="toc-number">5.1.</span> <span class="toc-text">基础压缩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E7%BA%A7%E5%8E%8B%E7%BC%A9"><span class="toc-number">5.2.</span> <span class="toc-text">高级压缩</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#macOS-%E7%A1%AC%E4%BB%B6%E7%BC%96%E7%A0%81%EF%BC%88VideoToolbox%EF%BC%89"><span class="toc-number">6.</span> <span class="toc-text">macOS 硬件编码（VideoToolbox）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9F%B3%E9%A2%91%E5%8E%8B%E7%BC%A9"><span class="toc-number">7.</span> <span class="toc-text">音频压缩</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E9%9F%B3%E9%A2%91%E5%8E%8B%E7%BC%A9"><span class="toc-number">7.1.</span> <span class="toc-text">基础音频压缩</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%AA%E5%9B%BE"><span class="toc-number">8.</span> <span class="toc-text">截图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%88%AA%E5%9B%BE"><span class="toc-number">8.1.</span> <span class="toc-text">基础截图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E7%BA%A7%E6%88%AA%E5%9B%BE"><span class="toc-number">8.2.</span> <span class="toc-text">高级截图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9F%B3%E9%A2%91%E6%8F%90%E5%8F%96"><span class="toc-number">9.</span> <span class="toc-text">音频提取</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E5%8F%96%E4%B8%BA%E5%90%8C%E6%A0%B7%E7%9A%84%E6%A0%BC%E5%BC%8F"><span class="toc-number">9.1.</span> <span class="toc-text">提取为同样的格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E5%8F%96%E5%B9%B6%E8%BD%AC%E6%8D%A2%E6%A0%BC%E5%BC%8F"><span class="toc-number">9.2.</span> <span class="toc-text">提取并转换格式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E8%A3%81%E5%89%AA"><span class="toc-number">10.</span> <span class="toc-text">视频裁剪</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E8%A3%81%E5%89%AA"><span class="toc-number">10.1.</span> <span class="toc-text">基础裁剪</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E6%AE%B5%E8%A3%81%E5%89%AA"><span class="toc-number">10.2.</span> <span class="toc-text">时间段裁剪</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E5%88%87%E5%88%86"><span class="toc-number">11.</span> <span class="toc-text">视频切分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E5%88%87%E5%88%86"><span class="toc-number">11.1.</span> <span class="toc-text">基础切分</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E5%90%88%E5%B9%B6"><span class="toc-number">12.</span> <span class="toc-text">视频合并</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6%E5%90%88%E5%B9%B6"><span class="toc-number">12.1.</span> <span class="toc-text">使用文本文件合并</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E6%95%B4%E6%92%AD%E6%94%BE%E9%80%9F%E5%BA%A6"><span class="toc-number">13.</span> <span class="toc-text">调整播放速度</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E9%80%9F%E6%88%96%E5%87%8F%E9%80%9F"><span class="toc-number">13.1.</span> <span class="toc-text">加速或减速</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E6%97%8B%E8%BD%AC"><span class="toc-number">14.</span> <span class="toc-text">视频旋转</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%BA%E6%97%B6%E9%92%88%E6%97%8B%E8%BD%AC"><span class="toc-number">14.1.</span> <span class="toc-text">顺时针旋转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%86%E6%97%B6%E9%92%88%E6%97%8B%E8%BD%AC"><span class="toc-number">14.2.</span> <span class="toc-text">逆时针旋转</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%B0%81%E9%9D%A2%E5%9B%BE%E5%83%8F"><span class="toc-number">15.</span> <span class="toc-text">添加封面图像</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E6%B7%BB%E5%8A%A0%E5%B0%81%E9%9D%A2"><span class="toc-number">15.1.</span> <span class="toc-text">音频文件添加封面</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%B9%E5%A4%84%E7%90%86"><span class="toc-number">16.</span> <span class="toc-text">批处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%B9%E9%87%8F%E8%BD%AC%E6%8D%A2%E6%A0%BC%E5%BC%8F"><span class="toc-number">16.1.</span> <span class="toc-text">批量转换格式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E7%BA%A7%E6%8A%80%E5%B7%A7"><span class="toc-number">17.</span> <span class="toc-text">高级技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%AD%97%E5%B9%95"><span class="toc-number">17.1.</span> <span class="toc-text">添加字幕</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B0%B4%E5%8D%B0%E6%B7%BB%E5%8A%A0"><span class="toc-number">17.2.</span> <span class="toc-text">水印添加</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9F%B3%E9%A2%91%E6%B7%B7%E5%90%88"><span class="toc-number">17.3.</span> <span class="toc-text">音频混合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%B9%E9%87%8F%E8%A3%81%E5%89%AA"><span class="toc-number">17.4.</span> <span class="toc-text">批量裁剪</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">18.</span> <span class="toc-text">常见问题与解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E6%B3%95%E8%AF%86%E5%88%AB%E8%BE%93%E5%85%A5-%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="toc-number">18.1.</span> <span class="toc-text">无法识别输入&#x2F;输出格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E5%92%8C%E9%9F%B3%E9%A2%91%E4%B8%8D%E5%90%8C%E6%AD%A5"><span class="toc-number">18.2.</span> <span class="toc-text">视频和音频不同步</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A%E5%AE%9E%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7"><span class="toc-number">19.</span> <span class="toc-text">更多实用小技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%B9%E9%87%8F%E6%94%B9%E5%8F%98%E5%88%86%E8%BE%A8%E7%8E%87"><span class="toc-number">19.1.</span> <span class="toc-text">批量改变分辨率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9F%B3%E9%87%8F%E8%B0%83%E6%95%B4"><span class="toc-number">19.2.</span> <span class="toc-text">音量调整</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9F%B3%E9%A2%91%E5%92%8C%E8%A7%86%E9%A2%91%E7%9A%84%E6%B7%B7%E5%90%88"><span class="toc-number">19.3.</span> <span class="toc-text">音频和视频的混合</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA%E5%92%8C%E8%BF%9B%E4%B8%80%E6%AD%A5%E9%98%85%E8%AF%BB"><span class="toc-number">20.</span> <span class="toc-text">结论和进一步阅读</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+        
+        <div class="content index py4 ">
+            
+            <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        FFmpeg：音视频处理终极指南
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Macshion</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-06-10T02:00:00.000Z" class="dt-published" itemprop="datePublished">2023-06-10</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/%E4%B8%AD%E6%96%87/">中文</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/ffmpeg/" rel="tag">ffmpeg</a>, <a class="p-category" href="/tags/%E7%AE%80%E4%BB%8B/" rel="tag">简介</a>, <a class="p-category" href="/tags/%E9%9F%B3%E8%A7%86%E9%A2%91%E5%A4%84%E7%90%86%E7%BB%88%E6%9E%81%E6%8C%87%E5%8D%97/" rel="tag">音视频处理终极指南</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>FFmpeg 是一个强大的工具，用于处理音频和视频文件。本指南旨在提供一个全面的资源，以帮助初学者和中级用户掌握其基础和高级功能。本文将覆盖格式转换、压缩、裁剪、截图、切分、合并、调速等多个方面。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>请访问 FFmpeg 的官方网站(<a target="_blank" rel="noopener" href="https://ffmpeg.org/)%E4%B8%8B%E8%BD%BD%E9%80%82%E7%94%A8%E4%BA%8E">https://ffmpeg.org/)下载适用于</a> Windows 的安装包。</p>
+<h3 id="macOS"><a href="#macOS" class="headerlink" title="macOS"></a>macOS</h3><p>macOS 用户可以通过 Homebrew 轻松安装 FFmpeg：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install ffmpeg</span><br></pre></td></tr></table></figure>
+
+<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p>在基于 Debian 的系统中，使用以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install ffmpeg</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看媒体信息"><a href="#查看媒体信息" class="headerlink" title="查看媒体信息"></a>查看媒体信息</h2><p>要查看音频或视频文件的详细信息，使用以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 -hide_banner 隐藏不必要的输出，专注于媒体信息</span></span><br><span class="line">ffmpeg -i input.mp4 -hide_banner</span><br></pre></td></tr></table></figure>
+
+<p>这里，<code>-hide_banner</code> 参数用于隐藏启动信息和其他非关键输出，让你更容易找到需要的信息。</p>
+<h2 id="格式转换"><a href="#格式转换" class="headerlink" title="格式转换"></a>格式转换</h2><h3 id="基础转换"><a href="#基础转换" class="headerlink" title="基础转换"></a>基础转换</h3><p>最简单的格式转换可以通过以下命令实现：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将 FLV 文件转换为 MP4</span></span><br><span class="line">ffmpeg -i input.flv output.mp4</span><br></pre></td></tr></table></figure>
+
+<h3 id="高质量转换"><a href="#高质量转换" class="headerlink" title="高质量转换"></a>高质量转换</h3><p>如果你希望在转换过程中保持尽可能高的质量，可以使用 <code>-qscale 0</code> 参数：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 -qscale 0 以最高质量转换</span></span><br><span class="line">ffmpeg -i input.webm -qscale 0 output.mp4</span><br></pre></td></tr></table></figure>
+
+<p>在这里，<code>-qscale 0</code> 参数指示 FFmpeg 以最高可能质量进行转换。</p>
+<h2 id="视频压缩"><a href="#视频压缩" class="headerlink" title="视频压缩"></a>视频压缩</h2><h3 id="基础压缩"><a href="#基础压缩" class="headerlink" title="基础压缩"></a>基础压缩</h3><p>最简单的视频压缩可以通过降低帧率来实现：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将帧率设置为每秒 30 帧</span></span><br><span class="line">ffmpeg -i input.mp4 -r 30 output.mp4</span><br></pre></td></tr></table></figure>
+
+<h3 id="高级压缩"><a href="#高级压缩" class="headerlink" title="高级压缩"></a>高级压缩</h3><p>对于更高级的压缩，你可以使用 <code>-crf</code> 和 <code>-preset</code> 参数：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 -crf 和 -preset 进行高级压缩</span></span><br><span class="line">ffmpeg -i input.mp4 \</span><br><span class="line">-vf scale=1280:-1 \</span><br><span class="line">-c:v libx264 \</span><br><span class="line">-preset veryslow \</span><br><span class="line">-crf 24 \</span><br><span class="line">-ac 2 \</span><br><span class="line">-c:a aac \</span><br><span class="line">-strict -2 \</span><br><span class="line">-b:a 128k \</span><br><span class="line">output.mp4</span><br></pre></td></tr></table></figure>
+
+<p>这里，<code>-crf</code> 参数的取值范围是 0-51，数值越大，视频质量越低但文件大小越小。<code>-preset</code> 参数控制编码速度和压缩率的平衡，<code>veryslow</code> 选项会最大限度地压缩视频，但需要更长的时间。</p>
+<h2 id="macOS-硬件编码（VideoToolbox）"><a href="#macOS-硬件编码（VideoToolbox）" class="headerlink" title="macOS 硬件编码（VideoToolbox）"></a>macOS 硬件编码（VideoToolbox）</h2><p>在 macOS 上，如果你希望利用硬件加速进行转码（更省电、更快），可以使用 <code>h264_videotoolbox</code> &#x2F; <code>hevc_videotoolbox</code>。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">H.264 硬件编码（VideoToolbox）</span></span><br><span class="line">ffmpeg -i input.mov -c:v h264_videotoolbox -b:v 5M -c:a aac 2025-02-10.mp4</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">HEVC 硬件编码 + 设置帧率（部分选项对硬件编码器可能被忽略）</span></span><br><span class="line">ffmpeg -hwaccel videotoolbox -i input.mov \</span><br><span class="line">  -vf &quot;fps=30&quot; \</span><br><span class="line">  -c:v hevc_videotoolbox -b:v 2M \</span><br><span class="line">  -c:a copy \</span><br><span class="line">  2025-02-10.mp4</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">HEVC 硬件编码 + 缩放 + 帧率</span></span><br><span class="line">ffmpeg -hwaccel videotoolbox -i input.mov \</span><br><span class="line">  -vf &quot;scale=1920:-1,fps=30&quot; \</span><br><span class="line">  -c:v hevc_videotoolbox -b:v 3000k \</span><br><span class="line">  -c:a copy \</span><br><span class="line">  2025-05-12.mp4</span><br></pre></td></tr></table></figure>
+
+<h2 id="音频压缩"><a href="#音频压缩" class="headerlink" title="音频压缩"></a>音频压缩</h2><h3 id="基础音频压缩"><a href="#基础音频压缩" class="headerlink" title="基础音频压缩"></a>基础音频压缩</h3><p>最简单的音频压缩可以通过设置音频比特率来实现：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置音频比特率为 128 kbps</span></span><br><span class="line">ffmpeg -i input.mp3 -ab 128k output.mp3</span><br></pre></td></tr></table></figure>
+
+<p>这里，<code>-ab 128k</code> 设置音频比特率为 128 kbps，这通常足够用于大多数应用场景。</p>
+<h2 id="截图"><a href="#截图" class="headerlink" title="截图"></a>截图</h2><h3 id="基础截图"><a href="#基础截图" class="headerlink" title="基础截图"></a>基础截图</h3><p>你可以使用以下命令从视频中截取图片：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">每 100 秒截取一张图片</span></span><br><span class="line">ffmpeg -i input.mp4 -r 0.01 -q:v 2 %5d.jpg</span><br></pre></td></tr></table></figure>
+
+<h3 id="高级截图"><a href="#高级截图" class="headerlink" title="高级截图"></a>高级截图</h3><p>如果你需要在特定时间段内截取图片，可以使用 <code>-ss</code> 和 <code>-t</code> 参数：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">从第 1 小时 3 分 13 秒开始，持续 59 秒，每 20 秒截取一张图片</span></span><br><span class="line">ffmpeg -ss 01:03:13 -t 0:0:59 -i input.mp4 -r 0.05 -q:v 2 %5d.jpg</span><br></pre></td></tr></table></figure>
+
+<h2 id="音频提取"><a href="#音频提取" class="headerlink" title="音频提取"></a>音频提取</h2><h3 id="提取为同样的格式"><a href="#提取为同样的格式" class="headerlink" title="提取为同样的格式"></a>提取为同样的格式</h3><p>如果你只是想从视频中提取音频，并保持其原始格式，可以使用以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 -vn 禁用视频，-c:a copy 保持原始音频编码</span></span><br><span class="line">ffmpeg -i input.mp4 -vn -c:a copy output.aac</span><br></pre></td></tr></table></figure>
+
+<h3 id="提取并转换格式"><a href="#提取并转换格式" class="headerlink" title="提取并转换格式"></a>提取并转换格式</h3><p>如果你想在提取过程中转换音频格式，可以使用更多的参数：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 -vn 禁用视频，-ar 设置音频采样率，-ac 设置音频通道，-ab 设置音频比特率</span></span><br><span class="line">ffmpeg -i input.mp4 -vn -ar 44100 -ac 2 -ab 320k -f mp3 output.mp3</span><br></pre></td></tr></table></figure>
+
+<h2 id="视频裁剪"><a href="#视频裁剪" class="headerlink" title="视频裁剪"></a>视频裁剪</h2><h3 id="基础裁剪"><a href="#基础裁剪" class="headerlink" title="基础裁剪"></a>基础裁剪</h3><p>最简单的视频裁剪可以通过 <code>crop</code> 过滤器来实现：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">裁剪出一个 640x480 的区域，左上角坐标为 (200, 150)</span></span><br><span class="line">ffmpeg -i input.mp4 -vf &quot;crop=640:480:200:150&quot; output.mp4</span><br></pre></td></tr></table></figure>
+
+<h3 id="时间段裁剪"><a href="#时间段裁剪" class="headerlink" title="时间段裁剪"></a>时间段裁剪</h3><p>如果你想裁剪视频的某个时间段，可以使用 <code>-ss</code> 和 <code>-t</code> 参数：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">从视频的第 50 秒开始，裁剪 50 秒</span></span><br><span class="line">ffmpeg -i input.mp4 -ss 00:00:50 -codec copy -t 50 output.mp4</span><br></pre></td></tr></table></figure>
+
+<h2 id="视频切分"><a href="#视频切分" class="headerlink" title="视频切分"></a>视频切分</h2><h3 id="基础切分"><a href="#基础切分" class="headerlink" title="基础切分"></a>基础切分</h3><p>如果你想将一个长视频切分成多个小段，可以使用 <code>-t</code> 和 <code>-ss</code> 参数：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">第一部分从视频开始到第 30 秒</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">第二部分从第 30 秒开始到视频结束</span></span><br><span class="line">ffmpeg -i input.mp4 -t 00:00:30 -c copy part1.mp4</span><br><span class="line">ffmpeg -ss 00:00:30 -i input.mp4 -c copy part2.mp4</span><br></pre></td></tr></table></figure>
+
+<h2 id="视频合并"><a href="#视频合并" class="headerlink" title="视频合并"></a>视频合并</h2><h3 id="使用文本文件合并"><a href="#使用文本文件合并" class="headerlink" title="使用文本文件合并"></a>使用文本文件合并</h3><p>要合并多个视频文件，首先创建一个文本文件（例如 <code>join.txt</code>），并列出所有要合并的视频文件：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">file &#x27;part1.mp4&#x27;</span><br><span class="line">file &#x27;part2.mp4&#x27;</span><br><span class="line">file &#x27;part3.mp4&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>然后，使用以下命令进行合并：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 concat 协议和 -c copy 选项进行无损合并</span></span><br><span class="line">ffmpeg -f concat -safe 0 -i join.txt -c copy output.mp4</span><br></pre></td></tr></table></figure>
+
+<h2 id="调整播放速度"><a href="#调整播放速度" class="headerlink" title="调整播放速度"></a>调整播放速度</h2><h3 id="加速或减速"><a href="#加速或减速" class="headerlink" title="加速或减速"></a>加速或减速</h3><p>你可以通过调整播放速度来加速或减速视频：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将视频加速到两倍速度</span></span><br><span class="line">ffmpeg -i input.mp4 -vf &quot;setpts=0.5*PTS&quot; output.mp4</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将视频减速到四倍时间</span></span><br><span class="line">ffmpeg -i input.mp4 -vf &quot;setpts=4.0*PTS&quot; output.mp4</span><br></pre></td></tr></table></figure>
+
+<h2 id="视频旋转"><a href="#视频旋转" class="headerlink" title="视频旋转"></a>视频旋转</h2><h3 id="顺时针旋转"><a href="#顺时针旋转" class="headerlink" title="顺时针旋转"></a>顺时针旋转</h3><p>如果你想将视频顺时针旋转 90 度，可以使用以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 -vf <span class="string">&quot;transpose=1&quot;</span> 顺时针旋转 90 度</span></span><br><span class="line">ffmpeg -i input.mp4 -vf &quot;transpose=1&quot; output.mp4</span><br></pre></td></tr></table></figure>
+
+<h3 id="逆时针旋转"><a href="#逆时针旋转" class="headerlink" title="逆时针旋转"></a>逆时针旋转</h3><p>如果你想将视频逆时针旋转 90 度，可以使用以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 -vf <span class="string">&quot;transpose=2&quot;</span> 逆时针旋转 90 度</span></span><br><span class="line">ffmpeg -i input.mp4 -vf &quot;transpose=2&quot; output.mp4</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加封面图像"><a href="#添加封面图像" class="headerlink" title="添加封面图像"></a>添加封面图像</h2><h3 id="音频文件添加封面"><a href="#音频文件添加封面" class="headerlink" title="音频文件添加封面"></a>音频文件添加封面</h3><p>如果你有一个音频文件，并希望添加一个封面图像，可以使用以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 -loop 1 循环图像，使其持续与音频一样长</span></span><br><span class="line">ffmpeg -loop 1 -i cover.jpg -i audio.mp3 -c:v libx264 -c:a aac -strict experimental -b:a 192k -shortest output.mp4</span><br></pre></td></tr></table></figure>
+
+<h2 id="批处理"><a href="#批处理" class="headerlink" title="批处理"></a>批处理</h2><h3 id="批量转换格式"><a href="#批量转换格式" class="headerlink" title="批量转换格式"></a>批量转换格式</h3><p>如果你有多个 <code>.mov</code> 文件，并希望将它们转换为 <code>.mp4</code> 格式，可以使用以下批处理脚本：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for i in *.mov; do</span><br><span class="line">  ffmpeg -i &quot;$i&quot; -vcodec libx264 -preset fast -crf 20 -y -vf &quot;scale=1920:-1&quot; -acodec libmp3lame -ab 128k &quot;$&#123;i%.mov&#125;.mp4&quot;</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+
+<h2 id="高级技巧"><a href="#高级技巧" class="headerlink" title="高级技巧"></a>高级技巧</h2><h3 id="添加字幕"><a href="#添加字幕" class="headerlink" title="添加字幕"></a>添加字幕</h3><p>如果你有一个 SRT 字幕文件，并希望将其嵌入到视频中，可以使用以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 -scodec mov_text 将字幕嵌入 MP4 文件</span></span><br><span class="line">ffmpeg -i input.mp4 -i subtitle.srt -c:v copy -c:a copy -scodec mov_text output.mp4</span><br></pre></td></tr></table></figure>
+
+<h3 id="水印添加"><a href="#水印添加" class="headerlink" title="水印添加"></a>水印添加</h3><p>你可以使用 FFmpeg 添加水印到视频：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 overlay 过滤器添加水印</span></span><br><span class="line">ffmpeg -i input.mp4 -i watermark.png -filter_complex &quot;overlay=W-w-10:H-h-10&quot; output.mp4</span><br></pre></td></tr></table></figure>
+
+<p>这里，<code>W-w-10:H-h-10</code> 确保水印位于视频的右下角，并且距离边缘有 10 像素的间距。</p>
+<h3 id="音频混合"><a href="#音频混合" class="headerlink" title="音频混合"></a>音频混合</h3><p>如果你有两个音频文件并希望将它们混合成一个文件，可以使用以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 amix 过滤器混合两个音频文件</span></span><br><span class="line">ffmpeg -i audio1.mp3 -i audio2.mp3 -filter_complex amix=inputs=2:duration=first:dropout_transition=2 mixed_audio.mp3</span><br></pre></td></tr></table></figure>
+
+<h3 id="批量裁剪"><a href="#批量裁剪" class="headerlink" title="批量裁剪"></a>批量裁剪</h3><p>如果你有多个视频文件，并希望批量裁剪它们，可以使用以下脚本：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">批量裁剪从第 30 秒到第 60 秒的内容</span></span><br><span class="line">for i in *.mp4; do</span><br><span class="line">  ffmpeg -ss 00:00:30 -i &quot;$i&quot; -to 00:01:00 -c:v copy -c:a copy &quot;clipped_$&#123;i&#125;&quot;</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+
+<h2 id="常见问题与解决方案"><a href="#常见问题与解决方案" class="headerlink" title="常见问题与解决方案"></a>常见问题与解决方案</h2><h3 id="无法识别输入-输出格式"><a href="#无法识别输入-输出格式" class="headerlink" title="无法识别输入&#x2F;输出格式"></a>无法识别输入&#x2F;输出格式</h3><p>如果 FFmpeg 无法识别输入或输出格式，确保你已经安装了所有必要的编解码器和库。</p>
+<h3 id="视频和音频不同步"><a href="#视频和音频不同步" class="headerlink" title="视频和音频不同步"></a>视频和音频不同步</h3><p>如果在转换或编辑过程中，视频和音频出现不同步的情况，尝试使用 <code>-async</code> 参数：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 -async 1 校正音频同步</span></span><br><span class="line">ffmpeg -i input.mp4 -async 1 output.mp4</span><br></pre></td></tr></table></figure>
+
+<h2 id="更多实用小技巧"><a href="#更多实用小技巧" class="headerlink" title="更多实用小技巧"></a>更多实用小技巧</h2><h3 id="批量改变分辨率"><a href="#批量改变分辨率" class="headerlink" title="批量改变分辨率"></a>批量改变分辨率</h3><p>如果你有多个视频文件，并希望统一它们的分辨率，可以使用以下脚本：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">批量将视频分辨率改为 1280x720</span></span><br><span class="line">for i in *.mp4; do</span><br><span class="line">  ffmpeg -i &quot;$i&quot; -vf &quot;scale=1280:720&quot; &quot;resized_$&#123;i&#125;&quot;</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+
+<h3 id="音量调整"><a href="#音量调整" class="headerlink" title="音量调整"></a>音量调整</h3><p>如果你的视频或音频文件音量太低或太高，你可以使用 <code>volume</code> 过滤器来调整：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将音量提高 2 倍</span></span><br><span class="line">ffmpeg -i input.mp4 -c:v copy -af &quot;volume=2&quot; output.mp4</span><br></pre></td></tr></table></figure>
+
+<h3 id="音频和视频的混合"><a href="#音频和视频的混合" class="headerlink" title="音频和视频的混合"></a>音频和视频的混合</h3><p>如果你有一个视频文件和一个音频文件，并希望将音频替换视频中的原始音频，可以使用以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 -c:v copy 保留原始视频流，-c:a aac 转码音频</span></span><br><span class="line">ffmpeg -i video.mp4 -i audio.mp3 -c:v copy -c:a aac output.mp4</span><br></pre></td></tr></table></figure>
+
+<h2 id="结论和进一步阅读"><a href="#结论和进一步阅读" class="headerlink" title="结论和进一步阅读"></a>结论和进一步阅读</h2><p>FFmpeg 是一个非常强大的工具，适用于多种多样的音频和视频处理任务。本指南仅涉及其功能的冰山一角。为了更深入地了解 FFmpeg，你可以参考其官方文档: <a target="_blank" rel="noopener" href="https://ffmpeg.org/documentation.html%E3%80%82">https://ffmpeg.org/documentation.html。</a></p>
+
+  </div>
+</article>
+
+
+
+            
+            <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/tags/">Tags</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/macshion">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Windows"><span class="toc-number">2.1.</span> <span class="toc-text">Windows</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#macOS"><span class="toc-number">2.2.</span> <span class="toc-text">macOS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux"><span class="toc-number">2.3.</span> <span class="toc-text">Linux</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%AA%92%E4%BD%93%E4%BF%A1%E6%81%AF"><span class="toc-number">3.</span> <span class="toc-text">查看媒体信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2"><span class="toc-number">4.</span> <span class="toc-text">格式转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E8%BD%AC%E6%8D%A2"><span class="toc-number">4.1.</span> <span class="toc-text">基础转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E8%B4%A8%E9%87%8F%E8%BD%AC%E6%8D%A2"><span class="toc-number">4.2.</span> <span class="toc-text">高质量转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E5%8E%8B%E7%BC%A9"><span class="toc-number">5.</span> <span class="toc-text">视频压缩</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E5%8E%8B%E7%BC%A9"><span class="toc-number">5.1.</span> <span class="toc-text">基础压缩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E7%BA%A7%E5%8E%8B%E7%BC%A9"><span class="toc-number">5.2.</span> <span class="toc-text">高级压缩</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#macOS-%E7%A1%AC%E4%BB%B6%E7%BC%96%E7%A0%81%EF%BC%88VideoToolbox%EF%BC%89"><span class="toc-number">6.</span> <span class="toc-text">macOS 硬件编码（VideoToolbox）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9F%B3%E9%A2%91%E5%8E%8B%E7%BC%A9"><span class="toc-number">7.</span> <span class="toc-text">音频压缩</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E9%9F%B3%E9%A2%91%E5%8E%8B%E7%BC%A9"><span class="toc-number">7.1.</span> <span class="toc-text">基础音频压缩</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%AA%E5%9B%BE"><span class="toc-number">8.</span> <span class="toc-text">截图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%88%AA%E5%9B%BE"><span class="toc-number">8.1.</span> <span class="toc-text">基础截图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E7%BA%A7%E6%88%AA%E5%9B%BE"><span class="toc-number">8.2.</span> <span class="toc-text">高级截图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9F%B3%E9%A2%91%E6%8F%90%E5%8F%96"><span class="toc-number">9.</span> <span class="toc-text">音频提取</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E5%8F%96%E4%B8%BA%E5%90%8C%E6%A0%B7%E7%9A%84%E6%A0%BC%E5%BC%8F"><span class="toc-number">9.1.</span> <span class="toc-text">提取为同样的格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E5%8F%96%E5%B9%B6%E8%BD%AC%E6%8D%A2%E6%A0%BC%E5%BC%8F"><span class="toc-number">9.2.</span> <span class="toc-text">提取并转换格式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E8%A3%81%E5%89%AA"><span class="toc-number">10.</span> <span class="toc-text">视频裁剪</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E8%A3%81%E5%89%AA"><span class="toc-number">10.1.</span> <span class="toc-text">基础裁剪</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E6%AE%B5%E8%A3%81%E5%89%AA"><span class="toc-number">10.2.</span> <span class="toc-text">时间段裁剪</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E5%88%87%E5%88%86"><span class="toc-number">11.</span> <span class="toc-text">视频切分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E5%88%87%E5%88%86"><span class="toc-number">11.1.</span> <span class="toc-text">基础切分</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E5%90%88%E5%B9%B6"><span class="toc-number">12.</span> <span class="toc-text">视频合并</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6%E5%90%88%E5%B9%B6"><span class="toc-number">12.1.</span> <span class="toc-text">使用文本文件合并</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E6%95%B4%E6%92%AD%E6%94%BE%E9%80%9F%E5%BA%A6"><span class="toc-number">13.</span> <span class="toc-text">调整播放速度</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E9%80%9F%E6%88%96%E5%87%8F%E9%80%9F"><span class="toc-number">13.1.</span> <span class="toc-text">加速或减速</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E6%97%8B%E8%BD%AC"><span class="toc-number">14.</span> <span class="toc-text">视频旋转</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%BA%E6%97%B6%E9%92%88%E6%97%8B%E8%BD%AC"><span class="toc-number">14.1.</span> <span class="toc-text">顺时针旋转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%86%E6%97%B6%E9%92%88%E6%97%8B%E8%BD%AC"><span class="toc-number">14.2.</span> <span class="toc-text">逆时针旋转</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%B0%81%E9%9D%A2%E5%9B%BE%E5%83%8F"><span class="toc-number">15.</span> <span class="toc-text">添加封面图像</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E6%B7%BB%E5%8A%A0%E5%B0%81%E9%9D%A2"><span class="toc-number">15.1.</span> <span class="toc-text">音频文件添加封面</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%B9%E5%A4%84%E7%90%86"><span class="toc-number">16.</span> <span class="toc-text">批处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%B9%E9%87%8F%E8%BD%AC%E6%8D%A2%E6%A0%BC%E5%BC%8F"><span class="toc-number">16.1.</span> <span class="toc-text">批量转换格式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E7%BA%A7%E6%8A%80%E5%B7%A7"><span class="toc-number">17.</span> <span class="toc-text">高级技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%AD%97%E5%B9%95"><span class="toc-number">17.1.</span> <span class="toc-text">添加字幕</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B0%B4%E5%8D%B0%E6%B7%BB%E5%8A%A0"><span class="toc-number">17.2.</span> <span class="toc-text">水印添加</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9F%B3%E9%A2%91%E6%B7%B7%E5%90%88"><span class="toc-number">17.3.</span> <span class="toc-text">音频混合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%B9%E9%87%8F%E8%A3%81%E5%89%AA"><span class="toc-number">17.4.</span> <span class="toc-text">批量裁剪</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">18.</span> <span class="toc-text">常见问题与解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E6%B3%95%E8%AF%86%E5%88%AB%E8%BE%93%E5%85%A5-%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="toc-number">18.1.</span> <span class="toc-text">无法识别输入&#x2F;输出格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E5%92%8C%E9%9F%B3%E9%A2%91%E4%B8%8D%E5%90%8C%E6%AD%A5"><span class="toc-number">18.2.</span> <span class="toc-text">视频和音频不同步</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A%E5%AE%9E%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7"><span class="toc-number">19.</span> <span class="toc-text">更多实用小技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%B9%E9%87%8F%E6%94%B9%E5%8F%98%E5%88%86%E8%BE%A8%E7%8E%87"><span class="toc-number">19.1.</span> <span class="toc-text">批量改变分辨率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9F%B3%E9%87%8F%E8%B0%83%E6%95%B4"><span class="toc-number">19.2.</span> <span class="toc-text">音量调整</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9F%B3%E9%A2%91%E5%92%8C%E8%A7%86%E9%A2%91%E7%9A%84%E6%B7%B7%E5%90%88"><span class="toc-number">19.3.</span> <span class="toc-text">音频和视频的混合</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA%E5%92%8C%E8%BF%9B%E4%B8%80%E6%AD%A5%E9%98%85%E8%AF%BB"><span class="toc-number">20.</span> <span class="toc-text">结论和进一步阅读</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://macshion.github.io/ffmpeg-ultimate-guide/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://macshion.github.io/ffmpeg-ultimate-guide/&text=FFmpeg：音视频处理终极指南"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://macshion.github.io/ffmpeg-ultimate-guide/&title=FFmpeg：音视频处理终极指南"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://macshion.github.io/ffmpeg-ultimate-guide/&is_video=false&description=FFmpeg：音视频处理终极指南"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=FFmpeg：音视频处理终极指南&body=Check out this article: https://macshion.github.io/ffmpeg-ultimate-guide/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://macshion.github.io/ffmpeg-ultimate-guide/&title=FFmpeg：音视频处理终极指南"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://macshion.github.io/ffmpeg-ultimate-guide/&title=FFmpeg：音视频处理终极指南"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://macshion.github.io/ffmpeg-ultimate-guide/&title=FFmpeg：音视频处理终极指南"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://macshion.github.io/ffmpeg-ultimate-guide/&title=FFmpeg：音视频处理终极指南"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://macshion.github.io/ffmpeg-ultimate-guide/&name=FFmpeg：音视频处理终极指南&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://macshion.github.io/ffmpeg-ultimate-guide/&t=FFmpeg：音视频处理终极指南"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+            
+            <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2026
+    Macshion
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/tags/">Tags</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/macshion">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+        </div>
+        <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+        <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+
+<!-- Particle Background -->
+
+<script src="/js/particle-config.js"></script>
+
+
+<script src="/js/particle-background.js"></script>
+
+    </body>
+
+    </html>
