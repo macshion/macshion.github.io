@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang=en>
+    <head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="在 React 中，useCallback 和 useMemo 的核心目的都是缓存（memoization），减少不必要的重新创建和重新计算，从而避免不必要的子组件重渲染或昂贵计算。但它们缓存的东西不同。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React 中 useCallback 和 useMemo 的区别与使用场景">
+<meta property="og:url" content="https://macshion.github.io/react-usecallback-usememo/index.html">
+<meta property="og:site_name" content="Macshion&#39;s blog">
+<meta property="og:description" content="在 React 中，useCallback 和 useMemo 的核心目的都是缓存（memoization），减少不必要的重新创建和重新计算，从而避免不必要的子组件重渲染或昂贵计算。但它们缓存的东西不同。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-01-26T09:33:52.000Z">
+<meta property="article:modified_time" content="2026-01-26T09:52:56.987Z">
+<meta property="article:author" content="Macshion">
+<meta property="article:tag" content="React">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>React 中 useCallback 和 useMemo 的区别与使用场景</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KKGH5P6E2M"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KKGH5P6E2M');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+    <body class="max-width mx-auto px3 ltr">
+
+<div id="particle-background"></div>
+
+        
+        <div class="post">
+            <div id="navLeft">
+                <ul>
+                    
+                    <!--
+     -->
+                    <li><a href="/">Home</a></li>
+                    <!--
+   -->
+                    <!--
+     -->
+                    <li><a href="/about/">About</a></li>
+                    <!--
+   -->
+                    <!--
+     -->
+                    <li><a href="/archives/">Writing</a></li>
+                    <!--
+   -->
+                    <!--
+     -->
+                    <li><a href="/tags/">Tags</a></li>
+                    <!--
+   -->
+                    <!--
+     -->
+                    <li><a target="_blank" rel="noopener" href="http://github.com/macshion">Projects</a></li>
+                    <!--
+   -->
+                </ul>
+            </div>
+        </div>
+        <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/tags/">Tags</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/macshion">Projects</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/react-customize-hooks/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/lodash-debounce/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://macshion.github.io/react-usecallback-usememo/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://macshion.github.io/react-usecallback-usememo/&text=React 中 useCallback 和 useMemo 的区别与使用场景"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://macshion.github.io/react-usecallback-usememo/&title=React 中 useCallback 和 useMemo 的区别与使用场景"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://macshion.github.io/react-usecallback-usememo/&is_video=false&description=React 中 useCallback 和 useMemo 的区别与使用场景"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=React 中 useCallback 和 useMemo 的区别与使用场景&body=Check out this article: https://macshion.github.io/react-usecallback-usememo/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://macshion.github.io/react-usecallback-usememo/&title=React 中 useCallback 和 useMemo 的区别与使用场景"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://macshion.github.io/react-usecallback-usememo/&title=React 中 useCallback 和 useMemo 的区别与使用场景"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://macshion.github.io/react-usecallback-usememo/&title=React 中 useCallback 和 useMemo 的区别与使用场景"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://macshion.github.io/react-usecallback-usememo/&title=React 中 useCallback 和 useMemo 的区别与使用场景"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://macshion.github.io/react-usecallback-usememo/&name=React 中 useCallback 和 useMemo 的区别与使用场景&description=&lt;p&gt;在 React 中，&lt;code&gt;useCallback&lt;/code&gt; 和 &lt;code&gt;useMemo&lt;/code&gt; 的&lt;strong&gt;核心目的都是缓存（memoization）&lt;/strong&gt;，减少不必要的重新创建和重新计算，从而避免不必要的子组件重渲染或昂贵计算。但它们&lt;strong&gt;缓存的东西不同&lt;/strong&gt;。&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://macshion.github.io/react-usecallback-usememo/&t=React 中 useCallback 和 useMemo 的区别与使用场景"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%9A%E4%B9%89%E5%B1%82%E9%9D%A2%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.</span> <span class="toc-text">一、定义层面的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%EF%B8%8F%E2%83%A3-useCallback"><span class="toc-number">1.1.</span> <span class="toc-text">1️⃣ useCallback</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%EF%B8%8F%E2%83%A3-useMemo"><span class="toc-number">1.2.</span> <span class="toc-text">2️⃣ useMemo</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98%E6%9C%AC%E8%B4%A8%E4%B8%8D%E5%90%8C"><span class="toc-number">2.</span> <span class="toc-text">二、解决的问题本质不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%85%B8%E5%9E%8B%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">3.</span> <span class="toc-text">三、典型使用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF-1%EF%BC%9A%E4%BC%A0%E5%87%BD%E6%95%B0%E7%BB%99-memo-%E5%AD%90%E7%BB%84%E4%BB%B6"><span class="toc-number">3.1.</span> <span class="toc-text">场景 1：传函数给 memo 子组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF-2%EF%BC%9A%E6%98%82%E8%B4%B5%E8%AE%A1%E7%AE%97"><span class="toc-number">3.2.</span> <span class="toc-text">场景 2：昂贵计算</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%B8%B8%E8%A7%81%E8%AF%AF%E5%8C%BA"><span class="toc-number">4.</span> <span class="toc-text">四、常见误区</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9D%8C-%E8%AF%AF%E5%8C%BA-1%EF%BC%9A%E6%BB%A5%E7%94%A8-useCallback-useMemo"><span class="toc-number">4.1.</span> <span class="toc-text">❌ 误区 1：滥用 useCallback &#x2F; useMemo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9D%8C-%E8%AF%AF%E5%8C%BA-2%EF%BC%9AuseCallback-%E4%BC%9A%E9%98%BB%E6%AD%A2%E5%87%BD%E6%95%B0%E5%86%85%E9%83%A8%E6%89%A7%E8%A1%8C%EF%BC%9F"><span class="toc-number">4.2.</span> <span class="toc-text">❌ 误区 2：useCallback 会阻止函数内部执行？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9D%8C-%E8%AF%AF%E5%8C%BA-3%EF%BC%9AuseMemo-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%BF%85%E7%94%A8"><span class="toc-number">4.3.</span> <span class="toc-text">❌ 误区 3：useMemo &#x3D; 性能优化必用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5%E5%88%A4%E6%96%AD%E6%A0%87%E5%87%86"><span class="toc-number">5.</span> <span class="toc-text">五、工程实践判断标准</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%BF%AB%E9%80%9F%E5%86%B3%E7%AD%96%E4%B8%8E%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93"><span class="toc-number">6.</span> <span class="toc-text">六、快速决策与面试总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E5%8F%A5%E8%AF%9D%E5%86%B3%E7%AD%96"><span class="toc-number">6.1.</span> <span class="toc-text">一句话决策</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E6%A0%B8%E5%BF%83%E5%9B%9E%E7%AD%94"><span class="toc-number">6.2.</span> <span class="toc-text">面试核心回答</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E8%BF%BD%E9%97%AE%E5%8F%8A%E7%AD%94%E6%A1%88"><span class="toc-number">6.3.</span> <span class="toc-text">常见追问及答案</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+        
+        <div class="content index py4 ">
+            
+            <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        React 中 useCallback 和 useMemo 的区别与使用场景
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Macshion</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2026-01-26T09:33:52.000Z" class="dt-published" itemprop="datePublished">2026-01-26</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/%E4%B8%AD%E6%96%87/">中文</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/React/" rel="tag">React</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>在 React 中，<code>useCallback</code> 和 <code>useMemo</code> 的<strong>核心目的都是缓存（memoization）</strong>，减少不必要的重新创建和重新计算，从而避免不必要的子组件重渲染或昂贵计算。但它们<strong>缓存的东西不同</strong>。</p>
+<span id="more"></span>
+
+<p>一句话总结：</p>
+<blockquote>
+<p><strong>useCallback 缓存函数，useMemo 缓存计算结果。</strong></p>
+</blockquote>
+<hr>
+<h2 id="一、定义层面的区别"><a href="#一、定义层面的区别" class="headerlink" title="一、定义层面的区别"></a>一、定义层面的区别</h2><h3 id="1️⃣-useCallback"><a href="#1️⃣-useCallback" class="headerlink" title="1️⃣ useCallback"></a>1️⃣ useCallback</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fn = <span class="title function_">useCallback</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">doSomething</span>(a, b);</span><br><span class="line">&#125;, [a, b]);</span><br></pre></td></tr></table></figure>
+
+<p>等价于：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fn = <span class="title function_">useMemo</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">doSomething</span>(a, b);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;, [a, b]);</span><br></pre></td></tr></table></figure>
+
+<p><strong>作用：</strong></p>
+<ul>
+<li>缓存的是：<strong>函数引用本身</strong></li>
+<li>只要依赖不变，函数地址不变</li>
+<li>主要用于：<strong>防止子组件因为 props 中函数引用变化而重复渲染</strong></li>
+</ul>
+<hr>
+<h3 id="2️⃣-useMemo"><a href="#2️⃣-useMemo" class="headerlink" title="2️⃣ useMemo"></a>2️⃣ useMemo</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> value = <span class="title function_">useMemo</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">heavyCompute</span>(a, b);</span><br><span class="line">&#125;, [a, b]);</span><br></pre></td></tr></table></figure>
+
+<p><strong>作用：</strong></p>
+<ul>
+<li>缓存的是：<strong>计算结果（值）</strong></li>
+<li>只有依赖变化时，才会重新执行计算</li>
+<li>主要用于：<strong>避免昂贵计算在每次 render 时重复执行</strong></li>
+</ul>
+<hr>
+<h2 id="二、解决的问题本质不同"><a href="#二、解决的问题本质不同" class="headerlink" title="二、解决的问题本质不同"></a>二、解决的问题本质不同</h2><table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>解决什么问题</th>
+<th>缓存什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>useCallback</td>
+<td>函数引用不稳定导致子组件重复渲染</td>
+<td>函数</td>
+</tr>
+<tr>
+<td>useMemo</td>
+<td>计算结果重复计算，性能浪费</td>
+<td>值</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="三、典型使用场景"><a href="#三、典型使用场景" class="headerlink" title="三、典型使用场景"></a>三、典型使用场景</h2><hr>
+<h3 id="场景-1：传函数给-memo-子组件"><a href="#场景-1：传函数给-memo-子组件" class="headerlink" title="场景 1：传函数给 memo 子组件"></a>场景 1：传函数给 memo 子组件</h3><p>React.memo 用于缓存函数组件的渲染结果，当 props 浅比较不变时，跳过重新渲染，常用于配合 useCallback &#x2F; useMemo 避免无意义刷新。</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// React.memo = 给函数组件加一层“缓存壳子”，props 不变就不重新 render。</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">Child</span> = <span class="title class_">React</span>.<span class="title function_">memo</span>(<span class="function">(<span class="params">&#123; onClick &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Child render&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;onClick&#125;</span>&gt;</span>Click<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Parent</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> [count, setCount] = <span class="title function_">useState</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> handleClick = <span class="title function_">useCallback</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">setCount</span>(<span class="function"><span class="params">c</span> =&gt;</span> c + <span class="number">1</span>);</span><br><span class="line">  &#125;, []);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">Child</span> <span class="attr">onClick</span>=<span class="string">&#123;handleClick&#125;</span> /&gt;</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>❌ 不用 useCallback：每次 Parent render，函数都是新对象 → Child 重渲染<br>✅ 用 useCallback：函数引用稳定 → Child 不会无意义刷新</p>
+<hr>
+<h3 id="场景-2：昂贵计算"><a href="#场景-2：昂贵计算" class="headerlink" title="场景 2：昂贵计算"></a>场景 2：昂贵计算</h3><p><strong>❌ 不使用 useMemo：</strong></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">DataList</span>(<span class="params">&#123; <span class="keyword">type</span> &#125;</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> [count, setCount] = <span class="title function_">useState</span>(<span class="number">0</span>);</span><br><span class="line">  <span class="keyword">const</span> bigList = <span class="title class_">Array</span>(<span class="number">10000</span>).<span class="title function_">fill</span>(<span class="number">0</span>).<span class="title function_">map</span>(<span class="function">(<span class="params">_, i</span>) =&gt;</span> (&#123; </span><br><span class="line">    <span class="attr">id</span>: i, </span><br><span class="line">    <span class="attr">type</span>: i % <span class="number">3</span> </span><br><span class="line">  &#125;));</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 每次 render 都会执行 filter，即使 type 没变</span></span><br><span class="line">  <span class="keyword">const</span> filteredList = bigList.<span class="title function_">filter</span>(<span class="function"><span class="params">x</span> =&gt;</span> x.<span class="property">type</span> === <span class="keyword">type</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setCount(c =&gt; c + 1)&#125;&gt;Count: &#123;count&#125;<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>Filtered: &#123;filteredList.length&#125; items<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 问题：点击按钮时，filter 会重新执行，造成性能浪费</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>✅ 使用 useMemo 优化：</strong></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">DataList</span>(<span class="params">&#123; <span class="keyword">type</span> &#125;</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> [count, setCount] = <span class="title function_">useState</span>(<span class="number">0</span>);</span><br><span class="line">  <span class="keyword">const</span> bigList = <span class="title function_">useMemo</span>(<span class="function">() =&gt;</span> </span><br><span class="line">    <span class="title class_">Array</span>(<span class="number">10000</span>).<span class="title function_">fill</span>(<span class="number">0</span>).<span class="title function_">map</span>(<span class="function">(<span class="params">_, i</span>) =&gt;</span> (&#123; <span class="attr">id</span>: i, <span class="attr">type</span>: i % <span class="number">3</span> &#125;)),</span><br><span class="line">    []</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 只有 bigList 或 type 变化时才重新计算</span></span><br><span class="line">  <span class="keyword">const</span> filteredList = <span class="title function_">useMemo</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Filtering...&#x27;</span>); <span class="comment">// 用于验证是否重新计算</span></span><br><span class="line">    <span class="keyword">return</span> bigList.<span class="title function_">filter</span>(<span class="function"><span class="params">x</span> =&gt;</span> x.<span class="property">type</span> === <span class="keyword">type</span>);</span><br><span class="line">  &#125;, [bigList, <span class="keyword">type</span>]);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setCount(c =&gt; c + 1)&#125;&gt;Count: &#123;count&#125;<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>Filtered: &#123;filteredList.length&#125; items<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 优化：点击按钮时，filter 不会重新执行</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>效果对比：</strong></p>
+<ul>
+<li>❌ 不用 useMemo：每次 render 都执行昂贵计算，浪费性能</li>
+<li>✅ 用 useMemo：只在依赖变化时重新计算，提升性能</li>
+</ul>
+<hr>
+<h2 id="四、常见误区"><a href="#四、常见误区" class="headerlink" title="四、常见误区"></a>四、常见误区</h2><h3 id="❌-误区-1：滥用-useCallback-useMemo"><a href="#❌-误区-1：滥用-useCallback-useMemo" class="headerlink" title="❌ 误区 1：滥用 useCallback &#x2F; useMemo"></a>❌ 误区 1：滥用 useCallback &#x2F; useMemo</h3><blockquote>
+<p>它们不是“性能银弹”。</p>
+</blockquote>
+<ul>
+<li>本身也有成本（依赖比较 + 闭包）</li>
+<li>小函数 &#x2F; 小计算用它们可能<strong>更慢</strong></li>
+</ul>
+<hr>
+<h3 id="❌-误区-2：useCallback-会阻止函数内部执行？"><a href="#❌-误区-2：useCallback-会阻止函数内部执行？" class="headerlink" title="❌ 误区 2：useCallback 会阻止函数内部执行？"></a>❌ 误区 2：useCallback 会阻止函数内部执行？</h3><p>不是。</p>
+<blockquote>
+<p>useCallback 只保证<strong>函数引用不变</strong>，不是“函数不执行”。</p>
+</blockquote>
+<hr>
+<h3 id="❌-误区-3：useMemo-性能优化必用"><a href="#❌-误区-3：useMemo-性能优化必用" class="headerlink" title="❌ 误区 3：useMemo &#x3D; 性能优化必用"></a>❌ 误区 3：useMemo &#x3D; 性能优化必用</h3><p>不对。</p>
+<blockquote>
+<p>只有在：</p>
+</blockquote>
+<ul>
+<li>计算很重</li>
+<li>或用于 memo 子组件的 props 对比<br>才值得用。</li>
+</ul>
+<hr>
+<h2 id="五、工程实践判断标准"><a href="#五、工程实践判断标准" class="headerlink" title="五、工程实践判断标准"></a>五、工程实践判断标准</h2><p>可以用这三条判断：</p>
+<ol>
+<li><p><strong>这个值 &#x2F; 函数是否会传给 <code>React.memo</code> 子组件？</strong></p>
+<ul>
+<li>如果是，用 <code>useCallback</code>（函数）或 <code>useMemo</code>（对象&#x2F;数组）保持引用稳定</li>
+<li>避免子组件因 props 引用变化而无意义重渲染</li>
+</ul>
+</li>
+<li><p><strong>这个计算是否明显昂贵？</strong></p>
+<ul>
+<li>例如：filter 大数组（&gt;1000 项）、复杂排序、图形计算、正则匹配</li>
+<li>如果是，用 <code>useMemo</code> 缓存结果</li>
+</ul>
+</li>
+<li><p><strong>这个对象&#x2F;函数&#x2F;数组是否会作为 <code>useEffect</code> &#x2F; <code>useCallback</code> &#x2F; <code>useMemo</code> 的依赖？</strong></p>
+<ul>
+<li>如果是，用 <code>useMemo</code> 或 <code>useCallback</code> 稳定引用</li>
+<li>避免因引用变化导致 effect 重复执行或依赖链连锁更新</li>
+<li>示例：<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> options = <span class="title function_">useMemo</span>(<span class="function">() =&gt;</span> (&#123; <span class="attr">id</span>: userId &#125;), [userId]);</span><br><span class="line"></span><br><span class="line"><span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">fetchData</span>(options); <span class="comment">// options 引用稳定，避免重复请求</span></span><br><span class="line">&#125;, [options]);</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<p>满足任意一条 → 值得用 memo &#x2F; callback</p>
+<hr>
+<h2 id="六、快速决策与面试总结"><a href="#六、快速决策与面试总结" class="headerlink" title="六、快速决策与面试总结"></a>六、快速决策与面试总结</h2><h3 id="一句话决策"><a href="#一句话决策" class="headerlink" title="一句话决策"></a>一句话决策</h3><table>
+<thead>
+<tr>
+<th>你要干嘛</th>
+<th>用什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>稳定函数引用</td>
+<td>useCallback</td>
+</tr>
+<tr>
+<td>缓存计算结果</td>
+<td>useMemo</td>
+</tr>
+<tr>
+<td>两者都不是</td>
+<td>都别用</td>
+</tr>
+</tbody></table>
+<h3 id="面试核心回答"><a href="#面试核心回答" class="headerlink" title="面试核心回答"></a>面试核心回答</h3><blockquote>
+<p>useCallback 是 useMemo 的语法糖，用来缓存函数引用；useMemo 用来缓存计算结果。两者都是为了解决引用不稳定或重复计算导致的性能问题，但应当只在必要时使用。</p>
+</blockquote>
+<h3 id="常见追问及答案"><a href="#常见追问及答案" class="headerlink" title="常见追问及答案"></a>常见追问及答案</h3><p><strong>Q1: useCallback 和 useMemo 有性能开销吗？</strong></p>
+<blockquote>
+<p>A: 有。每次 render 时都需要：① 比较依赖数组；② 维护闭包。所以不要滥用，只在真正有性能问题时使用。</p>
+</blockquote>
+<p><strong>Q2: 什么时候不应该用它们？</strong></p>
+<blockquote>
+<p>A: ① 简单的原始值计算（如 <code>a + b</code>）；② 不会传给子组件的普通函数；③ 组件 render 本身就很快的情况。</p>
+</blockquote>
+<p><strong>Q3: 如何判断是否需要优化？</strong></p>
+<blockquote>
+<p>A: 使用 React DevTools Profiler 测量组件渲染时间，只在确认有性能瓶颈时才优化。过早优化是万恶之源。</p>
+</blockquote>
+<p><strong>Q4: useCallback 的依赖数组为空和非空有什么区别？</strong></p>
+<blockquote>
+<p>A: </p>
+<ul>
+<li>空数组 <code>[]</code>：函数只在组件首次渲染时创建，之后永远不变</li>
+<li>非空 <code>[a, b]</code>：当 a 或 b 变化时，函数会重新创建</li>
+<li>不传依赖：每次 render 都创建新函数（失去了 useCallback 的意义）</li>
+</ul>
+</blockquote>
+
+  </div>
+</article>
+
+
+
+            
+            <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/tags/">Tags</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/macshion">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%9A%E4%B9%89%E5%B1%82%E9%9D%A2%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.</span> <span class="toc-text">一、定义层面的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%EF%B8%8F%E2%83%A3-useCallback"><span class="toc-number">1.1.</span> <span class="toc-text">1️⃣ useCallback</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%EF%B8%8F%E2%83%A3-useMemo"><span class="toc-number">1.2.</span> <span class="toc-text">2️⃣ useMemo</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98%E6%9C%AC%E8%B4%A8%E4%B8%8D%E5%90%8C"><span class="toc-number">2.</span> <span class="toc-text">二、解决的问题本质不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%85%B8%E5%9E%8B%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">3.</span> <span class="toc-text">三、典型使用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF-1%EF%BC%9A%E4%BC%A0%E5%87%BD%E6%95%B0%E7%BB%99-memo-%E5%AD%90%E7%BB%84%E4%BB%B6"><span class="toc-number">3.1.</span> <span class="toc-text">场景 1：传函数给 memo 子组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF-2%EF%BC%9A%E6%98%82%E8%B4%B5%E8%AE%A1%E7%AE%97"><span class="toc-number">3.2.</span> <span class="toc-text">场景 2：昂贵计算</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%B8%B8%E8%A7%81%E8%AF%AF%E5%8C%BA"><span class="toc-number">4.</span> <span class="toc-text">四、常见误区</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9D%8C-%E8%AF%AF%E5%8C%BA-1%EF%BC%9A%E6%BB%A5%E7%94%A8-useCallback-useMemo"><span class="toc-number">4.1.</span> <span class="toc-text">❌ 误区 1：滥用 useCallback &#x2F; useMemo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9D%8C-%E8%AF%AF%E5%8C%BA-2%EF%BC%9AuseCallback-%E4%BC%9A%E9%98%BB%E6%AD%A2%E5%87%BD%E6%95%B0%E5%86%85%E9%83%A8%E6%89%A7%E8%A1%8C%EF%BC%9F"><span class="toc-number">4.2.</span> <span class="toc-text">❌ 误区 2：useCallback 会阻止函数内部执行？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9D%8C-%E8%AF%AF%E5%8C%BA-3%EF%BC%9AuseMemo-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%BF%85%E7%94%A8"><span class="toc-number">4.3.</span> <span class="toc-text">❌ 误区 3：useMemo &#x3D; 性能优化必用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5%E5%88%A4%E6%96%AD%E6%A0%87%E5%87%86"><span class="toc-number">5.</span> <span class="toc-text">五、工程实践判断标准</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%BF%AB%E9%80%9F%E5%86%B3%E7%AD%96%E4%B8%8E%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93"><span class="toc-number">6.</span> <span class="toc-text">六、快速决策与面试总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E5%8F%A5%E8%AF%9D%E5%86%B3%E7%AD%96"><span class="toc-number">6.1.</span> <span class="toc-text">一句话决策</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E6%A0%B8%E5%BF%83%E5%9B%9E%E7%AD%94"><span class="toc-number">6.2.</span> <span class="toc-text">面试核心回答</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E8%BF%BD%E9%97%AE%E5%8F%8A%E7%AD%94%E6%A1%88"><span class="toc-number">6.3.</span> <span class="toc-text">常见追问及答案</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://macshion.github.io/react-usecallback-usememo/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://macshion.github.io/react-usecallback-usememo/&text=React 中 useCallback 和 useMemo 的区别与使用场景"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://macshion.github.io/react-usecallback-usememo/&title=React 中 useCallback 和 useMemo 的区别与使用场景"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://macshion.github.io/react-usecallback-usememo/&is_video=false&description=React 中 useCallback 和 useMemo 的区别与使用场景"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=React 中 useCallback 和 useMemo 的区别与使用场景&body=Check out this article: https://macshion.github.io/react-usecallback-usememo/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://macshion.github.io/react-usecallback-usememo/&title=React 中 useCallback 和 useMemo 的区别与使用场景"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://macshion.github.io/react-usecallback-usememo/&title=React 中 useCallback 和 useMemo 的区别与使用场景"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://macshion.github.io/react-usecallback-usememo/&title=React 中 useCallback 和 useMemo 的区别与使用场景"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://macshion.github.io/react-usecallback-usememo/&title=React 中 useCallback 和 useMemo 的区别与使用场景"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://macshion.github.io/react-usecallback-usememo/&name=React 中 useCallback 和 useMemo 的区别与使用场景&description=&lt;p&gt;在 React 中，&lt;code&gt;useCallback&lt;/code&gt; 和 &lt;code&gt;useMemo&lt;/code&gt; 的&lt;strong&gt;核心目的都是缓存（memoization）&lt;/strong&gt;，减少不必要的重新创建和重新计算，从而避免不必要的子组件重渲染或昂贵计算。但它们&lt;strong&gt;缓存的东西不同&lt;/strong&gt;。&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://macshion.github.io/react-usecallback-usememo/&t=React 中 useCallback 和 useMemo 的区别与使用场景"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+            
+            <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2026
+    Macshion
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/tags/">Tags</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/macshion">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+        </div>
+        <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+        <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+
+<!-- Particle Background -->
+
+<script src="/js/particle-config.js"></script>
+
+
+<script src="/js/particle-background.js"></script>
+
+    </body>
+
+    </html>
