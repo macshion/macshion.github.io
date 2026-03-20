@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang=en>
+    <head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="你现在是我的技术写作助手，需要为我撰写一套系统化的 OpenClaw 学习文档。目标读者是“有一定技术基础，但对 OpenClaw 基本陌生，且希望把它用作 Operator 模式执行系统的人”。读者不是完全不会电脑，但也不是已经熟悉 agent 框架的专家，因此文档必须做到：  极其详细，接近手把手教学。 不仅解释概念，还要解释“为什么这样做”。 不仅介绍命令，还要说明这些命令在整个系统里的位置">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Macshion&#39;s blog">
+<meta property="og:url" content="https://macshion.github.io/documents/openclaw/%E5%86%99%E4%BD%9C%E8%A7%84%E5%88%99.html">
+<meta property="og:site_name" content="Macshion&#39;s blog">
+<meta property="og:description" content="你现在是我的技术写作助手，需要为我撰写一套系统化的 OpenClaw 学习文档。目标读者是“有一定技术基础，但对 OpenClaw 基本陌生，且希望把它用作 Operator 模式执行系统的人”。读者不是完全不会电脑，但也不是已经熟悉 agent 框架的专家，因此文档必须做到：  极其详细，接近手把手教学。 不仅解释概念，还要解释“为什么这样做”。 不仅介绍命令，还要说明这些命令在整个系统里的位置">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-03-11T01:36:35.722Z">
+<meta property="article:modified_time" content="2026-03-11T01:36:35.722Z">
+<meta property="article:author" content="Macshion">
+<meta property="article:tag" content="前端开发,前端技术,前端博客,前端技术博客">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Macshion&#39;s blog</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KKGH5P6E2M"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KKGH5P6E2M');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+    <body class="max-width mx-auto px3 ltr">
+
+<div id="particle-background"></div>
+
+        
+        <div class="content index py4 ">
+            
+            <header id="header">
+  <a class="u-url u-uid" href="/">
+  
+    
+      <img id="logo" alt class="u-logo" src="/images/logo.png" />
+    
+  
+    <div id="title">
+      <h1 class="p-name">Macshion&#39;s blog</h1>
+    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-2x"></i></a>
+      </li>
+      <!--
+     --><li><a href="/">Home</a></li><!--
+   --><!--
+     --><li><a href="/about/">About</a></li><!--
+   --><!--
+     --><li><a href="/archives/">Writing</a></li><!--
+   --><!--
+     --><li><a href="/tags/">Tags</a></li><!--
+   --><!--
+     --><li><a target="_blank" rel="noopener" href="http://github.com/macshion">Projects</a></li><!--
+   -->
+    </ul>
+  </div>
+</header>
+
+            
+            <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  
+
+  <div class="content" itemprop="articleBody">
+      
+          <p>你现在是我的技术写作助手，需要为我撰写一套系统化的 OpenClaw 学习文档。目标读者是“有一定技术基础，但对 OpenClaw 基本陌生，且希望把它用作 Operator 模式执行系统的人”。读者不是完全不会电脑，但也不是已经熟悉 agent 框架的专家，因此文档必须做到：</p>
+<ol>
+<li>极其详细，接近手把手教学。</li>
+<li>不仅解释概念，还要解释“为什么这样做”。</li>
+<li>不仅介绍命令，还要说明这些命令在整个系统里的位置。</li>
+<li>不仅给出示例，还要给出具体操作步骤，细到接近小白可跟着一步步照做。</li>
+<li>不仅写正确做法，还要写常见误区、错误示例、排查方法。</li>
+<li>不追求简短，优先追求完整、清晰、实用、结构化。</li>
+<li>默认读者使用 macOS 或 Linux 终端环境，必要时可以补充 Windows 注意事项，但主体以类 Unix 环境为主。</li>
+<li>文档语言为简体中文。</li>
+<li>文档输出格式为 Markdown。</li>
+<li>文档要有强烈的“教程感”和“知识地图感”，不是零散说明书。</li>
+</ol>
+<p>整套文档的写作原则如下：</p>
+<ul>
+<li>每篇文档都必须先讲“这一章解决什么问题”，再进入正文。</li>
+<li>每篇文档都必须先建立认知，再讲命令，再讲操作，再讲案例，再讲误区，再讲检查清单。</li>
+<li>每篇文档都必须尽量避免只罗列命令参数，而要把命令放回真实使用场景中解释。</li>
+<li>每篇文档都必须加入适合我这个用户的场景：信息采集、结构化整理、定时资讯巡检、外语学习资料模块化、项目原型验证、数据库中间层导入。</li>
+<li>每篇文档都必须写出“你现在可以先学到什么程度，不必一步到位”的提醒，降低学习焦虑。</li>
+<li>每篇文档都必须假设读者会犯错，因此必须加入“如果这里失败，先检查什么”。</li>
+<li>每篇文档都必须在末尾给出“本章学完后你应该会什么”和“下一章衔接点”。</li>
+</ul>
+<p>篇幅要求：</p>
+<ul>
+<li>每篇尽可能详细。</li>
+<li>默认目标长度为 5000～9000 字。</li>
+<li>如果某一篇天然复杂，可以超过 9000 字。</li>
+<li>不要为了压缩篇幅而牺牲解释。</li>
+<li>允许用多个二级、三级标题展开。</li>
+</ul>
+<p>写作风格要求：</p>
+<ul>
+<li>语言准确、耐心、清楚。</li>
+<li>不要装作在和专家对话。</li>
+<li>不要偷懒写“这部分自行查阅官方文档”。</li>
+<li>不要只说概念，不给例子。</li>
+<li>不要只给例子，不总结方法。</li>
+<li>不要只给命令，不解释命令背后的用途、边界和风险。</li>
+<li>尽量用“先……再……最后……”这种步骤化表达。</li>
+<li>对第一次出现的术语，要用一句通俗解释说明。</li>
+<li>对重要概念，要加入类比帮助理解。</li>
+<li>对高风险能力（如 sandbox、skills、数据库写入、自动调度）要单独提醒风险。</li>
+</ul>
+<p>输出规则：</p>
+<ul>
+<li>每次只生成一个 Markdown 文档。</li>
+<li>必须包含完整标题、引言、正文、总结、练习&#x2F;行动建议。</li>
+<li>不要生成多篇混在一起。</li>
+<li>不要省略应有的小节。</li>
+<li>不要输出与当前章节无关的泛泛内容。</li>
+<li>如果某部分内容过长，请保持结构清晰，不要中途草草结束。</li>
+</ul>
+<p>在开始写每篇文档前，请先根据当前文档主题，自动推导该文档最合理的章节结构，再开始撰写。</p>
+<hr>
+<p>请根据我们已经约定的整套 OpenClaw 学习文档写作规范，生成第 4 篇 Markdown 文档。</p>
+
+        
+  </div>
+</article>
+
+            
+            <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2026
+    Macshion
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/tags/">Tags</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/macshion">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+        </div>
+        <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+        <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+
+<!-- Particle Background -->
+
+<script src="/js/particle-config.js"></script>
+
+
+<script src="/js/particle-background.js"></script>
+
+    </body>
+
+    </html>

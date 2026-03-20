@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang=en>
+    <head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="面向个人知识运营与研发自动化的 OpenClaw Operator 学习路线这是一份详细的OpenClaw学习大纲，按照Operator 使用者的真实成长路径：“认知层 → 架构层 → 安全层 → 操作层 → 自动化层 → 生产化层”来排。 OpenClaw 当前的核心能力确实集中在 Gateway、agents、sandbox、cron、workspace&#x2F;skills 这些部分，所以">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Macshion&#39;s blog">
+<meta property="og:url" content="https://macshion.github.io/documents/openclaw/index.html">
+<meta property="og:site_name" content="Macshion&#39;s blog">
+<meta property="og:description" content="面向个人知识运营与研发自动化的 OpenClaw Operator 学习路线这是一份详细的OpenClaw学习大纲，按照Operator 使用者的真实成长路径：“认知层 → 架构层 → 安全层 → 操作层 → 自动化层 → 生产化层”来排。 OpenClaw 当前的核心能力确实集中在 Gateway、agents、sandbox、cron、workspace&#x2F;skills 这些部分，所以">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-03-10T06:39:18.841Z">
+<meta property="article:modified_time" content="2026-03-10T06:39:18.832Z">
+<meta property="article:author" content="Macshion">
+<meta property="article:tag" content="前端开发,前端技术,前端博客,前端技术博客">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Macshion&#39;s blog</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KKGH5P6E2M"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KKGH5P6E2M');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+    <body class="max-width mx-auto px3 ltr">
+
+<div id="particle-background"></div>
+
+        
+        <div class="content index py4 ">
+            
+            <header id="header">
+  <a class="u-url u-uid" href="/">
+  
+    
+      <img id="logo" alt class="u-logo" src="/images/logo.png" />
+    
+  
+    <div id="title">
+      <h1 class="p-name">Macshion&#39;s blog</h1>
+    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-2x"></i></a>
+      </li>
+      <!--
+     --><li><a href="/">Home</a></li><!--
+   --><!--
+     --><li><a href="/about/">About</a></li><!--
+   --><!--
+     --><li><a href="/archives/">Writing</a></li><!--
+   --><!--
+     --><li><a href="/tags/">Tags</a></li><!--
+   --><!--
+     --><li><a target="_blank" rel="noopener" href="http://github.com/macshion">Projects</a></li><!--
+   -->
+    </ul>
+  </div>
+</header>
+
+            
+            <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  
+
+  <div class="content" itemprop="articleBody">
+      
+          <h1 id="面向个人知识运营与研发自动化的-OpenClaw-Operator-学习路线"><a href="#面向个人知识运营与研发自动化的-OpenClaw-Operator-学习路线" class="headerlink" title="面向个人知识运营与研发自动化的 OpenClaw Operator 学习路线"></a>面向个人知识运营与研发自动化的 OpenClaw Operator 学习路线</h1><p>这是一份详细的OpenClaw学习大纲，按照Operator 使用者的真实成长路径：“认知层 → 架构层 → 安全层 → 操作层 → 自动化层 → 生产化层”来排。</p>
+<p>OpenClaw 当前的核心能力确实集中在 Gateway、agents、sandbox、cron、workspace&#x2F;skills 这些部分，所以这份大纲也会围绕它们展开。</p>
+<p>第 1、2、3 章，建立认知和安全底座。<br>第 4、5、6、7 章，理解系统怎么搭、怎么分角色。<br>第 8、9、10、11、12 章，把自动化、采集、整理、入库跑起来。<br>第 13、14、15、16 章，走向稳定运行和长期治理。</p>
+<h2 id="第-0-章：学习目标与学习边界"><a href="#第-0-章：学习目标与学习边界" class="headerlink" title="第 0 章：学习目标与学习边界"></a>第 0 章：学习目标与学习边界</h2><h3 id="0-1-你为什么学-OpenClaw"><a href="#0-1-你为什么学-OpenClaw" class="headerlink" title="0.1 你为什么学 OpenClaw"></a>0.1 你为什么学 OpenClaw</h3><blockquote>
+<p>先回答这几个问题：<br>你是想把它当聊天工具，还是执行系统<br>你是想做本地研发助手，还是内容采集流水线<br>你希望它是“建议型 Copilot”，还是“执行型 Operator”<br>你是否接受它周期性自动运行</p>
+</blockquote>
+<h3 id="0-2-你的应用场景定义"><a href="#0-2-你的应用场景定义" class="headerlink" title="0.2 你的应用场景定义"></a>0.2 你的应用场景定义</h3><blockquote>
+<p>这一节专门把你的目标写清楚：<br>固定格式信息收集与整理<br>汉字检定资料抓取、抽取、结构化<br>日常资讯巡检与摘要<br>课程模块化整理<br>项目原型验证与快速开发<br>数据库中间层与受控入库</p>
+</blockquote>
+<h3 id="0-3-不在第一阶段学习范围内的内容"><a href="#0-3-不在第一阶段学习范围内的内容" class="headerlink" title="0.3 不在第一阶段学习范围内的内容"></a>0.3 不在第一阶段学习范围内的内容</h3><blockquote>
+<p>聊天渠道集成<br>复杂多节点分布式执行<br>大规模 plugin 生态接入<br>生产级对外发布与自动发帖<br>高权限云资源操作</p>
+</blockquote>
+<p>这一章的目标，不是学技术，而是先定义“学什么，不学什么”。</p>
+<h2 id="第-1-章：OpenClaw-是什么，它不是什么"><a href="#第-1-章：OpenClaw-是什么，它不是什么" class="headerlink" title="第 1 章：OpenClaw 是什么，它不是什么"></a>第 1 章：OpenClaw 是什么，它不是什么</h2><h3 id="1-1-OpenClaw-的定位"><a href="#1-1-OpenClaw-的定位" class="headerlink" title="1.1 OpenClaw 的定位"></a>1.1 OpenClaw 的定位</h3><blockquote>
+<p>不是普通 CLI 工具<br>不是单纯对话壳<br>不是只有 terminal access 的 coding agent<br>它更像本地 agent runtime &#x2F; operator shell，围绕 Gateway、agent turn、workspace、skills、cron、sandbox 组织能力。</p>
+</blockquote>
+<h3 id="1-2-OpenClaw-的核心思想"><a href="#1-2-OpenClaw-的核心思想" class="headerlink" title="1.2 OpenClaw 的核心思想"></a>1.2 OpenClaw 的核心思想</h3><blockquote>
+<p>模型只负责推理<br>工具负责行动<br>Gateway 负责调度和中转<br>Agent 负责执行具体任务<br>Workspace 负责隔离上下文与目录<br>Sandbox 负责环境隔离<br>Cron 负责定时运行</p>
+</blockquote>
+<h3 id="1-3-Copilot-与-Operator-的区别"><a href="#1-3-Copilot-与-Operator-的区别" class="headerlink" title="1.3 Copilot 与 Operator 的区别"></a>1.3 Copilot 与 Operator 的区别</h3><blockquote>
+<p>建议模式<br>半自动模式<br>自动执行模式<br>为什么你更接近 Operator</p>
+</blockquote>
+<h3 id="1-4-OpenClaw-与其他-agent-框架的差异"><a href="#1-4-OpenClaw-与其他-agent-框架的差异" class="headerlink" title="1.4 OpenClaw 与其他 agent 框架的差异"></a>1.4 OpenClaw 与其他 agent 框架的差异</h3><blockquote>
+<p>与单纯 CLI agent 的区别<br>与 MCP &#x2F; tool calling 的区别<br>与“浏览器自动化 + LLM”的区别<br>与 IDE 内 Copilot 的区别</p>
+</blockquote>
+<h3 id="1-5-你的认知底座"><a href="#1-5-你的认知底座" class="headerlink" title="1.5 你的认知底座"></a>1.5 你的认知底座</h3><blockquote>
+<p>什么任务适合 agent<br>什么任务不适合 agent<br>什么任务一定要人工把关</p>
+</blockquote>
+<p>这一章的目标是建立概念坐标系。你之后遇到任何命令，都会知道它属于哪个系统层次。</p>
+<h2 id="第-2-章：整体架构认知"><a href="#第-2-章：整体架构认知" class="headerlink" title="第 2 章：整体架构认知"></a>第 2 章：整体架构认知</h2><h3 id="2-1-Gateway-是什么"><a href="#2-1-Gateway-是什么" class="headerlink" title="2.1 Gateway 是什么"></a>2.1 Gateway 是什么</h3><blockquote>
+<p>为什么几乎所有能力都围绕 Gateway 展开<br>为什么很多 CLI 命令其实是在操作 Gateway<br>Gateway 在本地运行意味着什么<br>Gateway 与 agent、cron、logs、health 的关系。官方 CLI 文档也把 gateway 作为运行、检查和查询 WebSocket Gateway 的核心命令。</p>
+</blockquote>
+<h3 id="2-2-Agent-是什么"><a href="#2-2-Agent-是什么" class="headerlink" title="2.2 Agent 是什么"></a>2.2 Agent 是什么</h3><blockquote>
+<p>一次 turn 的概念<br>agent 和 agents 命令的区别<br>默认 agent 与隔离 agent 的区别<br>agent 如何接收指令、调用工具、产出结果</p>
+</blockquote>
+<h3 id="2-3-Workspace-是什么"><a href="#2-3-Workspace-是什么" class="headerlink" title="2.3 Workspace 是什么"></a>2.3 Workspace 是什么</h3><blockquote>
+<p>为什么要分 workspace<br>workspace 与目录权限的关系<br>workspace 与 agent 身份的关系<br>为什么你的采集员、整理员、原型员应分开</p>
+</blockquote>
+<h3 id="2-4-Sandbox-是什么"><a href="#2-4-Sandbox-是什么" class="headerlink" title="2.4 Sandbox 是什么"></a>2.4 Sandbox 是什么</h3><blockquote>
+<p>为什么 sandbox 不是“高级可选项”，而是 Operator 的核心能力之一<br>Docker sandbox 的意义<br>什么情况下必须进 sandbox<br>什么情况下可以先不进 sandbox。官方 docs 明确把 sandbox 作为基于 Docker 的隔离容器管理能力。</p>
+</blockquote>
+<h3 id="2-5-Cron-是什么"><a href="#2-5-Cron-是什么" class="headerlink" title="2.5 Cron 是什么"></a>2.5 Cron 是什么</h3><blockquote>
+<p>定时任务的本质<br>为什么 cron 适合资讯巡检<br>为什么 cron 不适合一开始就跑高价值写操作。官方文档说明 cron 由 Gateway scheduler 管理 recurring 和 one-shot jobs，并带有运行记录与失败处理。</p>
+</blockquote>
+<h3 id="2-6-Skills-Plugins-Hooks-的概念边界"><a href="#2-6-Skills-Plugins-Hooks-的概念边界" class="headerlink" title="2.6 Skills &#x2F; Plugins &#x2F; Hooks 的概念边界"></a>2.6 Skills &#x2F; Plugins &#x2F; Hooks 的概念边界</h3><blockquote>
+<p>什么是 skills<br>什么是 plugins<br>什么是 hooks<br>它们在架构里分别扮演什么角色</p>
+</blockquote>
+<p>这一章的目标是把系统结构“看见”。</p>
+<h2 id="第-3-章：Operator-使用者必须建立的安全观"><a href="#第-3-章：Operator-使用者必须建立的安全观" class="headerlink" title="第 3 章：Operator 使用者必须建立的安全观"></a>第 3 章：Operator 使用者必须建立的安全观</h2><h3 id="3-1-权限不是功能，权限是风险放大器"><a href="#3-1-权限不是功能，权限是风险放大器" class="headerlink" title="3.1 权限不是功能，权限是风险放大器"></a>3.1 权限不是功能，权限是风险放大器</h3><blockquote>
+<p>读权限<br>写权限<br>执行权限<br>网络权限<br>账号权限<br>密钥权限<br>数据库权限</p>
+</blockquote>
+<h3 id="3-2-信任边界"><a href="#3-2-信任边界" class="headerlink" title="3.2 信任边界"></a>3.2 信任边界</h3><blockquote>
+<p>为什么不应该让一个 agent 同时拥有采集、改写、发出、入库、联网全部能力<br>为什么高价值任务要拆角色<br>为什么不同 workspace 应对不同风险级别</p>
+</blockquote>
+<h3 id="3-3-最小权限原则"><a href="#3-3-最小权限原则" class="headerlink" title="3.3 最小权限原则"></a>3.3 最小权限原则</h3><blockquote>
+<p>按任务给权限，而不是按想象给权限<br>采集员最小权限<br>整理员最小权限<br>原型员最小权限<br>执行员最小权限</p>
+</blockquote>
+<h3 id="3-4-Skills-插件风险"><a href="#3-4-Skills-插件风险" class="headerlink" title="3.4 Skills &#x2F; 插件风险"></a>3.4 Skills &#x2F; 插件风险</h3><blockquote>
+<p>为什么 skill 生态强大但危险<br>markdown 指令包为什么可能构成攻击面<br>为什么第三方 skill 不能盲装<br>为什么技能管理和来源审计是长期主题。OpenClaw 社区近来就在集中讨论 skills &#x2F; plugins 的信任、权限和扫描问题。</p>
+</blockquote>
+<h3 id="3-5-Gateway-共享风险"><a href="#3-5-Gateway-共享风险" class="headerlink" title="3.5 Gateway 共享风险"></a>3.5 Gateway 共享风险</h3><blockquote>
+<p>为什么一个 Gateway 不适合跨信任用户共享<br>为什么官方安全建议强调按信任边界拆分 Gateway，甚至做到一机一用户。</p>
+</blockquote>
+<h3 id="3-6-你的第一阶段安全红线"><a href="#3-6-你的第一阶段安全红线" class="headerlink" title="3.6 你的第一阶段安全红线"></a>3.6 你的第一阶段安全红线</h3><blockquote>
+<p>不碰生产数据库<br>不碰正式社媒发帖<br>不碰云资源 root 权限<br>不碰 SSH 私钥<br>不让采集 agent 直接入正式库<br>不让实验 agent 直连正式项目主分支</p>
+</blockquote>
+<p>这一章非常重要。你如果不先学这一章，后面越学越危险。</p>
+<h2 id="第-4-章：安装、初始化与运行路径"><a href="#第-4-章：安装、初始化与运行路径" class="headerlink" title="第 4 章：安装、初始化与运行路径"></a>第 4 章：安装、初始化与运行路径</h2><h3 id="4-1-安装后的系统目录和-profile-概念"><a href="#4-1-安装后的系统目录和-profile-概念" class="headerlink" title="4.1 安装后的系统目录和 profile 概念"></a>4.1 安装后的系统目录和 profile 概念</h3><blockquote>
+<p><code>--dev</code> 的意义<br><code>--profile</code> 的意义<br>为什么 profile 是学习和实验的基本手段</p>
+</blockquote>
+<h3 id="4-2-setup-onboard-configure-config-的关系"><a href="#4-2-setup-onboard-configure-config-的关系" class="headerlink" title="4.2 setup &#x2F; onboard &#x2F; configure &#x2F; config 的关系"></a>4.2 setup &#x2F; onboard &#x2F; configure &#x2F; config 的关系</h3><blockquote>
+<p>第一次到底该用哪个<br>交互式配置和非交互配置有什么差异<br>什么信息是在 onboarding 阶段配置<br>什么信息应该后续再补</p>
+</blockquote>
+<h3 id="4-3-Gateway-的启动方式"><a href="#4-3-Gateway-的启动方式" class="headerlink" title="4.3 Gateway 的启动方式"></a>4.3 Gateway 的启动方式</h3><blockquote>
+<p>本地 Gateway<br>临时启动<br>健康检查<br>日志查看<br>状态检查。官方文档说明 gateway、health、logs、status、doctor 组成了基础运行与排障入口。</p>
+</blockquote>
+<h3 id="4-4-模型配置基础"><a href="#4-4-模型配置基础" class="headerlink" title="4.4 模型配置基础"></a>4.4 模型配置基础</h3><blockquote>
+<p>本地模型 &#x2F; 远程模型<br>为什么不同 agent 不一定要用同一个模型<br>成本、速度、准确率的权衡</p>
+</blockquote>
+<h3 id="4-5-第一次成功运行的最小闭环"><a href="#4-5-第一次成功运行的最小闭环" class="headerlink" title="4.5 第一次成功运行的最小闭环"></a>4.5 第一次成功运行的最小闭环</h3><blockquote>
+<p>能启动 gateway<br>能发起一次 agent turn<br>能拿到结果<br>能看 logs<br>能排查失败</p>
+</blockquote>
+<p>这一章的目标是“跑通第一条生命线”。</p>
+<h2 id="第-5-章：命令行总览与命令分层理解"><a href="#第-5-章：命令行总览与命令分层理解" class="headerlink" title="第 5 章：命令行总览与命令分层理解"></a>第 5 章：命令行总览与命令分层理解</h2><h3 id="5-1-为什么不能背所有命令"><a href="#5-1-为什么不能背所有命令" class="headerlink" title="5.1 为什么不能背所有命令"></a>5.1 为什么不能背所有命令</h3><blockquote>
+<p>命令是按系统职责分层的<br>学习应按“场景”而不是按 help 顺序</p>
+</blockquote>
+<h3 id="5-2-运行面命令"><a href="#5-2-运行面命令" class="headerlink" title="5.2 运行面命令"></a>5.2 运行面命令</h3><blockquote>
+<p><code>gateway</code><br><code>health</code><br><code>status</code><br><code>logs</code><br><code>doctor</code></p>
+</blockquote>
+<h3 id="5-3-代理面命令"><a href="#5-3-代理面命令" class="headerlink" title="5.3 代理面命令"></a>5.3 代理面命令</h3><blockquote>
+<p><code>agent</code><br><code>agents</code></p>
+</blockquote>
+<h3 id="5-4-隔离面命令"><a href="#5-4-隔离面命令" class="headerlink" title="5.4 隔离面命令"></a>5.4 隔离面命令</h3><blockquote>
+<p><code>sandbox</code></p>
+</blockquote>
+<h3 id="5-5-调度面命令"><a href="#5-5-调度面命令" class="headerlink" title="5.5 调度面命令"></a>5.5 调度面命令</h3><blockquote>
+<p><code>cron</code></p>
+</blockquote>
+<h3 id="5-6-配置面命令"><a href="#5-6-配置面命令" class="headerlink" title="5.6 配置面命令"></a>5.6 配置面命令</h3><blockquote>
+<p><code>configure</code><br><code>config</code></p>
+</blockquote>
+<h3 id="5-7-安全面命令"><a href="#5-7-安全面命令" class="headerlink" title="5.7 安全面命令"></a>5.7 安全面命令</h3><blockquote>
+<p><code>security</code><br><code>approvals</code><br><code>secrets</code></p>
+</blockquote>
+<h3 id="5-8-暂时后置的命令"><a href="#5-8-暂时后置的命令" class="headerlink" title="5.8 暂时后置的命令"></a>5.8 暂时后置的命令</h3><blockquote>
+<p><code>channels</code><br><code>message</code><br><code>devices</code><br><code>directory</code><br><code>pairing</code><br><code>webhooks</code><br><code>node</code><br><code>nodes</code><br><code>plugins</code><br><code>hooks</code><br><code>memory</code></p>
+</blockquote>
+<p>这一章的目标是把命令从“很多”变成“有层次”。</p>
+<h2 id="第-6-章：Agent-设计方法论"><a href="#第-6-章：Agent-设计方法论" class="headerlink" title="第 6 章：Agent 设计方法论"></a>第 6 章：Agent 设计方法论</h2><h3 id="6-1-什么叫一个“好-agent”"><a href="#6-1-什么叫一个“好-agent”" class="headerlink" title="6.1 什么叫一个“好 agent”"></a>6.1 什么叫一个“好 agent”</h3><blockquote>
+<p>职责单一<br>输入边界明确<br>输出格式固定<br>失败可回滚<br>不依赖隐性上下文</p>
+</blockquote>
+<h3 id="6-2-角色化设计"><a href="#6-2-角色化设计" class="headerlink" title="6.2 角色化设计"></a>6.2 角色化设计</h3><blockquote>
+<p>Collector 采集员<br>Curator 整理员<br>Watcher 巡检员<br>Prototyper 原型员<br>Executor 执行员</p>
+</blockquote>
+<h3 id="6-3-任务拆解方法"><a href="#6-3-任务拆解方法" class="headerlink" title="6.3 任务拆解方法"></a>6.3 任务拆解方法</h3><blockquote>
+<p>目标<br>输入<br>工具<br>步骤<br>输出<br>校验<br>失败处理</p>
+</blockquote>
+<h3 id="6-4-Prompt-不是唯一重点"><a href="#6-4-Prompt-不是唯一重点" class="headerlink" title="6.4 Prompt 不是唯一重点"></a>6.4 Prompt 不是唯一重点</h3><blockquote>
+<p>为什么 operator 设计比 prompt 更重要<br>为什么权限和输出 schema 比文案更重要</p>
+</blockquote>
+<h3 id="6-5-你的-agent-初始分工设计"><a href="#6-5-你的-agent-初始分工设计" class="headerlink" title="6.5 你的 agent 初始分工设计"></a>6.5 你的 agent 初始分工设计</h3><blockquote>
+<p>资讯巡检 agent<br>汉字检定采集 agent<br>课程整理 agent<br>原型验证 agent</p>
+</blockquote>
+<p>这一章要学会“如何设计 agent”，不是只会“怎么叫它干活”。</p>
+<h2 id="第-7-章：Workspace-与目录策略"><a href="#第-7-章：Workspace-与目录策略" class="headerlink" title="第 7 章：Workspace 与目录策略"></a>第 7 章：Workspace 与目录策略</h2><h3 id="7-1-为什么要分目录"><a href="#7-1-为什么要分目录" class="headerlink" title="7.1 为什么要分目录"></a>7.1 为什么要分目录</h3><blockquote>
+<p>降低误操作范围<br>方便审计<br>方便版本控制<br>方便做 staging</p>
+</blockquote>
+<h3 id="7-2-推荐目录结构"><a href="#7-2-推荐目录结构" class="headerlink" title="7.2 推荐目录结构"></a>7.2 推荐目录结构</h3><blockquote>
+<p><code>/workspace/news-watcher</code><br><code>/workspace/kanji-staging</code><br><code>/workspace/course-builder</code><br><code>/workspace/prototype-lab</code><br><code>/workspace/importer</code></p>
+</blockquote>
+<h3 id="7-3-staging-validated-production-的概念"><a href="#7-3-staging-validated-production-的概念" class="headerlink" title="7.3 staging &#x2F; validated &#x2F; production 的概念"></a>7.3 staging &#x2F; validated &#x2F; production 的概念</h3><blockquote>
+<p>为什么中间层比自动直写更重要<br>为什么 validated 是人工闸门的核心</p>
+</blockquote>
+<h3 id="7-4-目录权限映射"><a href="#7-4-目录权限映射" class="headerlink" title="7.4 目录权限映射"></a>7.4 目录权限映射</h3><blockquote>
+<p>哪个 agent 能读哪些目录<br>哪个 agent 能写哪些目录<br>哪个 agent 不能碰哪些目录</p>
+</blockquote>
+<h3 id="7-5-你的项目怎么映射到-workspace"><a href="#7-5-你的项目怎么映射到-workspace" class="headerlink" title="7.5 你的项目怎么映射到 workspace"></a>7.5 你的项目怎么映射到 workspace</h3><blockquote>
+<p>汉字检定<br>外语课程<br>资讯巡检<br>原型实验</p>
+</blockquote>
+<p>这一章学的是“环境边界设计”。</p>
+<h2 id="第-8-章：Sandbox-学习专题"><a href="#第-8-章：Sandbox-学习专题" class="headerlink" title="第 8 章：Sandbox 学习专题"></a>第 8 章：Sandbox 学习专题</h2><h3 id="8-1-Docker-sandbox-基本原理"><a href="#8-1-Docker-sandbox-基本原理" class="headerlink" title="8.1 Docker sandbox 基本原理"></a>8.1 Docker sandbox 基本原理</h3><blockquote>
+<p>为什么 agent 跑在容器里更安全<br>容器不是绝对安全<br>容器更像损害控制手段。官方文档将 sandbox 明确绑定 Docker。</p>
+</blockquote>
+<h3 id="8-2-哪些-agent-必须放进-sandbox"><a href="#8-2-哪些-agent-必须放进-sandbox" class="headerlink" title="8.2 哪些 agent 必须放进 sandbox"></a>8.2 哪些 agent 必须放进 sandbox</h3><blockquote>
+<p>采集员<br>原型员<br>带 shell 权限的整理员</p>
+</blockquote>
+<h3 id="8-3-哪些场景可以先不进-sandbox"><a href="#8-3-哪些场景可以先不进-sandbox" class="headerlink" title="8.3 哪些场景可以先不进 sandbox"></a>8.3 哪些场景可以先不进 sandbox</h3><blockquote>
+<p>低风险只读总结<br>临时本地实验<br>完全受控目录内的小任务</p>
+</blockquote>
+<h3 id="8-4-sandbox-的局限与常见坑"><a href="#8-4-sandbox-的局限与常见坑" class="headerlink" title="8.4 sandbox 的局限与常见坑"></a>8.4 sandbox 的局限与常见坑</h3><blockquote>
+<p>文件挂载<br>网络连通<br>环境变量<br>容器持久化<br>宿主机差异。官方 issue 和文档都表明 Docker&#x2F;sandbox 组合存在实际环境边界和配置注意点。</p>
+</blockquote>
+<h3 id="8-5-你的-sandbox-学习目标"><a href="#8-5-你的-sandbox-学习目标" class="headerlink" title="8.5 你的 sandbox 学习目标"></a>8.5 你的 sandbox 学习目标</h3><blockquote>
+<p>知道何时用<br>知道为什么用<br>知道怎么排查<br>知道怎么验证隔离是否生效</p>
+</blockquote>
+<p>这一章是你从“会用”走向“敢用”的关键。</p>
+<h2 id="第-9-章：Cron-与自动化专题"><a href="#第-9-章：Cron-与自动化专题" class="headerlink" title="第 9 章：Cron 与自动化专题"></a>第 9 章：Cron 与自动化专题</h2><h3 id="9-1-定时任务思维"><a href="#9-1-定时任务思维" class="headerlink" title="9.1 定时任务思维"></a>9.1 定时任务思维</h3><blockquote>
+<p>任务触发条件<br>时间维度<br>重复执行<br>幂等性<br>失败重试</p>
+</blockquote>
+<h3 id="9-2-OpenClaw-cron-能做什么"><a href="#9-2-OpenClaw-cron-能做什么" class="headerlink" title="9.2 OpenClaw cron 能做什么"></a>9.2 OpenClaw cron 能做什么</h3><blockquote>
+<p>每日资讯巡检<br>定期数据抓取<br>定时生成摘要<br>周期性检查变更。官方 cron 文档就是按 scheduler job 来组织这些能力。</p>
+</blockquote>
+<h3 id="9-3-不适合直接-cron-化的任务"><a href="#9-3-不适合直接-cron-化的任务" class="headerlink" title="9.3 不适合直接 cron 化的任务"></a>9.3 不适合直接 cron 化的任务</h3><blockquote>
+<p>高成本抓取<br>高风险写入<br>需要登录态的复杂交互<br>不可逆操作</p>
+</blockquote>
+<h3 id="9-4-设计一个好的-cron-job"><a href="#9-4-设计一个好的-cron-job" class="headerlink" title="9.4 设计一个好的 cron job"></a>9.4 设计一个好的 cron job</h3><blockquote>
+<p>输入来源<br>去重逻辑<br>输出路径<br>失败告警<br>日志保存</p>
+</blockquote>
+<h3 id="9-5-你的第一批-cron-任务设计"><a href="#9-5-你的第一批-cron-任务设计" class="headerlink" title="9.5 你的第一批 cron 任务设计"></a>9.5 你的第一批 cron 任务设计</h3><blockquote>
+<p>每日 AI 编程动态<br>每日日语教育产品动态<br>每周 AWS 认证生态更新</p>
+</blockquote>
+<h3 id="9-6-cron-故障排查"><a href="#9-6-cron-故障排查" class="headerlink" title="9.6 cron 故障排查"></a>9.6 cron 故障排查</h3><blockquote>
+<p>任务没触发<br>任务触发但失败<br>结果为空<br>重复内容过多<br>摘要质量差</p>
+</blockquote>
+<p>这一章会决定你能否真正把 OpenClaw 从“手动玩具”变成“自动系统”。</p>
+<h2 id="第-10-章：信息采集与结构化抽取"><a href="#第-10-章：信息采集与结构化抽取" class="headerlink" title="第 10 章：信息采集与结构化抽取"></a>第 10 章：信息采集与结构化抽取</h2><h3 id="10-1-采集任务的本质"><a href="#10-1-采集任务的本质" class="headerlink" title="10.1 采集任务的本质"></a>10.1 采集任务的本质</h3><blockquote>
+<p>搜索<br>定位源<br>抓取<br>抽取字段<br>标准化<br>保存</p>
+</blockquote>
+<h3 id="10-2-采集源评估"><a href="#10-2-采集源评估" class="headerlink" title="10.2 采集源评估"></a>10.2 采集源评估</h3><blockquote>
+<p>官网<br>公开资料页<br>论坛<br>博客<br>二手资料<br>数据库镜像<br>版权与可靠性边界</p>
+</blockquote>
+<h3 id="10-3-字段建模"><a href="#10-3-字段建模" class="headerlink" title="10.3 字段建模"></a>10.3 字段建模</h3><blockquote>
+<p>什么叫字段<br>什么叫 schema<br>什么叫来源字段<br>什么叫置信度<br>什么叫版本信息</p>
+</blockquote>
+<h3 id="10-4-汉字检定资料的字段设计"><a href="#10-4-汉字检定资料的字段设计" class="headerlink" title="10.4 汉字检定资料的字段设计"></a>10.4 汉字检定资料的字段设计</h3><blockquote>
+<p>汉字<br>级别<br>音读<br>训读<br>词组<br>例句<br>来源类型<br>来源 URL<br>抓取时间<br>校验状态</p>
+</blockquote>
+<h3 id="10-5-为什么要先写到-JSON-CSV"><a href="#10-5-为什么要先写到-JSON-CSV" class="headerlink" title="10.5 为什么要先写到 JSON &#x2F; CSV"></a>10.5 为什么要先写到 JSON &#x2F; CSV</h3><blockquote>
+<p>便于抽检<br>便于比对<br>便于重放<br>便于改 schema</p>
+</blockquote>
+<h3 id="10-6-采集质量控制"><a href="#10-6-采集质量控制" class="headerlink" title="10.6 采集质量控制"></a>10.6 采集质量控制</h3><blockquote>
+<p>缺失字段<br>重复记录<br>来源不一致<br>格式污染<br>时间戳缺失</p>
+</blockquote>
+<p>这一章和你的副业项目直接相关，很值得单独深挖。</p>
+<h2 id="第-11-章：结构化整理与课程模块化"><a href="#第-11-章：结构化整理与课程模块化" class="headerlink" title="第 11 章：结构化整理与课程模块化"></a>第 11 章：结构化整理与课程模块化</h2><h3 id="11-1-整理不等于搬运"><a href="#11-1-整理不等于搬运" class="headerlink" title="11.1 整理不等于搬运"></a>11.1 整理不等于搬运</h3><blockquote>
+<p>为什么“模块化”本质上是知识设计<br>为什么课程化要有学习目标、顺序、难度层次</p>
+</blockquote>
+<h3 id="11-2-从原始资料到课程模块"><a href="#11-2-从原始资料到课程模块" class="headerlink" title="11.2 从原始资料到课程模块"></a>11.2 从原始资料到课程模块</h3><blockquote>
+<p>素材归类<br>主题抽取<br>难度分层<br>模块命名<br>Lesson 拆分<br>练习设计</p>
+</blockquote>
+<h3 id="11-3-对外语学习资料的模块化原则"><a href="#11-3-对外语学习资料的模块化原则" class="headerlink" title="11.3 对外语学习资料的模块化原则"></a>11.3 对外语学习资料的模块化原则</h3><blockquote>
+<p>输入先行<br>输出跟进<br>例句最小闭环<br>复习节奏<br>测试与反馈</p>
+</blockquote>
+<h3 id="11-4-你的应用场景"><a href="#11-4-你的应用场景" class="headerlink" title="11.4 你的应用场景"></a>11.4 你的应用场景</h3><blockquote>
+<p>日语学习资料模块化<br>IT 日语对话卡<br>汉字检定辅助内容<br>英语工作环境表达训练资料</p>
+</blockquote>
+<h3 id="11-5-agent-在课程整理里的角色"><a href="#11-5-agent-在课程整理里的角色" class="headerlink" title="11.5 agent 在课程整理里的角色"></a>11.5 agent 在课程整理里的角色</h3><blockquote>
+<p>不是最终教师<br>而是课程编辑助手</p>
+</blockquote>
+<p>这一章是“知识产品化”的基础。</p>
+<h2 id="第-12-章：数据库中间层与受控入库"><a href="#第-12-章：数据库中间层与受控入库" class="headerlink" title="第 12 章：数据库中间层与受控入库"></a>第 12 章：数据库中间层与受控入库</h2><h3 id="12-1-为什么不要让-agent-直接写正式库"><a href="#12-1-为什么不要让-agent-直接写正式库" class="headerlink" title="12.1 为什么不要让 agent 直接写正式库"></a>12.1 为什么不要让 agent 直接写正式库</h3><blockquote>
+<p>schema 漂移<br>数据污染<br>重复写入<br>错误更新<br>来源丢失</p>
+</blockquote>
+<h3 id="12-2-正确的流程"><a href="#12-2-正确的流程" class="headerlink" title="12.2 正确的流程"></a>12.2 正确的流程</h3><blockquote>
+<p>采集 → staging → 校验 → validated → importer → test DB → production</p>
+</blockquote>
+<h3 id="12-3-importer-的作用"><a href="#12-3-importer-的作用" class="headerlink" title="12.3 importer 的作用"></a>12.3 importer 的作用</h3><blockquote>
+<p>让写库变成确定性行为<br>把 agent 的自由度收缩到中间产物层</p>
+</blockquote>
+<h3 id="12-4-测试库与正式库"><a href="#12-4-测试库与正式库" class="headerlink" title="12.4 测试库与正式库"></a>12.4 测试库与正式库</h3><blockquote>
+<p>为什么先 test DB<br>如何做抽样核验<br>如何做回滚</p>
+</blockquote>
+<h3 id="12-5-你的第一版入库策略"><a href="#12-5-你的第一版入库策略" class="headerlink" title="12.5 你的第一版入库策略"></a>12.5 你的第一版入库策略</h3><blockquote>
+<p>先只入测试库<br>先只写少量样本<br>先只覆盖单表<br>先保留原始 JSON</p>
+</blockquote>
+<p>这一章非常适合你后面做汉字检定资料库时深挖。</p>
+<h2 id="第-13-章：项目原型验证与开发协作"><a href="#第-13-章：项目原型验证与开发协作" class="headerlink" title="第 13 章：项目原型验证与开发协作"></a>第 13 章：项目原型验证与开发协作</h2><h3 id="13-1-agent-在开发中的角色"><a href="#13-1-agent-在开发中的角色" class="headerlink" title="13.1 agent 在开发中的角色"></a>13.1 agent 在开发中的角色</h3><blockquote>
+<p>需求整理<br>页面骨架生成<br>数据 mock<br>测试用例草稿<br>PR 描述草稿</p>
+</blockquote>
+<h3 id="13-2-不该交给-agent-的开发决策"><a href="#13-2-不该交给-agent-的开发决策" class="headerlink" title="13.2 不该交给 agent 的开发决策"></a>13.2 不该交给 agent 的开发决策</h3><blockquote>
+<p>核心架构<br>安全设计<br>生产环境部署<br>数据库最终建模</p>
+</blockquote>
+<h3 id="13-3-你的原型验证流程"><a href="#13-3-你的原型验证流程" class="headerlink" title="13.3 你的原型验证流程"></a>13.3 你的原型验证流程</h3><blockquote>
+<p>想法描述<br>UI&#x2F;功能拆解<br>低保真原型<br>前端 demo<br>人工审查<br>再决定是否正式开发</p>
+</blockquote>
+<h3 id="13-4-为什么原型员要隔离"><a href="#13-4-为什么原型员要隔离" class="headerlink" title="13.4 为什么原型员要隔离"></a>13.4 为什么原型员要隔离</h3><blockquote>
+<p>它会读写代码<br>可能会执行命令<br>可能会装依赖<br>所以更应在 sandbox&#x2F;workspace 内运行</p>
+</blockquote>
+<h3 id="13-5-适合你的-PoC"><a href="#13-5-适合你的-PoC" class="headerlink" title="13.5 适合你的 PoC"></a>13.5 适合你的 PoC</h3><blockquote>
+<p>汉字检定搜索页<br>详情页<br>学习模块页<br>资讯摘要后台</p>
+</blockquote>
+<p>这一章适合和你的产品设计结合来学。</p>
+<h2 id="第-14-章：日志、排障与运行维护"><a href="#第-14-章：日志、排障与运行维护" class="headerlink" title="第 14 章：日志、排障与运行维护"></a>第 14 章：日志、排障与运行维护</h2><h3 id="14-1-常见故障类型"><a href="#14-1-常见故障类型" class="headerlink" title="14.1 常见故障类型"></a>14.1 常见故障类型</h3><blockquote>
+<p>gateway 起不来<br>agent 不响应<br>sandbox 失败<br>cron 不触发<br>输出为空<br>权限不足<br>路径错误</p>
+</blockquote>
+<h3 id="14-2-排障路径"><a href="#14-2-排障路径" class="headerlink" title="14.2 排障路径"></a>14.2 排障路径</h3><blockquote>
+<p>先 health<br>再 status<br>再 logs<br>再 doctor<br>最后看 config 与 workspace 边界。官方文档对 health &#x2F; status &#x2F; logs &#x2F; doctor 都给了明确定位。</p>
+</blockquote>
+<h3 id="14-3-如何建立“可观察性”"><a href="#14-3-如何建立“可观察性”" class="headerlink" title="14.3 如何建立“可观察性”"></a>14.3 如何建立“可观察性”</h3><blockquote>
+<p>日志目录<br>任务输出目录<br>错误记录<br>失败样本保留<br>审计信息</p>
+</blockquote>
+<h3 id="14-4-如何定位是模型问题、权限问题还是环境问题"><a href="#14-4-如何定位是模型问题、权限问题还是环境问题" class="headerlink" title="14.4 如何定位是模型问题、权限问题还是环境问题"></a>14.4 如何定位是模型问题、权限问题还是环境问题</h3><blockquote>
+<p>模型答非所问<br>路径访问失败<br>容器网络失败<br>定时任务没跑<br>输出格式错乱</p>
+</blockquote>
+<p>这一章会让你从“能跑”进化到“能维护”。</p>
+<h2 id="第-15-章：安全审计与长期治理"><a href="#第-15-章：安全审计与长期治理" class="headerlink" title="第 15 章：安全审计与长期治理"></a>第 15 章：安全审计与长期治理</h2><h3 id="15-1-为什么长期使用比第一次配置更危险"><a href="#15-1-为什么长期使用比第一次配置更危险" class="headerlink" title="15.1 为什么长期使用比第一次配置更危险"></a>15.1 为什么长期使用比第一次配置更危险</h3><blockquote>
+<p>权限会慢慢变大<br>skills 会慢慢变多<br>workspace 会慢慢混乱<br>你会慢慢放松警惕</p>
+</blockquote>
+<h3 id="15-2-定期安全检查清单"><a href="#15-2-定期安全检查清单" class="headerlink" title="15.2 定期安全检查清单"></a>15.2 定期安全检查清单</h3><blockquote>
+<p>哪些 agent 有执行权限<br>哪些 agent 接触 secrets<br>哪些 workspace 过大<br>哪些 cron job 无审计<br>哪些 skill 来源不明</p>
+</blockquote>
+<h3 id="15-3-secrets-与-approvals-的边界"><a href="#15-3-secrets-与-approvals-的边界" class="headerlink" title="15.3 secrets 与 approvals 的边界"></a>15.3 secrets 与 approvals 的边界</h3><blockquote>
+<p>什么应该放 secrets<br>什么应该人工 approval<br>什么不能默认自动批准</p>
+</blockquote>
+<h3 id="15-4-持续治理原则"><a href="#15-4-持续治理原则" class="headerlink" title="15.4 持续治理原则"></a>15.4 持续治理原则</h3><blockquote>
+<p>高风险任务单独 gateway<br>高风险任务单独主机<br>高风险任务单独身份<br>低风险任务可集中管理。官方安全文档明确强调按信任边界拆分 Gateway 与部署单元。</p>
+</blockquote>
+<p>这一章是“长期不翻车”的关键。</p>
+<h2 id="第-16-章：你的第一阶段落地路线图"><a href="#第-16-章：你的第一阶段落地路线图" class="headerlink" title="第 16 章：你的第一阶段落地路线图"></a>第 16 章：你的第一阶段落地路线图</h2><h3 id="16-1-第一周目标"><a href="#16-1-第一周目标" class="headerlink" title="16.1 第一周目标"></a>16.1 第一周目标</h3><blockquote>
+<p>跑通本地 gateway<br>建立 2 到 3 个 workspace<br>手动执行 3 个真实任务<br>学会看 logs 与 doctor</p>
+</blockquote>
+<h3 id="16-2-第二周目标"><a href="#16-2-第二周目标" class="headerlink" title="16.2 第二周目标"></a>16.2 第二周目标</h3><blockquote>
+<p>给 1 个 agent 上 sandbox<br>建立 1 个 daily cron<br>输出 1 份稳定日报<br>完成 1 个 JSON staging 流程</p>
+</blockquote>
+<h3 id="16-3-第三周目标"><a href="#16-3-第三周目标" class="headerlink" title="16.3 第三周目标"></a>16.3 第三周目标</h3><blockquote>
+<p>形成汉字检定采集样例库<br>形成 3 个课程模块草稿<br>完成 1 个前端原型 demo</p>
+</blockquote>
+<h3 id="16-4-第一阶段不追求的东西"><a href="#16-4-第一阶段不追求的东西" class="headerlink" title="16.4 第一阶段不追求的东西"></a>16.4 第一阶段不追求的东西</h3><blockquote>
+<p>不追求全自动<br>不追求全量采集<br>不追求生产级发布<br>不追求一个 agent 包打天下</p>
+</blockquote>
+<h2 id="第-17-章：进阶专题"><a href="#第-17-章：进阶专题" class="headerlink" title="第 17 章：进阶专题"></a>第 17 章：进阶专题</h2><h3 id="17-1-channels-message-directory"><a href="#17-1-channels-message-directory" class="headerlink" title="17.1 channels &#x2F; message &#x2F; directory"></a>17.1 channels &#x2F; message &#x2F; directory</h3><h3 id="17-2-plugins-hooks-browser-deeper-usage"><a href="#17-2-plugins-hooks-browser-deeper-usage" class="headerlink" title="17.2 plugins &#x2F; hooks &#x2F; browser deeper usage"></a>17.2 plugins &#x2F; hooks &#x2F; browser deeper usage</h3><h3 id="17-3-nodes-distributed-execution"><a href="#17-3-nodes-distributed-execution" class="headerlink" title="17.3 nodes &#x2F; distributed execution"></a>17.3 nodes &#x2F; distributed execution</h3><h3 id="17-4-multi-host-remote-gateway"><a href="#17-4-multi-host-remote-gateway" class="headerlink" title="17.4 multi-host &#x2F; remote gateway"></a>17.4 multi-host &#x2F; remote gateway</h3><h3 id="17-5-team-collaboration-shared-operations"><a href="#17-5-team-collaboration-shared-operations" class="headerlink" title="17.5 team collaboration &#x2F; shared operations"></a>17.5 team collaboration &#x2F; shared operations</h3>
+        
+  </div>
+</article>
+
+            
+            <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2026
+    Macshion
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/tags/">Tags</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/macshion">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+        </div>
+        <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+        <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+
+<!-- Particle Background -->
+
+<script src="/js/particle-config.js"></script>
+
+
+<script src="/js/particle-background.js"></script>
+
+    </body>
+
+    </html>
